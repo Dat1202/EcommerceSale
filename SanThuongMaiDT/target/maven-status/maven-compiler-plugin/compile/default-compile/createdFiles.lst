@@ -4,11 +4,14 @@ com\phd\service\CategoryService.class
 com\phd\pojo\Category_.class
 com\phd\pojo\User.class
 com\phd\pojo\Category.class
+com\phd\service\impl\StoreServiceImpl.class
 com\phd\service\impl\CategoryServiceImpl.class
+com\phd\service\StoreService.class
 com\phd\configs\HibernateConfig.class
 com\phd\pojo\Orders_.class
 com\phd\pojo\Product_.class
 com\phd\pojo\Comments.class
+com\phd\repository\StoreRepository.class
 com\phd\repository\ProductRepository.class
 com\phd\pojo\Orders.class
 com\phd\repository\impl\CategoryRepositoryImpl.class
@@ -16,6 +19,8 @@ com\phd\pojo\StoreCategory.class
 com\phd\pojo\Store_.class
 com\phd\service\impl\ProductServiceImpl.class
 com\phd\configs\TilesConfig.class
+com\phd\repository\impl\StoreRepositoryImpl.class
+com\phd\controllers\StoreController.class
 com\phd\pojo\OrderDetails.class
 com\phd\pojo\StoreCategory_.class
 com\phd\configs\DispatcherServletInit.class
