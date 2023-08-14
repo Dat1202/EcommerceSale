@@ -33,4 +33,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/pages/store.jsp" />
     </definition>
     
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Cửa hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/login.jsp" />
+    </definition>
+    
 </tiles-definitions>

@@ -8,10 +8,14 @@
 
 <c:url value="/products" var="action" />
 <form:form modelAttribute="product" method="post" action="${action}" enctype="multipart/form-data">
+    <form:hidden path="id" />
+    <form:hidden path="image" />
+    <form:errors path="*" element="div" class="text text-danger" />
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="name" id="name" 
                     placeholder="Tên sản phẩm" name="name" />
         <label for="name">Tên sản phẩm</label>
+        <form:errors path="name" element="div" class="text text-danger" />
     </div>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="price" id="price" 
@@ -21,7 +25,14 @@
     <div class="form-floating">
         <form:select class="form-select" id="cate" name="cate" path="categoryId">
             <c:forEach items="${categories}" var="c">
-                <option value="${c.id}">${c.name}</option>
+                <c:choose>
+                    <c:when test="${c.id == product.categoryId.id}">
+                        <option value="${c.id}" selected>${c.name}</option>
+                    </c:when>
+                    <c:otherwise>
+                        <option value="${c.id}">${c.name}</option>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>  
         </form:select>
         <label for="cate" class="form-label">Danh mục sản phẩm</label>
@@ -32,6 +43,15 @@
         <label for="file">Ảnh sản phẩm</label>
     </div>
     <div class="form-floating mb-3 mt-3">
-        <button class="btn btn-info mt-1" type="submit">Thêm sản phẩm</button>
+        <button class="btn btn-info mt-1" type="submit">
+            <c:choose>
+                <c:when test="${product.id != null}">
+                    Cập nhật sản phẩm
+                </c:when>
+                <c:otherwise>
+                    Thêm sản phẩm
+                </c:otherwise>
+            </c:choose>
+        </button>
     </div>
 </form:form>

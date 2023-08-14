@@ -35,12 +35,11 @@
                                     <h3 class="product-item-name">${p.name}</h3>
                                     <p class="product-item-price">${p.price}</p>
                                     <div class="product-flex">
-                                        <div class="product-flex-detail"><a href="detail.html"><i class="fa-solid fa-circle-info"></i>Xem chi tiết</a></div>
-                                        <div class="product-flex-add-cart">
-                                            <button class="add-Cart" onclick="addProduct()">
-                                                <i class="fa-solid fa-cart-arrow-down"></i>Thêm giỏ hàng
-                                            </button>
+                                        <c:url value="/api/products/${p.id}" var = "api" />
+                                        <div class="product-flex-detail">
+                                            <a href="<c:url value="/products/${p.id}"/>"/>Cập nhật</a>
                                         </div>
+                                        <button class="btn btn-danger" onclick="deleteProduct('${api}')">Xóa</button>
                                     </div>
                                 </div>
                             </div>
@@ -59,6 +58,5 @@
         </div>
     </div>
 </div>
-
-</body>
-</html>
+                            
+<script src="<c:url value="/js/main.js"/>"></script>

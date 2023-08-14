@@ -89,9 +89,10 @@ public class Product implements Serializable {
     private Set<Comments> commentsSet;
     @OneToMany(mappedBy = "productId")
     private Set<OrderDetails> orderDetailsSet;
+    
     @Transient
     private MultipartFile file;
-
+    
     public Product() {
     }
 
@@ -205,5 +206,5 @@ public class Product implements Serializable {
     public String toString() {
         return "com.phd.pojo.Product[ id=" + id + " ]";
     }
-
+    
 }

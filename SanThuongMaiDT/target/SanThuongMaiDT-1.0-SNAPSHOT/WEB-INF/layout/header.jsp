@@ -10,20 +10,31 @@
 <header>
     <div class="header grid__auto">
         <div class="header__navbar-flex-user grid__auto ">
+            
             <ul class="header__navbar-items ">
-                <li class="header__navbar-item">
-                    <a href="login.html">Đăng nhập</a>
-                </li>
-                <li class="header__navbar-item">
-                    <a href="register.html">Đăng ký</a>
-                </li>
+                <c:choose>
+                <c:when test="${pageContext.request.userPrincipal.name != null}">
+                    <li class="header__navbar-item">
+                        <a class="nav-link text-danger" href="<c:url value="/" />">${pageContext.request.userPrincipal.name}</a>
+                    </li>
+                    <li class="header__navbar-item">
+                        <a class="nav-link text-danger" href="<c:url value="/logout" />">Đăng xuất</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/login" />">Đăng nhập</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
             </ul>
         </div>
-
+        
+            
         <div class="header-flex-with-search">
             <div class="header__logo">
                 <a href="${action}">
-                    <img src="assets/img/logo.png" alt="logo">
+                    <img src="<c:url value="/img/logo.png"/>" alt="logo">
                 </a>
             </div>
 
