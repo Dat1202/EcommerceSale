@@ -44,5 +44,6 @@ com\phd\repository\impl\UserRepositoryImpl.class
 com\phd\pojo\StoreCategory_.class
 com\phd\service\ProductService.class
 com\phd\repository\CategoryRepository.class
+com\phd\controllers\ApiCategoryController.class
 com\phd\pojo\Product.class
 com\phd\repository\StatsRepository.class

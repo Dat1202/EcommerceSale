@@ -4,6 +4,7 @@
  */
 package com.phd.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -20,8 +21,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,7 +40,8 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
-    @NamedQuery(name = "Product.findByCreatedAt", query = "SELECT p FROM Product p WHERE p.createdAt = :createdAt")})
+//    @NamedQuery(name = "Product.findByCreatedAt", query = "SELECT p FROM Product p WHERE p.createdAt = :createdAt")})
+})
 public class Product implements Serializable {
 
     /**
@@ -68,7 +68,7 @@ public class Product implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "price")
-    private Long price;
+    private Double price;
     @Size(max = 500)
     @Column(name = "image")
     private String image;
@@ -76,18 +76,22 @@ public class Product implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+//    @Column(name = "created_at")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date createdAt;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Category categoryId;
     @JoinColumn(name = "store_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private Store storeId;
     @OneToMany(mappedBy = "productId")
+    @JsonIgnore
     private Set<Comments> commentsSet;
     @OneToMany(mappedBy = "productId")
+    @JsonIgnore
     private Set<OrderDetails> orderDetailsSet;
     
     @Transient
@@ -116,11 +120,11 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -140,13 +144,13 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+//    public Date getCreatedAt() {
+//        return createdAt;
+//    }
+//
+//    public void setCreatedAt(Date createdAt) {
+//        this.createdAt = createdAt;
+//    }
 
     public Category getCategoryId() {
         return categoryId;

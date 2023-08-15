@@ -4,19 +4,17 @@ import com.phd.pojo.Category;
 import com.phd.pojo.Comments;
 import com.phd.pojo.OrderDetails;
 import com.phd.pojo.Store;
-import java.util.Date;
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-08-14T23:11:17", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-08-15T00:39:48", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Product.class)
 public class Product_ { 
 
     public static volatile SetAttribute<Product, OrderDetails> orderDetailsSet;
     public static volatile SingularAttribute<Product, String> image;
-    public static volatile SingularAttribute<Product, Date> createdAt;
     public static volatile SetAttribute<Product, Comments> commentsSet;
     public static volatile SingularAttribute<Product, Long> price;
     public static volatile SingularAttribute<Product, String> name;
