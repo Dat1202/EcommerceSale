@@ -11,5 +11,8 @@ import com.phd.pojo.User;
  * @author dat98
  */
 public interface UserRepository {
-     User getUserByUsername(String username);
+
+    User getUserByUsername(String  username);
+User getUserById(int id);
+    boolean addUser(User user);
 }

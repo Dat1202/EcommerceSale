@@ -16,9 +16,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -38,6 +40,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
     @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole")})
 public class User implements Serializable {
+
+    public static final String USER = "ROLE_USER";
+    public static final String ADMIN = "ROLE_ADMIN";
+    public static final String STORE = "ROLE_STORE";
+    public static final String STAFF = "ROLE_USER";
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -59,13 +66,16 @@ public class User implements Serializable {
     @Size(max = 50)
     @Column(name = "phone")
     private String phone;
+    @Size(max = 100)
+    @Column(name = "avatar")
+    private String avatar;
     @Size(max = 50)
     @Column(name = "username")
     private String username;
-    @Size(max = 50)
+    @Size(min = 1, max = 100)
     @Column(name = "password")
     private String password;
-    @Size(max = 10)
+    @Size(max = 50)
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(mappedBy = "userId")
@@ -76,7 +86,11 @@ public class User implements Serializable {
     private Set<Orders> ordersSet;
     @OneToMany(mappedBy = "userId")
     private Set<Store> storeSet;
-
+    
+    @Transient
+    private String confirmPassword;
+    @Transient
+    private MultipartFile file;
     public User() {
     }
 
@@ -182,6 +196,30 @@ public class User implements Serializable {
 
     public void setStoreSet(Set<Store> storeSet) {
         this.storeSet = storeSet;
+    }
+    
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override

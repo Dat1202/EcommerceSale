@@ -26,6 +26,9 @@ public class StoreServiceImpl implements StoreService {
     public List<Object[]> getProdFromStore(int id, Map<String, String> params) {
         return this.storeRepo.getProdFromStore(id, params);
     }
-    
-    
+
+    @Override
+    public boolean addStore(Store store) {
+        return this.storeRepo.addStore(store);
+    }
 }

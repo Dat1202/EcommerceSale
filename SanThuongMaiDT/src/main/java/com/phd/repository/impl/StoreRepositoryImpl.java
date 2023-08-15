@@ -8,6 +8,7 @@ import com.phd.pojo.Category;
 import com.phd.pojo.Product;
 import com.phd.pojo.Store;
 import com.phd.repository.StoreRepository;
+import com.phd.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +37,8 @@ public class StoreRepositoryImpl implements StoreRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Object[]> getProdFromStore(int id, Map<String, String> params) {
@@ -44,8 +51,8 @@ public class StoreRepositoryImpl implements StoreRepository {
         Root rCate = q.from(Category.class);
 
         List<Predicate> predicates = new ArrayList<>();
-    
-        predicates.add(b.equal(rStr.get("id"),id));
+
+        predicates.add(b.equal(rStr.get("id"), id));
         predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
         predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
 
@@ -91,5 +98,20 @@ public class StoreRepositoryImpl implements StoreRepository {
 //                + "on sc.cate_id = c.id");
 //        return Integer.parseInt(q.getSingleResult().toString());
 //    }
+    @Override
+    public boolean addStore(Store store) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Authentication authentication
+                = SecurityContextHolder.getContext().getAuthentication();
+
+        try {
+            store.setUserId(this.userRepository.getUserByUsername(authentication.getName()));
+            s.save(store);
+            return true;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
 
 }

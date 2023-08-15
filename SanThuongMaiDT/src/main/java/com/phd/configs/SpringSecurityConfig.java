@@ -11,7 +11,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import java.text.SimpleDateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean; 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -37,6 +37,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "com.phd.service"
 })
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private Environment env;
     @Autowired
@@ -57,18 +58,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http)
             throws Exception {
-       
+
         http.formLogin().loginPage("/login")
                 .usernameParameter("username")
                 .passwordParameter("password");
-        
+
         http.formLogin().defaultSuccessUrl("/")
                 .failureUrl("/login?error");
-        
+
         http.logout().logoutSuccessUrl("/login");
+        
         http.exceptionHandling()
                 .accessDeniedPage("/login?accessDenied");
-        
+
 //        http.authorizeRequests().antMatchers("/").permitAll()
 //                .antMatchers("/**/add")
 //                .access("hasRole('ROLE_ADMIN')");
@@ -76,7 +78,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
         http.csrf().disable();
     }
-    
+
     @Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
@@ -87,7 +89,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "secure", true));
         return cloudinary;
     }
-    
+
     @Bean
     public SimpleDateFormat simpleDateFormat() {
         return new SimpleDateFormat("yyyy-MM-dd");

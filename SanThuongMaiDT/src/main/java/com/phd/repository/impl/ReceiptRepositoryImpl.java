@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,9 +26,10 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author dat98
  */
+@Repository
 public class ReceiptRepositoryImpl implements ReceiptRepository {
     
-@Autowired
+    @Autowired
     private UserRepository userRepository;
     
     @Autowired

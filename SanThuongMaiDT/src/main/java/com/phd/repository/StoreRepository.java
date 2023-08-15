@@ -15,6 +15,6 @@ import java.util.Map;
 public interface StoreRepository {
 
     List<Object[]> getProdFromStore(int id, Map<String, String> params);
-//    int countProduct();
-//    List<Store[]> getId();
+//    Store getStoreById(int id);
+    boolean addStore(Store store);
 }

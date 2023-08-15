@@ -16,4 +16,5 @@ public interface StoreService {
 
     List<Object[]> getProdFromStore(int id, Map<String, String> params);
 
+    boolean addStore(Store store);
 }

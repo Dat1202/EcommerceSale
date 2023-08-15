@@ -4,12 +4,14 @@
  */
 package com.phd.service;
 
+import com.phd.pojo.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author dat98
  */
-public interface UserService extends UserDetailsService{
-    
+public interface UserService extends UserDetailsService {
+
+    boolean addUser(User user);
 }

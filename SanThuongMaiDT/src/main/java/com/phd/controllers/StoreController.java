@@ -4,16 +4,17 @@
  */
 package com.phd.controllers;
 
+import com.phd.pojo.Store;
+import com.phd.pojo.User;
 import com.phd.service.StoreService;
 import java.util.Map;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -39,4 +40,18 @@ public class StoreController {
 
         return "store";
     }
+    
+    @GetMapping("/registerStore")
+    public String registerStoreView(Model model) {
+        model.addAttribute("store", new Store());
+        return "registerStore";
+    }
+    
+    @PostMapping("/registerStore")
+    public String registerStore(Model model, @ModelAttribute(value = "store") Store store) {
+        if(this.storeService.addStore(store)==true)
+            return "redirect:/";
+        return "registerStore";
+    }
+    
 }
