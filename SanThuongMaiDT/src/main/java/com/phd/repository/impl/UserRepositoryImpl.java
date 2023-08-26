@@ -30,17 +30,13 @@ public class UserRepositoryImpl implements UserRepository {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("From User Where username=:un");
         q.setParameter("un", username);
-        System.out.println(username);
         return (User) q.getSingleResult();
     }
 
     @Override
     public User getUserById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("From User Where id=:id");
-        q.setParameter("id", id);
-//        System.out.println(id);
-        return (User) q.getSingleResult();
+        return s.get(User.class, id);
     }
     
     @Override
@@ -48,6 +44,18 @@ public class UserRepositoryImpl implements UserRepository {
         Session s = this.factory.getObject().getCurrentSession();
         try {
             s.save(user);
+            return true;
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+       Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.update(user);
             return true;
         }catch(HibernateException ex){
             System.err.println(ex.getMessage());

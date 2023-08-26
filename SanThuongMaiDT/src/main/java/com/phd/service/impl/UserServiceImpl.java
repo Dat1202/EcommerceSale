@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService{
     public boolean addUser(User user) {
         String pass = user.getPassword();
         user.setPassword(this.passwordEncoder.encode(pass));
-        user.setUserRole(User.USER);
+        user.setUserRole(User.setRoleUser());
         if (!user.getFile().isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));

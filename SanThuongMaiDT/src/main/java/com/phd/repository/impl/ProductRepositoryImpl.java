@@ -5,7 +5,9 @@
 package com.phd.repository.impl;
 
 import com.phd.pojo.Product;
+import com.phd.pojo.Store;
 import com.phd.repository.ProductRepository;
+import com.phd.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +36,8 @@ public class ProductRepositoryImpl implements ProductRepository {
     private LocalSessionFactoryBean factory;
     @Autowired
     private Environment env;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Product> getProducts(Map<String, String> params) {
@@ -52,12 +58,12 @@ public class ProductRepositoryImpl implements ProductRepository {
 
             String fromPrice = params.get("fromPrice");
             if (fromPrice != null && !fromPrice.isEmpty()) {
-                predicates.add(b.greaterThanOrEqualTo(root.get("price"), Double.parseDouble(fromPrice)));
+                predicates.add(b.greaterThanOrEqualTo(root.get("price"), Long.parseLong(fromPrice)));
             }
 
             String toPrice = params.get("toPrice");
             if (toPrice != null && !toPrice.isEmpty()) {
-                predicates.add(b.lessThanOrEqualTo(root.get("price"), Double.parseDouble(toPrice)));
+                predicates.add(b.lessThanOrEqualTo(root.get("price"), Long.parseLong(toPrice)));
             }
 
             String cateId = params.get("cateId");
@@ -96,11 +102,19 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Override
     public boolean addOrUpdateProduct(Product p) {
         Session s = this.factory.getObject().getCurrentSession();
+        
+        //lấy id store của user đang đăng nhập
+        Authentication authentication
+                = SecurityContextHolder.getContext().getAuthentication();
+        Store store = this.userRepository.getUserByUsername(authentication.getName())
+                .getStoreSet().iterator().next();
         try {
             if (p.getId() == null) {
+                p.setStoreId(store);
                 s.save(p);
             } else {
                 s.update(p);
+                p.setStoreId(store);
             }
 
             return true;

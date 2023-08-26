@@ -46,7 +46,7 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "categoryId")
     @JsonIgnore
     private Set<Product> productSet;
-    @OneToMany(mappedBy = "storeId")
+    @OneToMany(mappedBy = "cateId")
     @JsonIgnore
     private Set<StoreCategory> storeCategorySet;
 

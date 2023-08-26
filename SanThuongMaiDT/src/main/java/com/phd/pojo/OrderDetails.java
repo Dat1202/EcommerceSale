@@ -39,7 +39,7 @@ public class OrderDetails implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Column(name = "unit_price")
-    private Double unitPrice;
+    private Long unitPrice;
     @Column(name = "quantity")
     private Integer quantity;
     @JoinColumn(name = "order_id", referencedColumnName = "id")
@@ -64,11 +64,11 @@ public class OrderDetails implements Serializable {
         this.id = id;
     }
 
-    public Double getUnitPrice() {
+    public Long getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(Long unitPrice) {
         this.unitPrice = unitPrice;
     }
 

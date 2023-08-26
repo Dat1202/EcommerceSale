@@ -7,6 +7,7 @@ package com.phd.pojo;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,10 +42,18 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole = :userRole")})
 public class User implements Serializable {
 
-    public static final String USER = "ROLE_USER";
-    public static final String ADMIN = "ROLE_ADMIN";
-    public static final String STORE = "ROLE_STORE";
-    public static final String STAFF = "ROLE_USER";
+    private static final String USER = "ROLE_USER";
+    public static String setRoleUser(){
+        return USER;
+    }
+    
+    private static String STORE = "ROLE_STORE";
+    public static String setRoleStore(){
+        return STORE;
+    }
+    
+    private static final String STAFF = "ROLE_STAFF";
+    private static final String ADMIN = "ROLE_ADMIN";
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -84,13 +93,15 @@ public class User implements Serializable {
     private Set<Review> reviewSet;
     @OneToMany(mappedBy = "userId")
     private Set<Orders> ordersSet;
-    @OneToMany(mappedBy = "userId")
+    
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<Store> storeSet;
     
     @Transient
     private String confirmPassword;
     @Transient
     private MultipartFile file;
+    
     public User() {
     }
 

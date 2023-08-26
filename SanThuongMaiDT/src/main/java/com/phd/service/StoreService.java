@@ -16,5 +16,13 @@ public interface StoreService {
 
     List<Object[]> getProdFromStore(int id, Map<String, String> params);
 
+    Store getStoreById(int id);
+
     boolean addStore(Store store);
+
+    List<Object[]> getProductByStoreId(Map<String, String> params);
+
+    List<Object[]> getCateByStoreId();
+
+    int countProductByStore();
 }

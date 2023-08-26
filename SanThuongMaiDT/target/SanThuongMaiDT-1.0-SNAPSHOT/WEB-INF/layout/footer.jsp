@@ -1,8 +1,4 @@
-<%-- 
-    Document   : footer
-    Created on : 25 Jul 2023, 9:14:35 pm
-    Author     : dat98
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- footer -->
@@ -19,7 +15,7 @@
                     </div>
                 </div>
 
-                <div class="footer__contact">
+                <div class="footer__contact">   
                     <div class="footer__contact-container">
                         <h3>THÔNG TIN LIÊN HỆ</h3>
                         <p><i class="fa-solid fa-building"></i>Trùm ăn vặt</p>

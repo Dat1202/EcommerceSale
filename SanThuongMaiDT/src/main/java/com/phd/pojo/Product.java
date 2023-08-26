@@ -68,7 +68,7 @@ public class Product implements Serializable {
     @Column(name = "name")
     private String name;
     @Column(name = "price")
-    private Double price;
+    private Long price;
     @Size(max = 500)
     @Column(name = "image")
     private String image;
@@ -76,9 +76,6 @@ public class Product implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
-//    @Column(name = "created_at")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date createdAt;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
     @JsonIgnore
@@ -120,11 +117,11 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

@@ -29,6 +29,28 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public boolean addStore(Store store) {
+        store.setStatus("pending");
         return this.storeRepo.addStore(store);
+    }
+
+    @Override
+    public Store getStoreById(int id) {
+        return this.storeRepo.getStoreById(id);
+    }
+
+    @Override
+    public List<Object[]> getProductByStoreId(Map<String, String> params) {
+        return this.storeRepo.getProductByStoreId(params);
+
+    }
+
+    @Override
+    public List<Object[]> getCateByStoreId() {
+        return this.storeRepo.getCateByStoreId();
+    }
+
+    @Override
+    public int countProductByStore() {
+        return this.storeRepo.countProductByStore();
     }
 }

@@ -8,9 +8,12 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="baseLayout"
                 template="/WEB-INF/layout/base.jsp">
         <put-attribute name="title" value="" />
+        
         <put-attribute name="header"
                        value="/WEB-INF/layout/header.jsp" />
+        
         <put-attribute name="content" value="" />
+        
         <put-attribute name="footer"
                        value="/WEB-INF/layout/footer.jsp" />
     </definition>
@@ -26,7 +29,11 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/products.jsp" />
     </definition>
-    
+    <definition name="add-products" extends="baseLayout">
+        <put-attribute name="title" value="Xác nhận cửa hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/add-products.jsp" />
+    </definition>
     <definition name="store" extends="baseLayout">
         <put-attribute name="title" value="Cửa hàng" />
         <put-attribute name="content"
@@ -45,10 +52,27 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/pages/register.jsp" />
     </definition>
     
-    <definition name="registerStore" extends="baseLayout">
-        <put-attribute name="title" value="Đăng ký" />
+    <definition name="register-store" extends="baseLayout">
+        <put-attribute name="title" value="Đăng ký cửa hàng" />
         <put-attribute name="content"
-                       value="/WEB-INF/pages/registerStore.jsp" />
+                       value="/WEB-INF/pages/register-store.jsp" />
     </definition>
     
+    <definition name="staff" extends="baseLayout">
+        <put-attribute name="title" value="Xác nhận cửa hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/staff.jsp" />
+    </definition>
+    
+    <definition name="confirm" extends="baseLayout">
+        <put-attribute name="title" value="Xác nhận cửa hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/confirm.jsp" />
+    </definition>
+    
+    <definition name="categories" extends="baseLayout">
+        <put-attribute name="title" value="Quản lí thể loại" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/categories.jsp" />
+    </definition>
 </tiles-definitions>

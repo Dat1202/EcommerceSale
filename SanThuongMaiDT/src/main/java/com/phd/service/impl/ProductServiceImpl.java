@@ -7,7 +7,10 @@ package com.phd.service.impl;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.phd.pojo.Product;
+import com.phd.pojo.Store;
+import com.phd.pojo.User;
 import com.phd.repository.ProductRepository;
+import com.phd.repository.UserRepository;
 import com.phd.service.ProductService;
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,9 +31,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepo;
+    
     @Autowired
     private Cloudinary cloudinary;
-
+    
+    
     @Override
     public List<Product> getProducts(Map<String, String> params) {
         return this.productRepo.getProducts(params);
@@ -41,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean addOrUpdateProduct(Product p) {
+       
         if (!p.getFile().isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(p.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
@@ -60,5 +68,5 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean deleteProduct(int id) {
         return this.productRepo.deleteProduct(id);
-    }  
+    }
 }

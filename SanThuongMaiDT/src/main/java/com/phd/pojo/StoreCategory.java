@@ -30,18 +30,46 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "StoreCategory.findById", query = "SELECT s FROM StoreCategory s WHERE s.id = :id")})
 public class StoreCategory implements Serializable {
 
+    /**
+     * @return the cateId
+     */
+    public Category getCateId() {
+        return cateId;
+    }
+
+    /**
+     * @param cateId the cateId to set
+     */
+    public void setCateId(Category cateId) {
+        this.cateId = cateId;
+    }
+
+    /**
+     * @return the storeId
+     */
+    public Store getStoreId() {
+        return storeId;
+    }
+
+    /**
+     * @param storeId the storeId to set
+     */
+    public void setStoreId(Store storeId) {
+        this.storeId = storeId;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "store_id", referencedColumnName = "id")
-    @ManyToOne
-    private Category storeId;
     @JoinColumn(name = "cate_id", referencedColumnName = "id")
     @ManyToOne
-    private Store cateId;
+    private Category cateId;
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
+    @ManyToOne
+    private Store storeId;
 
     public StoreCategory() {
     }
@@ -58,21 +86,7 @@ public class StoreCategory implements Serializable {
         this.id = id;
     }
 
-    public Category getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Category storeId) {
-        this.storeId = storeId;
-    }
-
-    public Store getCateId() {
-        return cateId;
-    }
-
-    public void setCateId(Store cateId) {
-        this.cateId = cateId;
-    }
+    
 
     @Override
     public int hashCode() {

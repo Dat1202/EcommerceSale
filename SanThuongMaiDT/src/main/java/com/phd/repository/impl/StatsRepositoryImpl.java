@@ -58,7 +58,6 @@ public class StatsRepositoryImpl implements StatsRepository{
             return query.getResultList();
         }
     
-
     //thống kê doanh thu các sản phẩm
     @Override
     public List<Object[]> statsByProduct(Map<String, String> params) {

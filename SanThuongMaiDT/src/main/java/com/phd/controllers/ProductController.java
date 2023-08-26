@@ -5,9 +5,13 @@
 package com.phd.controllers;
 
 import com.phd.pojo.Product;
+import com.phd.pojo.User;
+import com.phd.repository.UserRepository;
 import com.phd.service.ProductService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,29 +26,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class ProductController {
-    @Autowired
-    private ProductService productService; 
-    
-    @GetMapping("/products")
-    public String list(Model model){
-        model.addAttribute("product", new Product());
-        return "products";
-    }
-    
-    @PostMapping("/products")
-    public String add(@ModelAttribute(value = "product") @Valid Product p,
-            BindingResult rs){
-        if(!rs.hasErrors())
-            if (this.productService.addOrUpdateProduct(p) == true)
-                return "redirect:/";
-        
-        return "products";
-    }
-    
-    @GetMapping("/products/{id}")
-    public String update(Model model, @PathVariable(value = "id") int id) {
-        model.addAttribute("product", this.productService.getProductById(id));
-        return "products";
-    }
+
     
 }

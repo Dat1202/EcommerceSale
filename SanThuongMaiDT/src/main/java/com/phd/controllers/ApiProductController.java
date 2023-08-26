@@ -6,6 +6,7 @@ package com.phd.controllers;
 
 import com.phd.pojo.Product;
 import com.phd.service.ProductService;
+import com.phd.service.StoreService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ApiProductController {
     
     @Autowired
     private ProductService productService; 
     
+    @Autowired
+    private StoreService storeService; 
     
     @DeleteMapping("/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -40,8 +44,12 @@ public class ApiProductController {
     }
     
     @GetMapping("/products")
-    @CrossOrigin
     public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.productService.getProducts(params), HttpStatus.OK);
+    }
+    
+    @GetMapping("/store/{id}")
+    public ResponseEntity<?> store(@RequestParam Map<String, String> params, @PathVariable(value  = "id" ) int id) {
+        return new ResponseEntity<>(this.storeService.getProdFromStore(id, params), HttpStatus.OK);
     }
 }
