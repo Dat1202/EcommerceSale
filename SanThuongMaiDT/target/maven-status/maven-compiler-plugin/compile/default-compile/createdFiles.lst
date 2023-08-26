@@ -30,6 +30,7 @@ com\phd\service\UserService.class
 com\phd\repository\impl\StatsRepositoryImpl.class
 com\phd\configs\SecurityWebApplicationInitializer.class
 com\phd\configs\WebAppContextConfig.class
+com\phd\controllers\ApiUserController.class
 com\phd\controllers\ProductController.class
 com\phd\pojo\Comments_.class
 com\phd\service\impl\AdminServiceImpl.class

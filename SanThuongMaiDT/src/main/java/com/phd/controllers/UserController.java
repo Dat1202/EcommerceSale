@@ -48,7 +48,7 @@ public class UserController {
                 errMsg = "loi1";
             }
         } else {
-            errMsg = "loi";
+            errMsg = "Mật khẩu không khớp";
         }
 
         model.addAttribute("errMsg", errMsg);

@@ -39,6 +39,7 @@ Author     : dat98
                 </c:choose>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <c:choose>
+
                         <c:when test="${user.userRole == 'ROLE_STORE'}">
                             <h1 style="width: 275px; text-align: center;
                                 padding: 15px;
@@ -112,13 +113,31 @@ Author     : dat98
                         </c:when>
                         <c:when test="${user.userRole == 'ROLE_USER'}">
                             <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="<c:url value="/register-store"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
+                                <a href="<c:url value="/store/register-store"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
                                    display: block;
                                    padding: 15px;">
                                     <i class="fa-solid fa-store text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Tạo cửa hàng</span>
                                 </a>
                             </li>                       
                         </c:when>
+
+                        <c:when test="${user.userRole == 'ROLE_ADMIN'}">
+                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
+                                <a href="<c:url value="/admin/categories"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
+                                   display: block;
+                                   padding: 15px;">
+                                    <i class="fa-solid fa-store text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Quản lý thể loại</span>
+                                </a>
+                            </li>  
+                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
+                                <a href="<c:url value="/admin/users"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
+                                   display: block;
+                                   padding: 15px;">
+                                    <i class="fa-regular fa-user text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Quản lý người dùng</span>
+                                </a>
+                            </li> 
+                        </c:when>
+
                         <c:otherwise>
 
                         </c:otherwise>

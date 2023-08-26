@@ -4,8 +4,10 @@
  */
 package com.phd.repository.impl;
 
+import com.phd.pojo.Category;
 import com.phd.pojo.User;
 import com.phd.repository.UserRepository;
+import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,14 +40,14 @@ public class UserRepositoryImpl implements UserRepository {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(User.class, id);
     }
-    
+
     @Override
     public boolean addUser(User user) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
             s.save(user);
             return true;
-        }catch(HibernateException ex){
+        } catch (HibernateException ex) {
             System.err.println(ex.getMessage());
         }
         return false;
@@ -53,14 +55,21 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean updateUser(User user) {
-       Session s = this.factory.getObject().getCurrentSession();
+        Session s = this.factory.getObject().getCurrentSession();
         try {
             s.update(user);
             return true;
-        }catch(HibernateException ex){
+        } catch (HibernateException ex) {
             System.err.println(ex.getMessage());
         }
         return false;
     }
 
+    @Override
+    public List<User> getUser() {
+        Session session = this.factory.getObject().getCurrentSession();
+        org.hibernate.query.Query q = session.createQuery("From User");
+
+        return q.getResultList();
+    }
 }

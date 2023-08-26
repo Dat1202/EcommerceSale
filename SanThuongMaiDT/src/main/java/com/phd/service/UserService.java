@@ -5,6 +5,7 @@
 package com.phd.service;
 
 import com.phd.pojo.User;
+import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -14,4 +15,5 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
 
     boolean addUser(User user);
+    List<User> getUser();
 }

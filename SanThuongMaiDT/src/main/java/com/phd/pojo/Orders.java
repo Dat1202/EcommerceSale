@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +50,7 @@ public class Orders implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
-    @OneToMany(mappedBy = "orderId")
+    @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
     private Set<OrderDetails> orderDetailsSet;
 
     public Orders() {

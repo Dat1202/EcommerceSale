@@ -43,17 +43,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class User implements Serializable {
 
     private static final String USER = "ROLE_USER";
-    public static String setRoleUser(){
+
+    public static String setRoleUser() {
         return USER;
     }
-    
     private static String STORE = "ROLE_STORE";
-    public static String setRoleStore(){
+
+    public static String setRoleStore() {
         return STORE;
     }
-    
-    private static final String STAFF = "ROLE_STAFF";
-    private static final String ADMIN = "ROLE_ADMIN";
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -87,21 +85,20 @@ public class User implements Serializable {
     @Size(max = 50)
     @Column(name = "user_role")
     private String userRole;
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<Comments> commentsSet;
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<Review> reviewSet;
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<Orders> ordersSet;
-    
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private Set<Store> storeSet;
-    
+
     @Transient
     private String confirmPassword;
     @Transient
     private MultipartFile file;
-    
+
     public User() {
     }
 
@@ -208,7 +205,7 @@ public class User implements Serializable {
     public void setStoreSet(Set<Store> storeSet) {
         this.storeSet = storeSet;
     }
-    
+
     public String getConfirmPassword() {
         return confirmPassword;
     }

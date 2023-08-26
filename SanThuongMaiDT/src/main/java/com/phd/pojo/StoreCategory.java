@@ -30,34 +30,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "StoreCategory.findById", query = "SELECT s FROM StoreCategory s WHERE s.id = :id")})
 public class StoreCategory implements Serializable {
 
-    /**
-     * @return the cateId
-     */
-    public Category getCateId() {
-        return cateId;
-    }
-
-    /**
-     * @param cateId the cateId to set
-     */
-    public void setCateId(Category cateId) {
-        this.cateId = cateId;
-    }
-
-    /**
-     * @return the storeId
-     */
-    public Store getStoreId() {
-        return storeId;
-    }
-
-    /**
-     * @param storeId the storeId to set
-     */
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
-    }
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,7 +58,21 @@ public class StoreCategory implements Serializable {
         this.id = id;
     }
 
-    
+    public Category getCateId() {
+        return cateId;
+    }
+
+    public void setCateId(Category cateId) {
+        this.cateId = cateId;
+    }
+
+    public Store getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Store storeId) {
+        this.storeId = storeId;
+    }
 
     @Override
     public int hashCode() {
@@ -112,5 +98,5 @@ public class StoreCategory implements Serializable {
     public String toString() {
         return "com.phd.pojo.StoreCategory[ id=" + id + " ]";
     }
-    
+
 }

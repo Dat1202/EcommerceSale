@@ -5,6 +5,7 @@
 package com.phd.service.impl;
 
 import com.phd.pojo.Category;
+import com.phd.pojo.User;
 import com.phd.repository.AdminRepository;
 import com.phd.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,30 @@ public class AdminServiceImpl implements AdminService {
     private AdminRepository adminRepository;
 
     @Override
-    public boolean addCate(Category Category) {
-        return this.adminRepository.addCate(Category);
+    public boolean addOrUpdateCate(Category Category) {
+        return this.adminRepository.addOrUpdateCate(Category);
     }
 
     @Override
     public Category getCategoryById(int id) {
         return this.adminRepository.getCategoryById(id);
     }
+
+    @Override
+    public boolean deleteCategory(int id) {
+        return this.adminRepository.deleteCategory(id);
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        return this.adminRepository.deleteUser(id);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return this.adminRepository.getUserById(id);
+    }
+
+   
+
 }

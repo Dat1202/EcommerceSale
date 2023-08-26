@@ -5,6 +5,8 @@
 package com.phd.repository.impl;
 
 import com.phd.pojo.Category;
+import com.phd.pojo.Product;
+import com.phd.pojo.User;
 import com.phd.repository.AdminRepository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,7 +31,7 @@ public class AdminRepositoryImpl implements AdminRepository {
     private Environment env;
 
     @Override
-    public boolean addCate(Category c) {
+    public boolean addOrUpdateCate(Category c) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
             if (c.getId() == null) {
@@ -49,5 +51,37 @@ public class AdminRepositoryImpl implements AdminRepository {
     public Category getCategoryById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Category.class, id);
+    }
+
+    @Override
+    public boolean deleteCategory(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Category c = this.getCategoryById(id);
+        try {
+            s.delete(c);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    @Override
+    public User getUserById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(User.class, id);
+    }
+
+    @Override
+    public boolean deleteUser(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        User u = this.getUserById(id);
+        try {
+            s.delete(u);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.phd.repository.UserRepository;
 import com.phd.service.UserService;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -66,5 +67,10 @@ public class UserServiceImpl implements UserService{
             }
         }
         return this.userRepo.addUser(user);
+    }
+
+    @Override
+    public List<User> getUser() {
+        return this.userRepo.getUser();
     }
 }

@@ -14,8 +14,8 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         
         <put-attribute name="content" value="" />
         
-        <put-attribute name="footer"
-                       value="/WEB-INF/layout/footer.jsp" />
+<!--        <put-attribute name="footer"
+                       value="/WEB-INF/layout/footer.jsp" />-->
     </definition>
     
     <definition name="index" extends="baseLayout">
@@ -74,5 +74,16 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="title" value="Quản lí thể loại" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/categories.jsp" />
+    </definition>
+    
+    <definition name="add-categories" extends="baseLayout">
+        <put-attribute name="title" value="Thêm thể loại" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/add-categories.jsp" />
+    </definition>
+    <definition name="users" extends="baseLayout">
+        <put-attribute name="title" value="Quản lí người dùng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/users.jsp" />
     </definition>
 </tiles-definitions>

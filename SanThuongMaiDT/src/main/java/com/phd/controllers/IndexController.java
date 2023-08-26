@@ -48,7 +48,7 @@ public class IndexController {
             User user = userRepository.getUserByUsername(username);
             model.addAttribute("user", user);
             model.addAttribute("categoriesByStore", this.storeService.getCateByStoreId());
-//            model.addAttribute("categories", this.cateService.getCates());
+            model.addAttribute("categoriesSelect", this.cateService.getCates());
             int count = this.storeService.countProductByStore();
 
             model.addAttribute("counerProduct", count);

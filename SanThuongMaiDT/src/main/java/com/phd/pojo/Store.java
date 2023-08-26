@@ -7,6 +7,7 @@ package com.phd.pojo;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,8 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Store.findByName", query = "SELECT s FROM Store s WHERE s.name = :name")})
 public class Store implements Serializable {
 
-    
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,14 +53,14 @@ public class Store implements Serializable {
     @Size(max = 50)
     @Column(name = "status")
     private String status;
-    @OneToMany(mappedBy = "storeId")
+    @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
     private Set<Product> productSet;
-    @OneToMany(mappedBy = "storeId")
+    @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
     private Set<Review> reviewSet;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
-    @OneToMany(mappedBy = "storeId")
+    @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
     private Set<StoreCategory> storeCategorySet;
 
     public Store() {

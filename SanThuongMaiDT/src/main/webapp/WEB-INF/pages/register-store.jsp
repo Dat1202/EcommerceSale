@@ -8,9 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<section style = "border: 1px solid;" class="container__form">
 <c:url value="/store/register-store" var="action"/>
 <form:form modelAttribute="store" method="post" action="${action}">
     <form:hidden path="status" />
+        <h1>Thông tin cửa hàng</h1>
 
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="name" id="name" 
@@ -29,3 +31,4 @@
     </div>
         
 </form:form>
+</section>

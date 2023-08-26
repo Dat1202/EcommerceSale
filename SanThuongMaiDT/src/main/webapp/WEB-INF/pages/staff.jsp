@@ -5,7 +5,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <table style ="margin-left: 85px;
-       width: 1000px;" class="container table table-hover">
+       width: 1000px;" class="mt-4 container table table-hover">
     <tr class="table-primary">
         <th>Tên cửa hàng</th>
         <th></th>

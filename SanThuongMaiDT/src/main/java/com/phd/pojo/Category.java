@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,10 +41,10 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
+    @Size(max = 100)
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "categoryId")
+    @OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Product> productSet;
     @OneToMany(mappedBy = "cateId")

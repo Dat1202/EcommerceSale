@@ -17,6 +17,9 @@
 <section style = "border: 1px solid;" class="container__form">
     <c:url value="/register" var="action"/>
     <form:form modelAttribute="user" method="post" action="${action}" enctype="multipart/form-data">
+
+        <h1>Đăng ký</h1>
+
         <div class="form-floating mb-3 mt-3">
             <form:input type="text" class="form-control" path="firstName" id="firstName" 
                         placeholder="Tên sản phẩm" name="firstName" />
@@ -68,5 +71,5 @@
         <div class="form-floating mt-3 mb-3">
             <input type="submit" value="Đăng ký" class="btn btn-danger" />
         </div>
-</form:form>
+    </form:form>
 </section>

@@ -6,9 +6,9 @@ package com.phd.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,24 +39,9 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
-    @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
-//    @NamedQuery(name = "Product.findByCreatedAt", query = "SELECT p FROM Product p WHERE p.createdAt = :createdAt")})
+    @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"), //    @NamedQuery(name = "Product.findByCreatedAt", query = "SELECT p FROM Product p WHERE p.createdAt = :createdAt")})
 })
 public class Product implements Serializable {
-
-    /**
-     * @return the file
-     */
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    /**
-     * @param file the file to set
-     */
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -84,16 +69,16 @@ public class Product implements Serializable {
     @ManyToOne
     @JsonIgnore
     private Store storeId;
-    @OneToMany(mappedBy = "productId")
+    @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Comments> commentsSet;
-    @OneToMany(mappedBy = "productId")
+    @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<OrderDetails> orderDetailsSet;
-    
+
     @Transient
     private MultipartFile file;
-    
+
     public Product() {
     }
 
@@ -125,6 +110,14 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
+
     public String getImage() {
         return image;
     }
@@ -148,7 +141,6 @@ public class Product implements Serializable {
 //    public void setCreatedAt(Date createdAt) {
 //        this.createdAt = createdAt;
 //    }
-
     public Category getCategoryId() {
         return categoryId;
     }
@@ -207,5 +199,5 @@ public class Product implements Serializable {
     public String toString() {
         return "com.phd.pojo.Product[ id=" + id + " ]";
     }
-    
+
 }

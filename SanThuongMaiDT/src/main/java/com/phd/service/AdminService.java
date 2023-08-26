@@ -5,6 +5,7 @@
 package com.phd.service;
 
 import com.phd.pojo.Category;
+import com.phd.pojo.User;
 
 /**
  *
@@ -12,7 +13,13 @@ import com.phd.pojo.Category;
  */
 public interface AdminService {
 
-    boolean addCate(Category Category);
+    boolean addOrUpdateCate(Category Category);
 
     Category getCategoryById(int id);
+
+    boolean deleteCategory(int id);
+
+    boolean deleteUser(int id);
+
+    User getUserById(int id);
 }

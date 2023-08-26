@@ -3,11 +3,11 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!--<if test="${param.accessDenied!=null}">
+<c:if test="${param.accessDenied != null}">
     <div class="alert alert-danger ">
         Bạn không có quyền truy cập
     </div>
-</if>-->
+</c:if>
 
 
 <section style = "border: 1px solid;" class="container__form">

@@ -5,14 +5,20 @@
 package com.phd.controllers;
 
 import com.phd.pojo.Category;
+import com.phd.pojo.Product;
 import com.phd.service.AdminService;
 import com.phd.service.CategoryService;
+import com.phd.service.UserService;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,6 +34,8 @@ public class AdminController {
     private AdminService adminService;
     @Autowired
     private CategoryService cateService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/categories")
     public String categoryView(Model model, @RequestParam Map<String, String> params) {
@@ -39,25 +47,29 @@ public class AdminController {
     @GetMapping("/add-categories")
     public String list(Model model) {
         model.addAttribute("categories", new Category());
-        return "categories";
+        return "add-categories";
     }
 
     @GetMapping("/add-categories/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("categories", this.adminService.getCategoryById(id));
-        return "categories";
+        return "add-categories";
     }
 
-//    @PostMapping("/categories")
-//    public String add(@ModelAttribute(value = "product") @Valid Product p,
-//            BindingResult rs) {
-//
-//        if (!rs.hasErrors()) {
-//            if (this.proService.addOrUpdateProduct(p) == true) {
-//                return "redirect:/";
-//            }
-//        }
-//
-//        return "products";
-//    }
+    @PostMapping("/add-categories")
+    public String add(@ModelAttribute(value = "categories") Category c) {
+
+        if (this.adminService.addOrUpdateCate(c) == true) {
+            return "redirect:/admin/categories";
+        }
+
+        return "add-categories";
+    }
+
+    @GetMapping("/users")
+    public String userView(Model model, @RequestParam Map<String, String> params) {
+
+        model.addAttribute("users", this.userService.getUser());
+        return "users";
+    }
 }
