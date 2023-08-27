@@ -9,7 +9,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section style = "border: 1px solid;" class="container__form">
-<c:url value="/store/register-store" var="action"/>
+<c:url value="/register-store" var="action"/>
 <form:form modelAttribute="store" method="post" action="${action}">
     <form:hidden path="status" />
         <h1>Thông tin cửa hàng</h1>

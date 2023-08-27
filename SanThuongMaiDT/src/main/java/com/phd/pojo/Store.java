@@ -4,6 +4,7 @@
  */
 package com.phd.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -54,13 +55,16 @@ public class Store implements Serializable {
     @Column(name = "status")
     private String status;
     @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Product> productSet;
     @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Review> reviewSet;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
     @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<StoreCategory> storeCategorySet;
 
     public Store() {
@@ -93,7 +97,7 @@ public class Store implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public String getStatus() {
         return status;
     }
@@ -161,5 +165,5 @@ public class Store implements Serializable {
     public String toString() {
         return "com.phd.pojo.Store[ id=" + id + " ]";
     }
-    
+
 }

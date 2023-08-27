@@ -4,6 +4,7 @@
  */
 package com.phd.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -86,12 +87,16 @@ public class User implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Comments> commentsSet;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Review> reviewSet;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Orders> ordersSet;
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Store> storeSet;
 
     @Transient

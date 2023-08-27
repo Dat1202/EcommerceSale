@@ -6,7 +6,9 @@ package com.phd.service;
 
 import com.phd.pojo.User;
 import java.util.List;
+import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -14,6 +16,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface UserService extends UserDetailsService {
 
+    User getUserByUn(String username);
+
+    boolean authUser(String username, String password);
+
     boolean addUser(User user);
+
     List<User> getUser();
+
+    User addUser1(Map<String, String> params, MultipartFile avatar);
+
 }

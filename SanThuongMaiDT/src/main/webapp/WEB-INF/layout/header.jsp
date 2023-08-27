@@ -19,7 +19,7 @@ Author     : dat98
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                                 <li class="header__navbar-item">
-                                    <a class="nav-link text-danger" href="<c:url value="/logout" />">Đăng xuất</a>
+                                    <a class="nav-link text-danger fs-4" href="<c:url value="/logout" />">Đăng xuất</a>
                                 </li>
                             </ul>
                         </div>
@@ -31,22 +31,22 @@ Author     : dat98
                                 <span class="d-none d-sm-inline mx-1">${pageContext.request.userPrincipal.name}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                                <li><a class="dropdown-item text-black" href="<c:url value="/login" />">Đăng nhập</a></li>
-                                <li><a class="dropdown-item text-black" href="<c:url value="/register" />">Đăng ký</a></li>
+                                <li><a class="dropdown-item text-white fs-3" href="<c:url value="/login" />">Đăng nhập</a></li>
+                                <li><a class="dropdown-item text-white fs-3" href="<c:url value="/register" />">Đăng ký</a></li>
                             </ul>                        
                         </div>
                     </c:otherwise>
                 </c:choose>
+                
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <c:choose>
-
                         <c:when test="${user.userRole == 'ROLE_STORE'}">
                             <h1 style="width: 275px; text-align: center;
                                 padding: 15px;
                                 border-bottom: 1px solid black;">Trang cửa hàng </h1>
 
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="<c:url value="/"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;
+                            <li class="nav-item sidebar-items" >
+                                <a href="<c:url value="/"/>" class="admin-menu nav-link align-middle px-0" style="border-radius: 0px;
                                    font-size: 20px;
                                    display: block;
                                    padding: 15px;">
@@ -54,10 +54,8 @@ Author     : dat98
                                 </a>
                             </li>
 
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="border-radius: 0px;font-size: 20px;
-                                   display: block;
-                                   padding: 10px;">
+                            <li class="nav-item sidebar-items" >
+                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle admin-menu">
                                     <i class="fa-solid fa-bars-progress text-white"></i>
                                     <span class="ms-1 d-none d-sm-inline text-white">Thể loại</span>
                                     <i style="margin-left: 8px;
@@ -78,17 +76,13 @@ Author     : dat98
                             <c:url value="/store/products" var="pageAction">
                                 <c:param name="page" value="1" />
                             </c:url>
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="${pageAction}" class="nav-link px-0 align-middle" style="border-radius: 0px;font-size: 20px;
-                                   display: block;
-                                   padding: 10px;">
+                            <li class="nav-item sidebar-items" >
+                                <a href="${pageAction}" class="nav-link px-0 align-middle admin-menu" >
                                     <i class="fa-solid fa-database text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Sản phẩm</span> 
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="#" class="nav-link px-0 align-middle" style="border-radius: 0px;font-size: 20px;
-                                   display: block;
-                                   padding: 10px;">
+                            <li class="nav-item sidebar-items" >
+                                <a href="#" class="nav-link px-0 align-middle admin-menu" >
                                     <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Thống kê</span> </a>
                             </li>
 
@@ -97,39 +91,41 @@ Author     : dat98
                             <h1 style="width: 275px;
                                 padding: 15px;
                                 border-bottom: 1px solid black;">Trang nhân viên </h1>
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="<c:url value="/"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
+                            <li class="nav-item sidebar-items" >
+                                <a href="<c:url value="/"/>" class="admin-menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
                                    display: block;
                                    padding: 15px;">
                                     <i class="fa-solid fa-store text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Trang chủ</span>
                                 </a>
                             </li>
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="<c:url value="/staff"/>" class="nav-link px-0 align-middle" style="border-radius: 0px;font-size: 20px;
-                                   display: block;
-                                   padding: 10px;">
+                            <li class="nav-item sidebar-items" >
+                                <a href="<c:url value="/staff"/>" class="nav-link px-0 align-middle admin-menu " >
                                     <i class="fa-solid fa-shop-lock text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Xác nhận cửa hàng</span> </a>
                             </li>
                         </c:when>
                         <c:when test="${user.userRole == 'ROLE_USER'}">
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
-                                <a href="<c:url value="/store/register-store"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
-                                   display: block;
-                                   padding: 15px;">
+                            <li class="nav-item sidebar-items" >
+                                <a href="<c:url value="/register-store"/>" class="admin-menu nav-link align-middle px-0" >
                                     <i class="fa-solid fa-store text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Tạo cửa hàng</span>
                                 </a>
                             </li>                       
                         </c:when>
 
                         <c:when test="${user.userRole == 'ROLE_ADMIN'}">
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
+                            <li class="nav-item sidebar-items" style="">
+                                <a href="<c:url value="/"/>" class="admin-menu nav-link align-middle px-0">
+                                    <i class="fa-solid fa-store text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Trang chủ</span>
+                                </a>
+                            </li>
+                            <li class="nav-item sidebar-items" style="">
                                 <a href="<c:url value="/admin/categories"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
                                    display: block;
                                    padding: 15px;">
-                                    <i class="fa-solid fa-store text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Quản lý thể loại</span>
+                                    <i class="fa-solid fa-bars-progress text-white"></i>
+                                    <span class="ms-1 d-none d-sm-inline text-white">Quản lý thể loại</span>
                                 </a>
                             </li>  
-                            <li class="nav-item" style="padding-left: 25px; border-bottom: solid 1px black; width: 250px;">
+                            <li class="nav-item sidebar-items">
                                 <a href="<c:url value="/admin/users"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
                                    display: block;
                                    padding: 15px;">

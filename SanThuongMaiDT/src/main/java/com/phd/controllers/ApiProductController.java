@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 /**
  *
  * @author admin
@@ -30,26 +29,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @CrossOrigin
 public class ApiProductController {
-    
+
     @Autowired
-    private ProductService productService; 
-    
+    private ProductService productService;
+
     @Autowired
-    private StoreService storeService; 
-    
+    private StoreService storeService;
+
     @DeleteMapping("/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable (value="id") int id){
+    public void deleteProduct(@PathVariable(value = "id") int id) {
         this.productService.deleteProduct(id);
     }
-    
+
     @GetMapping("/products")
     public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.productService.getProducts(params), HttpStatus.OK);
     }
-    
+
     @GetMapping("/store/{id}")
-    public ResponseEntity<?> store(@RequestParam Map<String, String> params, @PathVariable(value  = "id" ) int id) {
+    public ResponseEntity<?> store(@RequestParam Map<String, String> params, @PathVariable(value = "id") int id) {
         return new ResponseEntity<>(this.storeService.getProdFromStore(id, params), HttpStatus.OK);
     }
 }

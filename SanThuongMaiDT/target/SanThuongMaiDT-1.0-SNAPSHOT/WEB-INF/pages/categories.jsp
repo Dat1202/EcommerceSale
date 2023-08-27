@@ -8,19 +8,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<a class="btn btn-info mt-4" href="<c:url value="/admin/add-categories"/>"/>Thêm thể loại </a>
-
 
 <h1 class="text-center text">Quản lí thể loại</h1>
+<a class="btn btn-info mt-2 mb-2" href="<c:url value="/admin/add-categories"/>"/>Thêm thể loại </a>
+    
 <table class="table">
-    <thead>
         <tr>
             <th>ID</th>
             <th>Tên thể loại</th>
             <th>Hành động</th>
         </tr>
-    </thead>
-    <tbody>
+
         <c:forEach items="${categories}" var = "c">
             <tr>
                 <td>${c.id}</td>
@@ -33,6 +31,5 @@
             </tr>
         </c:forEach>
 
-    </tbody>
 </table>
 <script src="<c:url value="/js/main.js"/>"></script>

@@ -36,21 +36,6 @@ public class StoreController {
     @Autowired
     private Environment env;
 
-    //đăng ký cửa hàng
-    @GetMapping("/register-store")
-    public String registerStoreView(Model model) {
-        model.addAttribute("store", new Store());
-        return "register-store";
-    }
-
-    @PostMapping("/register-store")
-    public String registerStore(Model model, @ModelAttribute(value = "store") Store store) {
-        if (this.storeService.addStore(store) == true) {
-            return "redirect:/";
-        }
-        return "register-store";
-    }
-
     //trang san pham
     @GetMapping("/products")
     public String productView(Model model, @RequestParam Map<String, String> params) {

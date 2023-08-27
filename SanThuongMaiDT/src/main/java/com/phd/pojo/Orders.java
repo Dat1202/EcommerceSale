@@ -4,6 +4,7 @@
  */
 package com.phd.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -51,6 +52,7 @@ public class Orders implements Serializable {
     @ManyToOne
     private User userId;
     @OneToMany(mappedBy = "orderId", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<OrderDetails> orderDetailsSet;
 
     public Orders() {
@@ -117,5 +119,5 @@ public class Orders implements Serializable {
     public String toString() {
         return "com.phd.pojo.Orders[ id=" + id + " ]";
     }
-    
+
 }

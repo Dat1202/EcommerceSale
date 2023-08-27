@@ -10,18 +10,17 @@
 <h1 class="text-center text mt-2">QUẢN LÍ NGƯỜI DÙNG</h1>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Họ và tên</th>
-            <th>Email</th>
-            <th>Tên đăng nhập</th>
-            <th>Role</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${users}" var = "u">
+    <tr>
+        <th>ID</th>
+        <th>Họ và tên</th>
+        <th>Email</th>
+        <th>Tên đăng nhập</th>
+        <th>Role</th>
+        <th>Hành động</th>
+    </tr>
+
+    <c:forEach items="${users}" var = "u">
+        <c:if test= "${u.userRole != 'ROLE_ADMIN'}">
             <tr>
                 <td>${u.id}</td>
                 <td>${u.firstName} ${u.lastName} </td>
@@ -33,8 +32,8 @@
                     <button class="btn btn-danger" onclick="deleteUser('${api}')">Xóa</button>
                 </td>
             </tr>
-        </c:forEach>
+        </c:if>
+    </c:forEach>
 
-    </tbody>
 </table>
 <script src="<c:url value="/js/main.js"/>"></script>

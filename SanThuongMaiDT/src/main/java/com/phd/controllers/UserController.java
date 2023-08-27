@@ -4,7 +4,9 @@
  */
 package com.phd.controllers;
 
+import com.phd.pojo.Store;
 import com.phd.pojo.User;
+import com.phd.service.StoreService;
 import com.phd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,10 +27,12 @@ public class UserController {
 
     @Autowired
     private UserService userDetailsServer;
+    @Autowired
+    private StoreService storeService;
 
     @GetMapping("/login")
     public String login(Model model) {
-       
+
         return "login";
     }
 
@@ -53,5 +57,20 @@ public class UserController {
 
         model.addAttribute("errMsg", errMsg);
         return "register";
+    }
+
+    //đăng ký cửa hàng
+    @GetMapping("/register-store")
+    public String registerStoreView(Model model) {
+        model.addAttribute("store", new Store());
+        return "register-store";
+    }
+
+    @PostMapping("/register-store")
+    public String registerStore(Model model, @ModelAttribute(value = "store") Store store) {
+        if (this.storeService.addStore(store) == true) {
+            return "redirect:/";
+        }
+        return "register-store";
     }
 }

@@ -22,4 +22,8 @@ public interface UserRepository {
     boolean updateUser(User user);
 
     List<User> getUser();
+
+    boolean authUser(String username, String password);
+
+    User addUser1(User user);
 }

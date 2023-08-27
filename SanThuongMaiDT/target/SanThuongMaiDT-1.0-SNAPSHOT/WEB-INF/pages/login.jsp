@@ -25,6 +25,6 @@
         </div>
 
         <input class="btn" type="submit" value="Đăng nhập" />
-        <div class="signup_link">Bạn chưa có tài khoản? <a href="<c:url value="/register"/>">Đăng kí</a></div>
+        <div class="signup_link">Bạn chưa có tài khoản? <a href="<c:url value="/register"/>">Đăng ký</a></div>
     </form>
 </section>

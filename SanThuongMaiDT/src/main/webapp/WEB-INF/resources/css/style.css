@@ -658,3 +658,25 @@ input[type='submit']:hover {
     text-decoration: underline;
 }
 
+.sidebar-items{
+    padding-left: 25px;
+    border-bottom: solid 1px black;
+    width: 250px;
+}
+
+.dashboard{
+    display: inline-block;
+    padding: 100px;
+    font-size:20px;
+    box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #454592;
+    background-color: white;
+}
+
+.admin-menu{
+    border-radius: 0px !important;
+    font-size: 20px !important;
+    display: block !important;
+    padding: 15px !important;
+}
+

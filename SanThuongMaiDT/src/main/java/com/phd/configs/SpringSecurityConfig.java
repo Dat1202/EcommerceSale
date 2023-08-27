@@ -4,9 +4,6 @@
  */
 package com.phd.configs;
 
-//import com.cloudinary.Cloudinary;
-//import com.cloudinary.utils.ObjectUtils;
-//import java.text.SimpleDateFormat;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import java.text.SimpleDateFormat;
@@ -14,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
-//import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,10 +21,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-/**
- *
- * @author admin
- */
 @Configuration
 @EnableWebSecurity
 @EnableTransactionManagement
@@ -36,6 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "com.phd.repository",
     "com.phd.service"
 })
+@Order(2)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -67,7 +61,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error");
 
         http.logout().logoutSuccessUrl("/login");
-        
+
         http.exceptionHandling()
                 .accessDeniedPage("/login?accessDenied");
 

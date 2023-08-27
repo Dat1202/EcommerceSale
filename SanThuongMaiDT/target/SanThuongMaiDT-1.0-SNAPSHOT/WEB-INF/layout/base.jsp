@@ -26,7 +26,7 @@
     </head>
     <body>
         <tiles:insertAttribute name="header" />
-        <div style="width:1190px;">
+        <div style="width:1190px; background-color: #e5e9ec;">
             <tiles:insertAttribute name="content" />
         </div>
     </body>

@@ -2,6 +2,7 @@ com\phd\repository\impl\StaffRepositoryImpl.class
 com\phd\service\ReceiptService.class
 com\phd\pojo\Category_.class
 com\phd\service\StaffService.class
+com\phd\configs\JwtSecurityConfig.class
 com\phd\pojo\User.class
 com\phd\pojo\Category.class
 com\phd\service\impl\StoreServiceImpl.class
@@ -31,7 +32,6 @@ com\phd\repository\impl\StatsRepositoryImpl.class
 com\phd\configs\SecurityWebApplicationInitializer.class
 com\phd\configs\WebAppContextConfig.class
 com\phd\controllers\ApiUserController.class
-com\phd\controllers\ProductController.class
 com\phd\pojo\Comments_.class
 com\phd\service\impl\AdminServiceImpl.class
 com\phd\repository\UserRepository.class
@@ -44,6 +44,7 @@ com\phd\pojo\Store.class
 com\phd\service\CategoryService.class
 com\phd\repository\impl\AdminRepositoryImpl.class
 com\phd\repository\impl\ReceiptRepositoryImpl.class
+com\phd\components\JwtService.class
 com\phd\service\StoreService.class
 com\phd\configs\HibernateConfig.class
 com\phd\repository\ProductRepository.class
@@ -60,7 +61,10 @@ com\phd\pojo\OrderDetails.class
 com\phd\repository\impl\UserRepositoryImpl.class
 com\phd\pojo\StoreCategory_.class
 com\phd\service\ProductService.class
+com\phd\filters\CustomAccessDeniedHandler.class
+com\phd\filters\RestAuthenticationEntryPoint.class
 com\phd\repository\CategoryRepository.class
 com\phd\controllers\ApiCategoryController.class
 com\phd\pojo\Product.class
 com\phd\repository\StatsRepository.class
+com\phd\filters\JwtAuthenticationTokenFilter.class

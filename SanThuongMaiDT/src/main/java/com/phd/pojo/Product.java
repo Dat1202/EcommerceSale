@@ -63,11 +63,9 @@ public class Product implements Serializable {
     private String description;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
-    @JsonIgnore
     private Category categoryId;
     @JoinColumn(name = "store_id", referencedColumnName = "id")
     @ManyToOne
-    @JsonIgnore
     private Store storeId;
     @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
     @JsonIgnore

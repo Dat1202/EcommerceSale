@@ -49,9 +49,12 @@ public class IndexController {
             model.addAttribute("user", user);
             model.addAttribute("categoriesByStore", this.storeService.getCateByStoreId());
             model.addAttribute("categoriesSelect", this.cateService.getCates());
-            int count = this.storeService.countProductByStore();
+            
+            int count = this.productService.countProduct();
+            model.addAttribute("count", count);
 
-            model.addAttribute("counerProduct", count);
+            int countProduct = this.storeService.countProductByStore();
+            model.addAttribute("countProduct", countProduct);
         }
 
     }
