@@ -24,5 +24,8 @@ public interface StoreService {
 
     List<Object[]> getCateByStoreId();
 
+    List<Object[]> getApiInfoStore(int id);
+    
     int countProductByStore();
+    List<Object[]> getApiCateByStoreId(int id);
 }

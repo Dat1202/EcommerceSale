@@ -53,4 +53,15 @@ public class StoreServiceImpl implements StoreService {
     public int countProductByStore() {
         return this.storeRepo.countProductByStore();
     }
+
+    @Override
+    public List<Object[]> getApiInfoStore(int id) {
+        return this.storeRepo.getApiInfoStore(id);
+    }
+
+    @Override
+    public List<Object[]> getApiCateByStoreId(int id) {
+        return this.storeRepo.getApiCateByStoreId(id);
+    }
+
 }

@@ -23,7 +23,11 @@ public interface StoreRepository {
     List<Object[]> getProductByStoreId(Map<String, String> params);
 
     List<Object[]> getCateByStoreId();
-    
+
+    List<Object[]> getApiInfoStore(int id);
+
     int countProductByStore();
+    
+    List<Object[]> getApiCateByStoreId(int id);
 //    int countCateByStore();
 }

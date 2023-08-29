@@ -7,6 +7,7 @@ package com.phd.repository.impl;
 import com.phd.pojo.Category;
 import com.phd.pojo.Product;
 import com.phd.pojo.Store;
+import com.phd.pojo.User;
 import com.phd.repository.StoreRepository;
 import com.phd.repository.UserRepository;
 import java.util.ArrayList;
@@ -44,38 +45,6 @@ public class StoreRepositoryImpl implements StoreRepository {
     private UserRepository userRepository;
     @Autowired
     private Environment env;
-
-    @Override
-    public List<Object[]> getProdFromStore(int id, Map<String, String> params) {
-
-        Session session = this.factory.getObject().getCurrentSession();
-        CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rP = q.from(Product.class);
-        Root rStr = q.from(Store.class);
-        Root rCate = q.from(Category.class);
-        List<Predicate> predicates = new ArrayList<>();
-        predicates.add(b.equal(rStr.get("id"), id));
-        predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
-        predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
-
-        if (params != null) {
-            String strId = params.get("strId");
-            if (strId != null && !strId.isEmpty()) {
-                predicates.add(b.equal(rStr.get("id"), Integer.parseInt(strId)));
-            }
-
-            String cateId = params.get("cateId");
-            if (cateId != null && !cateId.isEmpty()) {
-                predicates.add(b.equal(rCate.get("id"), Integer.parseInt(cateId)));
-            }
-        }
-        q.where(predicates.toArray(Predicate[]::new));
-        q.multiselect(rP.get("id"), rP.get("image"), rP.get("name"), rP.get("price"));
-
-        Query query = session.createQuery(q);
-        return query.getResultList();
-    }
 
     @Override
     public List<Object[]> getProductByStoreId(Map<String, String> params) {
@@ -184,6 +153,89 @@ public class StoreRepositoryImpl implements StoreRepository {
         return s.get(Store.class, id);
     }
 
+    //------------Api---------------------
+    @Override
+    public List<Object[]> getApiCateByStoreId(int id) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+
+        List<Predicate> predicates = new ArrayList<>();
+        Root rP = q.from(Product.class);
+        Root rStr = q.from(Store.class);
+        Root rCate = q.from(Category.class);
+
+        predicates.add(b.equal(rStr.get("id"), id));
+        predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
+        predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
+
+        q.where(predicates.toArray(Predicate[]::new));
+        q.groupBy(rP.get("categoryId"));
+        q.multiselect(rCate.get("id"), rCate.get("name"));
+
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Object[]> getApiInfoStore(int id) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root rStr = q.from(Store.class);
+        Root rU = q.from(User.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(rStr.get("id"), id));
+        predicates.add(b.equal(rStr.get("userId"), rU.get("id")));
+
+        q.where(predicates.toArray(Predicate[]::new));
+        q.multiselect(rStr.get("name"), rU.get("avatar"));
+
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Object[]> getProdFromStore(int id, Map<String, String> params) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root rP = q.from(Product.class);
+        Root rStr = q.from(Store.class);
+        Root rCate = q.from(Category.class);
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(rStr.get("id"), id));
+        predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
+        predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
+        
+        if (params != null) {
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                predicates.add(b.like(rP.get("name"), String.format("%%%s%%", kw)));
+            }
+
+            String fromPrice = params.get("fromPrice");
+            if (fromPrice != null && !fromPrice.isEmpty()) {
+                predicates.add(b.greaterThanOrEqualTo(rP.get("price"), Long.parseLong(fromPrice)));
+            }
+
+            String toPrice = params.get("toPrice");
+            if (toPrice != null && !toPrice.isEmpty()) {
+                predicates.add(b.lessThanOrEqualTo(rP.get("price"), Long.parseLong(toPrice)));
+            }
+
+            String cateId = params.get("cateId");
+            if (cateId != null && !cateId.isEmpty()) {
+                predicates.add(b.equal(rP.get("categoryId"), Integer.parseInt(cateId)));
+            }
+        }
+        q.where(predicates.toArray(Predicate[]::new));
+        q.multiselect(rP.get("id"), rP.get("image"), rP.get("name"), rP.get("price"));
+
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
 //    @Override
 //    public int countCateByStore() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

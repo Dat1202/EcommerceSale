@@ -40,6 +40,7 @@ public class StoreController {
     @GetMapping("/products")
     public String productView(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("storeProduct", this.storeService.getProductByStoreId(params));
+        
         int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
         int count = this.storeService.countProductByStore();
         model.addAttribute("counter", Math.ceil(count * 1.0 / pageSize));

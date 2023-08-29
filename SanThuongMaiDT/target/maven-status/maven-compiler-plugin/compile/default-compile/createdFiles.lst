@@ -20,6 +20,7 @@ com\phd\service\impl\ProductServiceImpl.class
 com\phd\configs\TilesConfig.class
 com\phd\configs\DispatcherServletInit.class
 com\phd\formatter\CategoryFormatter.class
+com\phd\controllers\ApiStoreController.class
 com\phd\pojo\Review_.class
 com\phd\repository\ReceiptRepository.class
 com\phd\pojo\Review.class
