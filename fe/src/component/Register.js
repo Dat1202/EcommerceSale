@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Alert, FloatingLabel, Form } from 'react-bootstrap';
+import { FloatingLabel, Form } from 'react-bootstrap';
 import Apis, { endpoints } from '../configs/Apis';
 import { useNavigate } from 'react-router-dom';
 import MySpinner from '../layout/MySpinner';
@@ -42,8 +42,11 @@ const Register = () => {
         setErr("Hệ thống đang bị lỗi!");
       }
     }
-
-    process();
+    if (user.password === user.confirmPass)
+      process();
+    else {
+      setErr("Mật khẩu KHÔNG khớp!");
+    }
   }
 
   const change = (e, field) => {
@@ -56,7 +59,6 @@ const Register = () => {
     <div>
       <section class="container__form">
         <h1>Đăng ký</h1>
-        {err === null ? "" : <Alert variant="danger">{err}</Alert>}
 
         <Form onSubmit={register}>
           <FloatingLabel label="Tên">
@@ -97,6 +99,7 @@ const Register = () => {
             <Form.Control onChange={e => change(e, "confirmPass")}
               type="password" placeholder="Password2" />
           </FloatingLabel>
+          {err === null ? "" : <p variant="danger">{err}</p>}
 
           <FloatingLabel label="Ảnh đại diện">
             <Form.Control ref={avatar} type="file" placeholder="" />

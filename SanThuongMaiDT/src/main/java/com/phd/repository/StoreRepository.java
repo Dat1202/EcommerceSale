@@ -30,4 +30,6 @@ public interface StoreRepository {
     
     List<Object[]> getApiCateByStoreId(int id);
 //    int countCateByStore();
+    Store createStore(Store store);
+    
 }

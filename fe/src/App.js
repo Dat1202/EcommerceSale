@@ -11,7 +11,6 @@ import MyUserReducer from "./reducers/MyUserReducer";
 import cookie from "react-cookies";
 import Store from './component/Store';
 import Register from './component/Register';
-import Detail from './component/Detail';
 
 export const MyUserContext = createContext();
 

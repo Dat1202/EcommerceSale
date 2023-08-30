@@ -11,12 +11,10 @@ export const endpoints = {
     "current-user": `${SERVER_CONTEXT}/api/current-user/`,
     "register": `${SERVER_CONTEXT}/api/users/`,
     "products": `${SERVER_CONTEXT}/api/products/`,
-    // "store": `${SERVER_CONTEXT}/api/store/10`,
-
     "store-info": (storeId) =>`${SERVER_CONTEXT}/api/store-info/${storeId}`,
     "store-cate": (storeId) =>`${SERVER_CONTEXT}/api/store-categories/${storeId}`,
     "store-products": (storeId) =>`${SERVER_CONTEXT}/api/store-products/${storeId}`,
-
+    "create-store": `${SERVER_CONTEXT}/api/create-store/`
 }
 
 export const authApis = () => {

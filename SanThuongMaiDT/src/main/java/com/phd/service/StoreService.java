@@ -28,4 +28,5 @@ public interface StoreService {
     
     int countProductByStore();
     List<Object[]> getApiCateByStoreId(int id);
+    Store createStore(Store store);
 }

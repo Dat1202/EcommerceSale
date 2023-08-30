@@ -9,7 +9,7 @@
         <div class="">
             <div 
                 class="m-5 dashboard">Số lượng sản phẩm của cửa hàng: ${countProduct}
-                <a style = "font-size:12px;" href="<c:url value="/store/products"/>"><i class="fa-solid fa-chevron-right"></i></a>
+                <a style = "font-size:12px;" href="<c:url value="/store/products?page=1"/>"><i class="fa-solid fa-chevron-right"></i></a>
             </div>
         </div>
     </c:when>

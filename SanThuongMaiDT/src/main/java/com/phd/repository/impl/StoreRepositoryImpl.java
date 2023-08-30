@@ -134,17 +134,28 @@ public class StoreRepositoryImpl implements StoreRepository {
     @Override
     public boolean addStore(Store store) {
         Session s = this.factory.getObject().getCurrentSession();
-        Authentication authentication
-                = SecurityContextHolder.getContext().getAuthentication();
 
         try {
-            store.setUserId(this.userRepository.getUserByUsername(authentication.getName()));
             s.save(store);
             return true;
         } catch (HibernateException ex) {
             System.err.println(ex.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public Store createStore(Store store) {
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+
+            s.save(store);
+
+            return store;
+        } catch (HibernateException ex) {
+            System.err.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -208,7 +219,7 @@ public class StoreRepositoryImpl implements StoreRepository {
         predicates.add(b.equal(rStr.get("id"), id));
         predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
         predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
-        
+
         if (params != null) {
             String kw = params.get("kw");
             if (kw != null && !kw.isEmpty()) {

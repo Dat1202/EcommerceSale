@@ -45,6 +45,7 @@ export default function HeaderStore() {
           </div>
           <div className="header__store-name" >{store[0][0]}</div>
           <div class="header__search">
+
             <Form style={{ height: "100%" }} onSubmit={searchStore}>
               <input value={kw}
                 onChange={e => setKw(e.target.value)}
@@ -53,6 +54,7 @@ export default function HeaderStore() {
                 <FontAwesomeIcon icon={faMagnifyingGlass} style={{ fontSize: '15px' }} />
               </button>
             </Form>
+            
           </div>
         </div>
 

@@ -73,7 +73,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 
             q.where(predicates.toArray(Predicate[]::new));
         }
-
         q.orderBy(b.desc(root.get("id")));
 
         Query query = session.createQuery(q);

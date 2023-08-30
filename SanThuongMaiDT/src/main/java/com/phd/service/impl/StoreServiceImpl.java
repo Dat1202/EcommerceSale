@@ -5,11 +5,15 @@
 package com.phd.service.impl;
 
 import com.phd.pojo.Store;
+import com.phd.pojo.User;
 import com.phd.repository.StoreRepository;
+import com.phd.repository.UserRepository;
 import com.phd.service.StoreService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +25,8 @@ public class StoreServiceImpl implements StoreService {
 
     @Autowired
     private StoreRepository storeRepo;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<Object[]> getProdFromStore(int id, Map<String, String> params) {
@@ -64,4 +70,13 @@ public class StoreServiceImpl implements StoreService {
         return this.storeRepo.getApiCateByStoreId(id);
     }
 
+    @Override
+    public Store createStore(Store store) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User u = this.userRepository.getUserByUsername(authentication.getName());
+//        store.setUserId(u);
+//        store.setStatus("pending");
+
+        return this.storeRepo.createStore(store);
+    }
 }
