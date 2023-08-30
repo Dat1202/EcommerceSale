@@ -2,7 +2,8 @@
 - Hệ thống yêu cầu phát triển các chức năng phân hệ quản trị, thống kê, báo cáo bằng
 SpringMVC Framework và sử dụng Spring Security để chứng thực phân quyền.
 - Các chức năng phía client, các nhóm phát triển Restful API bằng SpringMVC và
-phát triển phía front end sử dụng ReactJS. 
+phát triển phía front end sử dụng ReactJS.
+
 ĐỀ TÀI: SÀN GIAO DỊCH THƯƠNG MẠI ĐIỆN TỬ
 - Đăng nhập (các vai trò quản trị, nhân viên sàn giao dịch, người bán hoặc người dùng
 thường.
@@ -29,5 +30,5 @@ tháng, quý và năm.
 - Người quản trị sàn giao dịch có thể xem thống kê tần suất bán hàng, tổng sản phẩm
 kinh doanh của các cửa hàng theo tháng, quý, năm. Sinh viên có thể phát triển thống
 kê này linh hoạt hơn để các quản trị cúa thể quản lý tốt hơn thông tin sàn giao dịch.
-- *Sinh viên nghiên cứu thêm dùng firebase tích hợp chat thời gian thực.
+- Nghiên cứu thêm dùng firebase tích hợp chat thời gian thực.
 
