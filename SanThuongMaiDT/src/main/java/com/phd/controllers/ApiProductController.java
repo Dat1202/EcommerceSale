@@ -43,7 +43,10 @@ public class ApiProductController {
 
     @GetMapping("/products")
     @CrossOrigin
-    public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> params) {
+    public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> params, @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id,asc") String sort) {
+//        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
         return new ResponseEntity<>(this.productService.getProducts(params), HttpStatus.OK);
     }
 

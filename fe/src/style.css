@@ -547,3 +547,16 @@ input[type=number] {
 .product-filter-margin{
     margin: 0px 10px ;
 }
+
+.pagination{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.page-item{
+    border: none;
+}
+
+.page-link{
+    padding: 12px 20px;
+}

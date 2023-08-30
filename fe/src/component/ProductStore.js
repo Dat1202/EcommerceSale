@@ -4,12 +4,20 @@ import { Image } from 'react-bootstrap';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import MySpinner from '../layout/MySpinner';
 import { SearchRangePrice } from './SearchRangePrice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProductStore() {
     const { storeId } = useParams();
     const [products, setProducts] = useState(null);
     const [q] = useSearchParams();
     // const nav = useNavigate();
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage = 8;
+    const lastIndex = recordsPerPage * currentPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const [numbers, setNumbers] = useState([]);
+    const [records, setRecords] = useState([]);
 
     const [all,] = useState("");
 
@@ -37,15 +45,36 @@ export default function ProductStore() {
             }
 
             let res = await Apis.get(e);
-            setProducts(res.data);
+            const slicedRecords = res.data.slice(firstIndex, lastIndex);
+            const nPage = Math.ceil(res.data.length / recordsPerPage);
+            const updatedNumbers = Array.from({ length: nPage }, (_, index) => index + 1);
+            setProducts(slicedRecords);
+            setRecords(slicedRecords);
+            setNumbers(updatedNumbers);
         }
 
         loadProductsFromStore();
 
-    }, [q, storeId])
+    }, [q, storeId, lastIndex, firstIndex])
 
     if (products === null) {
         return <MySpinner />
+    }
+
+    const changePage = (id, e) => {
+        e.preventDefault();
+        setCurrentPage(id);
+    }
+
+    function nextPage(e) {
+        e.preventDefault();
+        setCurrentPage(currentPage + 1)
+    }
+
+    function prePage(e) {
+        e.preventDefault();
+        if (currentPage !== 1)
+            setCurrentPage(currentPage - 1)
     }
 
     return (
@@ -54,7 +83,7 @@ export default function ProductStore() {
                 <SearchRangePrice />
 
                 <div className="grid__row" id="product">
-                    {products.map(p => {
+                    {records.map(p => {
 
                         let h = `/products/${p[0]}`;
 
@@ -71,6 +100,24 @@ export default function ProductStore() {
                         )
                     })}
 
+                </div>
+                <div className="pagination">
+                    <button className="page-item">
+                        <a onClick={prePage} className="page-link" href="#">
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                        </a>
+                    </button>
+                    {numbers.map((n, i) => (
+                        <button key={i} className={`page-item ${currentPage === n ? 'active' : ''}`}>
+                            <a onClick={(e) => changePage(n, e)} className="page-link" href="#">{n}
+                            </a>
+                        </button>
+                    ))}
+                    <button className="page-item">
+                        <a onClick={nextPage} className="page-link" href="#">
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </a>
+                    </button>
                 </div>
             </div>
         </>
