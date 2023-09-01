@@ -19,7 +19,6 @@ html {
     line-height: 1.6rem;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
-
 }
 
 .grid__auto {
@@ -52,3 +51,8 @@ html {
     padding: 12px;
 }
 
+.flex-center{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}

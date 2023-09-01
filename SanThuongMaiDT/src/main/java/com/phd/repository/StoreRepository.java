@@ -32,4 +32,7 @@ public interface StoreRepository {
 //    int countCateByStore();
     Store createStore(Store store);
     
+    List<Object[]> getProdFromStoreAsc(int id, Map<String, String> params);
+    
+    List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params);
 }

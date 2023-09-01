@@ -46,20 +46,20 @@ function Header() {
                     </li>
                     <li class="header__navbar-item">
                       <img src={user.avatar} width="30" height="30" class="rounded-circle" alt="logo" />
-                      <span class="d-none d-sm-inline mx-1">{user.username}</span>
+                      <span class="d-none d-sm-inline mx-1">{user.username}  </span>
                     </li>
                     <li class="header__navbar-item">
                       <Link to="/" onClick={logout}>Đăng xuất</Link>
                     </li>
 
-                  </> : user.userRole === 'ROLE_USER' ?
+                  </> : user.userRole === 'ROLE_USER' || user.userRole === 'ROLE_ADMIN'?
                     <>
                       <li class="header__navbar-item">
                         <Link to="/create-store">Tạo cửa hàng</Link>
                       </li>
                       <li class="header__navbar-item">
                         <img src={user.avatar} width="30" height="30" class="rounded-circle" alt="logo" />
-                        <span class="d-none d-sm-inline mx-1">{user.userRole}</span>
+                        <span class="d-none d-sm-inline mx-1">{user.username} </span>
                       </li>
                       <li class="header__navbar-item">
                         <Link to="/" onClick={logout}>Đăng xuất</Link>

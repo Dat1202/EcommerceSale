@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import Apis, { authApis, endpoints } from '../configs/Apis';
 import { Form } from 'react-bootstrap';
 import cookie from "react-cookies";
@@ -10,6 +10,7 @@ const Login = () => {
     const [user, dispatch] = useContext(MyUserContext);
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+    const [q] = useSearchParams();
 
     const login = (e) => {
         e.preventDefault();
@@ -35,8 +36,10 @@ const Login = () => {
         process();
     }
 
-    if (user !== null)
-        return <Navigate to="/" />
+    if (user !== null) {
+        let url = q.get("next") || "/";
+        return <Navigate to={url} />
+    }
 
 
     return (

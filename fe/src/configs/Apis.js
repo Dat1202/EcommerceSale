@@ -11,10 +11,17 @@ export const endpoints = {
     "current-user": `${SERVER_CONTEXT}/api/current-user/`,
     "register": `${SERVER_CONTEXT}/api/users/`,
     "products": `${SERVER_CONTEXT}/api/products/`,
+    "products-asc": `${SERVER_CONTEXT}/api/products-asc/`,
     "store-info": (storeId) =>`${SERVER_CONTEXT}/api/store-info/${storeId}`,
     "store-cate": (storeId) =>`${SERVER_CONTEXT}/api/store-categories/${storeId}`,
     "store-products": (storeId) =>`${SERVER_CONTEXT}/api/store-products/${storeId}`,
-    "create-store": `${SERVER_CONTEXT}/api/create-store/`
+    "store-product-desc": (storeId) =>`${SERVER_CONTEXT}/api/store-product-desc/${storeId}`,
+    "store-product-asc": (storeId) =>`${SERVER_CONTEXT}/api/store-product-asc/${storeId}`,
+    "reviews": (storeId) => `${SERVER_CONTEXT}/api/store/${storeId}/reviews/`,
+    "avg-star": (storeId) => `${SERVER_CONTEXT}/api/store/${storeId}/avgStarReview/`,
+    "count-products": (storeId) => `${SERVER_CONTEXT}/api/store/${storeId}/countProducts/`,
+    "add-review": `${SERVER_CONTEXT}/api/reviews/`,
+    "create-store": `${SERVER_CONTEXT}/api/create-store/`,
 }
 
 export const authApis = () => {

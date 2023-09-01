@@ -20,13 +20,13 @@ export const SearchRangePrice = () => {
                         <Form.Control value={fromPrice}
                             onChange={e => setFromPrice(e.target.value)}
                             className="product-input"
-                            type="text" placeholder="Họ" />
+                            type="text" placeholder="Giá từ" />
                     </FloatingLabel>
-                    <FloatingLabel className="product-filter-margin" label="Họ">
+                    <FloatingLabel className="product-filter-margin" label="Đến giá">
                         <Form.Control value={toPrice}
                             onChange={e => setToPrice(e.target.value)}
                             className="product-input product-filter-margin"
-                            type="text" placeholder="Họ" />
+                            type="text" placeholder="Đến giá" />
                     </FloatingLabel>
                     <Button type="submit" className="product-btn">Tìm</Button>
                 </Form>

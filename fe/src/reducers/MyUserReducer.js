@@ -9,6 +9,7 @@ const MyUserReducer = (currentState, action) => {
             cookie.remove("user");
             return null;
     }
+
     return currentState;
 }
 

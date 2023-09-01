@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        this.userRepo.addUser(u);
+        this.userRepo.addUser1(u);
         return u;
     }
 }

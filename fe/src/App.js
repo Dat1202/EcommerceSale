@@ -9,8 +9,10 @@ import Home from './component/Home';
 import { createContext, useReducer } from 'react';
 import MyUserReducer from "./reducers/MyUserReducer";
 import cookie from "react-cookies";
-import Store from './component/Store';
 import Register from './component/Register';
+import Store from './component/Store/Store';
+import { CreateStore } from './component/Store/CreateStore';
+import 'moment/locale/vi';
 
 export const MyUserContext = createContext();
 
@@ -25,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/store/:storeId" element={<Store />} />
+          <Route path="/create-store" element={<CreateStore />} />
 
         </Routes>
         <Footer />

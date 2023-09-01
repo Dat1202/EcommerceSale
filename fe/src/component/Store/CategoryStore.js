@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Apis, { endpoints } from '../configs/Apis';
+import Apis, { endpoints } from '../../configs/Apis';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListUl } from '@fortawesome/free-solid-svg-icons';
-import MySpinner from '../layout/MySpinner';
+import MySpinner from '../../layout/MySpinner';
 import { Link, useParams } from 'react-router-dom';
 
 export default function CategoryStore() {
@@ -15,7 +15,7 @@ export default function CategoryStore() {
 
             let res = await Apis.get(endpoints['store-cate'](storeId));
             setCategories(res.data);
-            console.info(res.data)
+            // console.info(res.data)
         }
         loadCatesFromStore()
     }, [storeId])
@@ -23,6 +23,8 @@ export default function CategoryStore() {
     if (categories === null) {
         return <MySpinner />
     }
+
+
     let all = true;
     let p = `/store/${storeId}?all=${all}`; // Moved outside the JSX code
 
@@ -40,7 +42,8 @@ export default function CategoryStore() {
                         let h = `/store/${storeId}?cateId=${c[0]}`;
                         return (
                             <li className="category-items">
-                                <Link to={h} className="category-items-text" key={c[0]} >{c[1]}</Link>
+                                <Link to={h} className="category-items-text"
+                                    key={c[0]} >{c[1]}</Link>
                             </li>)
                     })}
 

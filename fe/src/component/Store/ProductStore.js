@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Apis, { endpoints } from '../configs/Apis';
-import { Image } from 'react-bootstrap';
+import Apis, { endpoints } from '../../configs/Apis';
+import { Card, Col, Row } from 'react-bootstrap';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import MySpinner from '../layout/MySpinner';
-import { SearchRangePrice } from './SearchRangePrice';
+import MySpinner from '../../layout/MySpinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,14 +22,22 @@ export default function ProductStore() {
 
     useEffect(() => {
         const loadProductsFromStore = async () => {
+
             let e = endpoints['store-products'](storeId)
 
             let kw = q.get("kw")
             let cateId = q.get("cateId")
             let fromPrice = q.get("fromPrice")
             let toPrice = q.get("toPrice")
+            let sort = q.get("sort");
 
-            if (kw !== null) {
+            if (sort === "desc")
+                e = endpoints['store-product-desc'](storeId);
+
+            else if (sort === "asc") {
+                e = endpoints['store-product-asc'](storeId);
+            }
+            else if (kw !== null) {
                 e = `${e}?kw=${kw}`
             } else if (fromPrice !== null && toPrice !== null) {
                 e = `${e}?toPrice=${toPrice}&fromPrice=${fromPrice}`
@@ -45,6 +52,7 @@ export default function ProductStore() {
             }
 
             let res = await Apis.get(e);
+
             const slicedRecords = res.data.slice(firstIndex, lastIndex);
             const nPage = Math.ceil(res.data.length / recordsPerPage);
             const updatedNumbers = Array.from({ length: nPage }, (_, index) => index + 1);
@@ -55,7 +63,7 @@ export default function ProductStore() {
 
         loadProductsFromStore();
 
-    }, [q, storeId, lastIndex, firstIndex])
+    }, [q, storeId, lastIndex, firstIndex, all])
 
     if (products === null) {
         return <MySpinner />
@@ -79,46 +87,48 @@ export default function ProductStore() {
 
     return (
         <>
-            <div className="products">
-                <SearchRangePrice />
+            {records.length === 0 && <h1 className="text-center text">Không có sản phẩm cần tìm</h1>}
 
-                <div className="grid__row" id="product">
-                    {records.map(p => {
+            <Row>
+                {records.map(p => {
+                    let h = `/products/${p[0]}`;
+                    return (
+                        <>
+                            <Col xs={12} md={3} className="mt-2 mb-3">
+                                <Card style={{ width: '22rem' }} className="card-hover">
+                                    <Link to={h} >
+                                        <Card.Img variant="top" src={p[1]} fluid rounded />
+                                        <Card.Body>
+                                            <h1 className="product-item-name">{p[2]}</h1>
+                                            <p className="product-item-price">{p[3]} VNĐ</p>
+                                        </Card.Body>
+                                    </Link>
+                                </Card>
+                            </Col >
+                        </>
+                    )
+                })}
+            </Row >
 
-                        let h = `/products/${p[0]}`;
 
-                        return (
-                            <div className="grid__column-2-4">
-                                <Link to={h} key={p[0]} >
-                                    <div className="product-item">
-                                        <Image src={p[1]} rounded fluid />
-                                        <h3 className="product-item-name">{p[2]}</h3>
-                                        <p className="product-item-price">{p[3]}</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        )
-                    })}
 
-                </div>
-                <div className="pagination">
-                    <button className="page-item">
-                        <a onClick={prePage} className="page-link" href="#">
-                            <FontAwesomeIcon icon={faChevronLeft} />
+            <div className="pagination mt-4" >
+                <button className="page-item">
+                    <a onClick={prePage} className="page-link" href="/">
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </a>
+                </button>
+                {numbers.map((n, i) => (
+                    <button key={i} className="page-item" >
+                        <a onClick={(e) => changePage(n, e)} className={`page-link ${currentPage === n ? 'active-btn' : ''}`} href="/">{n}
                         </a>
                     </button>
-                    {numbers.map((n, i) => (
-                        <button key={i} className={`page-item ${currentPage === n ? 'active' : ''}`}>
-                            <a onClick={(e) => changePage(n, e)} className="page-link" href="#">{n}
-                            </a>
-                        </button>
-                    ))}
-                    <button className="page-item">
-                        <a onClick={nextPage} className="page-link" href="#">
+                ))}
+                <button className="page-item">
+                    <a onClick={nextPage} className="page-link" href="/">
                         <FontAwesomeIcon icon={faChevronRight} />
                     </a>
-                    </button>
-                </div>
+                </button>
             </div>
         </>
     )

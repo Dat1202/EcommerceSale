@@ -25,8 +25,15 @@ public interface StoreService {
     List<Object[]> getCateByStoreId();
 
     List<Object[]> getApiInfoStore(int id);
-    
+
     int countProductByStore();
+
     List<Object[]> getApiCateByStoreId(int id);
+
     Store createStore(Store store);
+
+    List<Object[]> getProdFromStoreAsc(int id, Map<String, String> params);
+
+    List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params);
+
 }

@@ -16,9 +16,9 @@ const Register = () => {
     "confirmPass": ""
   });
   const avatar = useRef();
-  const nav = useNavigate();
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
+  const nav = useNavigate();
 
   const register = (e) => {
     e.preventDefault();
@@ -99,7 +99,7 @@ const Register = () => {
             <Form.Control onChange={e => change(e, "confirmPass")}
               type="password" placeholder="Password2" />
           </FloatingLabel>
-          {err === null ? "" : <p variant="danger">{err}</p>}
+          {err === null ? "" : <span className="text-danger">{err}</span>}
 
           <FloatingLabel label="Ảnh đại diện">
             <Form.Control ref={avatar} type="file" placeholder="" />

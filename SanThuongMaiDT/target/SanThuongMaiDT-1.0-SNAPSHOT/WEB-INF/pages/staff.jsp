@@ -18,5 +18,7 @@
             </td>
         </tr>
     </c:forEach>
-
+<c:forEach items="${store}" var = "c">
+            ${c.name}
+ </c:forEach>
 </table>

@@ -1,4 +1,6 @@
+com\phd\repository\impl\ReviewRepositoryImpl.class
 com\phd\repository\impl\StaffRepositoryImpl.class
+com\phd\service\impl\ReviewServiceImpl.class
 com\phd\service\ReceiptService.class
 com\phd\pojo\Category_.class
 com\phd\service\StaffService.class
@@ -24,6 +26,7 @@ com\phd\controllers\ApiStoreController.class
 com\phd\pojo\Review_.class
 com\phd\repository\ReceiptRepository.class
 com\phd\pojo\Review.class
+com\phd\service\ReviewService.class
 com\phd\controllers\AdminController.class
 com\phd\pojo\OrderDetails_.class
 com\phd\configs\SpringSecurityConfig.class
@@ -68,4 +71,5 @@ com\phd\repository\CategoryRepository.class
 com\phd\controllers\ApiCategoryController.class
 com\phd\pojo\Product.class
 com\phd\repository\StatsRepository.class
+com\phd\repository\ReviewRepository.class
 com\phd\filters\JwtAuthenticationTokenFilter.class

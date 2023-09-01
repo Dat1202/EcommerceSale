@@ -14,4 +14,6 @@ public interface ProductRepository {
     boolean addOrUpdateProduct(Product p);
     Product getProductById(int id);
     boolean deleteProduct(int id);
+    List<Product> getProductAsc(Map<String, String> params);
+    int countProductInStore(int storeId);
 }

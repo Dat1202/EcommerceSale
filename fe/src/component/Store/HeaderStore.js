@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Apis, { endpoints } from '../configs/Apis';
-import MySpinner from '../layout/MySpinner';
+import Apis, { endpoints } from '../../configs/Apis';
+import MySpinner from '../../layout/MySpinner';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +11,7 @@ export default function HeaderStore() {
   const [store, setStore] = useState(null);
   const [q] = useSearchParams();
   const [kw, setKw] = useState("")
+  const [avgStarReview, setAvgStarReview] = useState("")
 
   const nav = useNavigate();
 
@@ -18,10 +19,15 @@ export default function HeaderStore() {
     const loadStoreInfo = async () => {
       let { data } = await Apis.get(endpoints['store-info'](storeId));
       setStore(data);
-      console.info(data)
+      // console.info(data)
+    }
+    const loadAvgStar = async () => {
+      let { data } = await Apis.get(endpoints['avg-star'](storeId));
+      setAvgStarReview(data);
     }
 
     loadStoreInfo();
+    loadAvgStar();
   }, [q, storeId])
 
 
@@ -43,9 +49,16 @@ export default function HeaderStore() {
               width="60" height="60" className="rounded-circle" alt="logo"
             />
           </div>
-          <div className="header__store-name" >{store[0][0]}</div>
+          <div className="header__store-name" >
+            <div className="display-4">
+              {store[0][0]}
+            </div>
+            <div>
+              <span style={{color: 'gold'}}>★</span>
+              {avgStarReview}/5
+            </div>
+          </div>
           <div class="header__search">
-
             <Form style={{ height: "100%" }} onSubmit={searchStore}>
               <input value={kw}
                 onChange={e => setKw(e.target.value)}
@@ -54,7 +67,7 @@ export default function HeaderStore() {
                 <FontAwesomeIcon icon={faMagnifyingGlass} style={{ fontSize: '15px' }} />
               </button>
             </Form>
-            
+
           </div>
         </div>
 

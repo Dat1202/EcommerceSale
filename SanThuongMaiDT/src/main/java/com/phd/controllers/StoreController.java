@@ -72,4 +72,6 @@ public class StoreController {
         model.addAttribute("product", this.productService.getProductById(id));
         return "add-products";
     }
+    
+    
 }

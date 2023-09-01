@@ -69,4 +69,15 @@ public class ProductServiceImpl implements ProductService {
     public boolean deleteProduct(int id) {
         return this.productRepo.deleteProduct(id);
     }
+
+    @Override
+    public List<Product> getProductAsc(Map<String, String> params) {
+        return this.productRepo.getProductAsc(params);
+    }
+
+    @Override
+    public int countProductInStore(int storeId) {
+        return this.productRepo.countProductInStore(storeId);
+    }
+    
 }

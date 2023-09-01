@@ -1,11 +1,10 @@
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <section style = "border: 1px solid;" class="container__form">
-
     <c:choose>
         <c:when test="${categories.id != null}">
             <h1 class="text-center text-info mt-1">CẬP NHẬT THỂ LOẠI</h1>

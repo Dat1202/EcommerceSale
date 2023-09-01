@@ -17,6 +17,8 @@ public interface ProductService {
 
     List<Product> getProducts(Map<String, String> params);
 
+    List<Product> getProductAsc(Map<String, String> params);
+
     int countProduct();
 
     boolean addOrUpdateProduct(Product p);
@@ -24,4 +26,6 @@ public interface ProductService {
     Product getProductById(int id);
 
     boolean deleteProduct(int id);
+
+    int countProductInStore(int storeId);
 }

@@ -147,15 +147,8 @@ public class StoreRepositoryImpl implements StoreRepository {
     @Override
     public Store createStore(Store store) {
         Session s = this.factory.getObject().getCurrentSession();
-        try {
-
-            s.save(store);
-
-            return store;
-        } catch (HibernateException ex) {
-            System.err.println(ex.getMessage());
-            return null;
-        }
+        s.save(store);
+        return store;
     }
 
     @Override
@@ -201,7 +194,7 @@ public class StoreRepositoryImpl implements StoreRepository {
         predicates.add(b.equal(rStr.get("userId"), rU.get("id")));
 
         q.where(predicates.toArray(Predicate[]::new));
-        q.multiselect(rStr.get("name"), rU.get("avatar"));
+        q.multiselect(rStr.get("name"), rU.get("avatar"), rStr.get("description"));
 
         Query query = session.createQuery(q);
         return query.getResultList();
@@ -247,8 +240,94 @@ public class StoreRepositoryImpl implements StoreRepository {
         Query query = session.createQuery(q);
         return query.getResultList();
     }
-//    @Override
-//    public int countCateByStore() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
+
+    //sắp xếp giá tăng dần
+    @Override
+    public List<Object[]> getProdFromStoreAsc(int id, Map<String, String> params) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root rP = q.from(Product.class);
+        Root rStr = q.from(Store.class);
+        Root rCate = q.from(Category.class);
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(rStr.get("id"), id));
+        predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
+        predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
+
+        if (params != null) {
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                predicates.add(b.like(rP.get("name"), String.format("%%%s%%", kw)));
+            }
+
+            String fromPrice = params.get("fromPrice");
+            if (fromPrice != null && !fromPrice.isEmpty()) {
+                predicates.add(b.greaterThanOrEqualTo(rP.get("price"), Long.parseLong(fromPrice)));
+            }
+
+            String toPrice = params.get("toPrice");
+            if (toPrice != null && !toPrice.isEmpty()) {
+                predicates.add(b.lessThanOrEqualTo(rP.get("price"), Long.parseLong(toPrice)));
+            }
+
+            String cateId = params.get("cateId");
+            if (cateId != null && !cateId.isEmpty()) {
+                predicates.add(b.equal(rP.get("categoryId"), Integer.parseInt(cateId)));
+            }
+        }
+        q.orderBy(b.asc(rP.get("price")));
+
+        q.where(predicates.toArray(Predicate[]::new));
+        q.multiselect(rP.get("id"), rP.get("image"), rP.get("name"), rP.get("price"));
+
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
+    //giá giảm dần
+    @Override
+    public List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params) {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root rP = q.from(Product.class);
+        Root rStr = q.from(Store.class);
+        Root rCate = q.from(Category.class);
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(rStr.get("id"), id));
+        predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
+        predicates.add(b.equal(rCate.get("id"), rP.get("categoryId")));
+
+        if (params != null) {
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                predicates.add(b.like(rP.get("name"), String.format("%%%s%%", kw)));
+            }
+
+            String fromPrice = params.get("fromPrice");
+            if (fromPrice != null && !fromPrice.isEmpty()) {
+                predicates.add(b.greaterThanOrEqualTo(rP.get("price"), Long.parseLong(fromPrice)));
+            }
+
+            String toPrice = params.get("toPrice");
+            if (toPrice != null && !toPrice.isEmpty()) {
+                predicates.add(b.lessThanOrEqualTo(rP.get("price"), Long.parseLong(toPrice)));
+            }
+
+            String cateId = params.get("cateId");
+            if (cateId != null && !cateId.isEmpty()) {
+                predicates.add(b.equal(rP.get("categoryId"), Integer.parseInt(cateId)));
+            }
+        }
+        q.orderBy(b.desc(rP.get("price")));
+
+        q.where(predicates.toArray(Predicate[]::new));
+        q.multiselect(rP.get("id"), rP.get("image"), rP.get("name"), rP.get("price"));
+
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
+    
 }

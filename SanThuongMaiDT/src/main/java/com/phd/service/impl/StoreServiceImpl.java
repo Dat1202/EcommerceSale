@@ -9,6 +9,7 @@ import com.phd.pojo.User;
 import com.phd.repository.StoreRepository;
 import com.phd.repository.UserRepository;
 import com.phd.service.StoreService;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public boolean addStore(Store store) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User u = this.userRepository.getUserByUsername(authentication.getName());
+        store.setUserId(u);
         store.setStatus("pending");
         return this.storeRepo.addStore(store);
     }
@@ -72,11 +76,20 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store createStore(Store store) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        User u = this.userRepository.getUserByUsername(authentication.getName());
 //        store.setUserId(u);
-//        store.setStatus("pending");
-
+        store.setStatus("pending");
         return this.storeRepo.createStore(store);
+    }
+
+    @Override
+    public List<Object[]> getProdFromStoreAsc(int id, Map<String, String> params) {
+        return this.storeRepo.getProdFromStoreAsc(id, params);
+    }
+
+    @Override
+    public List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params) {
+        return this.storeRepo.getProdFromStoreDesc(id, params);
     }
 }
