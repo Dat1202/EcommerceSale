@@ -8,6 +8,8 @@ export const CreateStore = () => {
 
     const [user,] = useContext(MyUserContext);
     const [name, setName] = useState("")
+    const [location, setLocation] = useState("")
+
     const [description, setDescription] = useState("")
     const [loading, setLoading] = useState(false);
     const [noti, setNoti] = useState("");
@@ -21,6 +23,7 @@ export const CreateStore = () => {
             let res = await Apis.post(endpoints['create-store'], {
                 "name": name,
                 "description": description,
+                "location":location,
                 "userId": user.id
             })
             setNoti("Bạn đăng ký thành công. Chờ nhân viên xác nhận");
@@ -47,9 +50,12 @@ export const CreateStore = () => {
                     </div>
                     <div class="form-control">
                         <input value={description} onChange={e => setDescription(e.target.value)}
-                            type="text" id="password" placeholder="Nhập mô tả cửa hàng" />
+                            type="text" placeholder="Nhập mô tả cửa hàng" />
                     </div>
-
+                    <div class="form-control">
+                        <input value={location} onChange={e => setLocation(e.target.value)}
+                            type="text" placeholder="Nhập vị trí cửa hàng" />
+                    </div>
                     {loading === true ? <div className='text-success pb-4'>{noti}</div> : <input class="btn" type="submit" value="Đăng ký" />}
                 </Form>
             </section>

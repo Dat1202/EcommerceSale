@@ -41,6 +41,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Store.findByName", query = "SELECT s FROM Store s WHERE s.name = :name")})
 public class Store implements Serializable {
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +65,9 @@ public class Store implements Serializable {
     @Size(max = 50)
     @Column(name = "status")
     private String status;
+    @Size(max = 50)
+    @Column(name = "location")
+    private String location;
     @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Product> productSet;

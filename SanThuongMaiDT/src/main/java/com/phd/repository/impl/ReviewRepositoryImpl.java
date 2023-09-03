@@ -4,11 +4,18 @@
  */
 package com.phd.repository.impl;
 
+import com.phd.pojo.Product;
 import com.phd.pojo.Review;
 import com.phd.repository.ReviewRepository;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +35,27 @@ public class ReviewRepositoryImpl implements ReviewRepository {
     private LocalSessionFactoryBean factory;
 
     @Override
-    public List<Review> getReviews(int storeId) {
-        Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("From Review Where storeId.id=:id ORDER BY id desc");
-        q.setParameter("id", storeId);
+    public List<Review> getReviews(int storeId, Map<String, String> params) {
+        Session session = this.factory.getObject().getCurrentSession();
 
-        return q.getResultList();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Review> q = b.createQuery(Review.class);
+        Root root = q.from(Review.class);
+        q.select(root);
+
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+
+            String star = params.get("star");
+            if (star != null && !star.isEmpty()) {
+                predicates.add(b.equal(root.get("star"), Integer.parseInt(star)));
+            }
+            q.where(predicates.toArray(Predicate[]::new));
+        }
+
+        Query query = session.createQuery(q);
+        return query.getResultList();
+
     }
 
     @Override

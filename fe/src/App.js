@@ -28,7 +28,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/store/:storeId" element={<Store />} />
           <Route path="/create-store" element={<CreateStore />} />
-
         </Routes>
         <Footer />
       </BrowserRouter>

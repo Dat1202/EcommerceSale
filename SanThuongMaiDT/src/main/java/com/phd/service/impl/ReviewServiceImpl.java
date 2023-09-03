@@ -9,6 +9,7 @@ import com.phd.repository.ReviewRepository;
 import com.phd.service.ReviewService;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewRepository reviewRepo;
 
     @Override
-    public List<Review> getReviews(int storeId) {
-        return this.reviewRepo.getReviews(storeId);
+    public List<Review> getReviews(int storeId, Map<String, String> params) {
+        return this.reviewRepo.getReviews(storeId, params);
     }
 
     @Override

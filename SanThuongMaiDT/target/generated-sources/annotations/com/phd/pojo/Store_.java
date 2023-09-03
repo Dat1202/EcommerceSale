@@ -9,13 +9,14 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-09-02T03:04:33", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-09-02T21:59:19", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Store.class)
 public class Store_ { 
 
     public static volatile SingularAttribute<Store, String> name;
     public static volatile SetAttribute<Store, Review> reviewSet;
     public static volatile SingularAttribute<Store, String> description;
+    public static volatile SingularAttribute<Store, String> location;
     public static volatile SingularAttribute<Store, Integer> id;
     public static volatile SingularAttribute<Store, User> userId;
     public static volatile SetAttribute<Store, StoreCategory> storeCategorySet;

@@ -194,7 +194,7 @@ public class StoreRepositoryImpl implements StoreRepository {
         predicates.add(b.equal(rStr.get("userId"), rU.get("id")));
 
         q.where(predicates.toArray(Predicate[]::new));
-        q.multiselect(rStr.get("name"), rU.get("avatar"), rStr.get("description"));
+        q.multiselect(rStr.get("name"), rU.get("avatar"), rStr.get("description"), rStr.get("location"));
 
         Query query = session.createQuery(q);
         return query.getResultList();
@@ -276,6 +276,7 @@ public class StoreRepositoryImpl implements StoreRepository {
                 predicates.add(b.equal(rP.get("categoryId"), Integer.parseInt(cateId)));
             }
         }
+        
         q.orderBy(b.asc(rP.get("price")));
 
         q.where(predicates.toArray(Predicate[]::new));
