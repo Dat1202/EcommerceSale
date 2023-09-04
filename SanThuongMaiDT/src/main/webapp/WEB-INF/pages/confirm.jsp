@@ -14,7 +14,7 @@
         <form:hidden path="id" />
         <form:hidden path="description" />
         <form:hidden path="name" />
-                <form:hidden path="location" />
+        <form:hidden path="location" />
 
         <form:hidden path="userId.id" />
         <form:hidden path="userId.firstName" />
@@ -24,7 +24,7 @@
         <form:hidden path="userId.avatar" />
         <form:hidden path="userId.username" />
         <form:hidden path="userId.password" />
-        
+
         <div class="form-floating mb-3 mt-3">
             <form:input type="text" class="form-control" path="name" id="name" 
                         placeholder="Tên sản phẩm" name="name" disabled="true"/>
@@ -35,7 +35,7 @@
                         placeholder="description" name="description" disabled="true"/>
             <label for="description">Description </label>
         </div>
-            <div class="form-floating mb-3 mt-3">
+        <div class="form-floating mb-3 mt-3">
             <form:input type="text" class="form-control" path="location" id="location" 
                         placeholder="location" name="location" disabled="true"/>
             <label for="location">Vị trí </label>

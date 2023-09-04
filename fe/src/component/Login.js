@@ -41,7 +41,6 @@ const Login = () => {
         return <Navigate to={url} />
     }
 
-
     return (
         <div>
             <section class="container__form">

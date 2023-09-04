@@ -6,7 +6,9 @@ package com.phd.controllers;
 
 import com.phd.pojo.Product;
 import com.phd.pojo.Store;
+import com.phd.service.CategoryService;
 import com.phd.service.ProductService;
+import com.phd.service.StatsService;
 import com.phd.service.StoreService;
 import java.util.Map;
 import javax.validation.Valid;
@@ -33,6 +35,13 @@ public class StoreController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private StatsService statsService;
+
+    @Autowired
+    private CategoryService categoryService;
+    
     @Autowired
     private Environment env;
 
@@ -40,7 +49,7 @@ public class StoreController {
     @GetMapping("/products")
     public String productView(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("storeProduct", this.storeService.getProductByStoreId(params));
-        
+
         int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
         int count = this.storeService.countProductByStore();
         model.addAttribute("counter", Math.ceil(count * 1.0 / pageSize));
@@ -72,6 +81,34 @@ public class StoreController {
         model.addAttribute("product", this.productService.getProductById(id));
         return "add-products";
     }
-    
-    
+
+    @GetMapping("/info-store")
+    public String infoStore(Model model) {
+        model.addAttribute("storeInfo", this.storeService.getStoreByUser());
+        return "info-store";
+    }
+
+    @PostMapping("/info-store")
+    public String updateStore(@ModelAttribute(value = "storeInfo") Store s) {
+        System.out.println(this.storeService.updateStore(s));
+        if (this.storeService.updateStore(s) == true) {
+            return "redirect:/store/storeInfo";
+        }
+
+        return "info-store";
+    }
+
+    @GetMapping("/stats-product")
+    public String statsProd(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("statsProduct", this.statsService.statsByProduct(params));
+
+        return "stats-product";
+    }
+
+    @GetMapping("/stats-categories")
+    public String statsCate(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("statsByCate", this.statsService.statsByCate(params));
+
+        return "stats-categories";
+    }
 }

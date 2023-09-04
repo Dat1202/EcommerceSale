@@ -41,13 +41,13 @@ public class ApiProductController {
         this.productService.deleteProduct(id);
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/")
     @CrossOrigin
     public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.productService.getProducts(params), HttpStatus.OK);
     }
     
-    @GetMapping("/products-asc")
+    @GetMapping("/products-asc/")
     @CrossOrigin
     public ResponseEntity<List<Product>> listAsc(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.productService.getProductAsc(params), HttpStatus.OK);

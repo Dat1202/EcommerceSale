@@ -13,11 +13,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author dat98
- */@Service
-
+@Service
 public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
@@ -31,11 +27,6 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Review addReview(Review r) {
         r.setCreatedAt(new Date());
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        User u = this.userRepo.getUserByUsername(authentication.getName());
-//        r.setUserId(u);
-
         return this.reviewRepo.addReview(r);
     }
 

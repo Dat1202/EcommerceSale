@@ -26,4 +26,8 @@ public class CategoryServiceImpl implements CategoryService {
         return this.cateRepo.getCates();
     }
 
+    @Override
+    public int countCategory() {
+        return this.cateRepo.countCategory();
+    }
 }

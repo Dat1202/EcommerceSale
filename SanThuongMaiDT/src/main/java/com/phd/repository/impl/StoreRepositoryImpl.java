@@ -36,7 +36,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 @PropertySource("classpath:configs.properties")
-
 public class StoreRepositoryImpl implements StoreRepository {
 
     @Autowired
@@ -145,6 +144,13 @@ public class StoreRepositoryImpl implements StoreRepository {
     }
 
     @Override
+    public boolean updateStore(Store store) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.update(store);
+        return true;
+    }
+
+    @Override
     public Store createStore(Store store) {
         Session s = this.factory.getObject().getCurrentSession();
         s.save(store);
@@ -154,7 +160,35 @@ public class StoreRepositoryImpl implements StoreRepository {
     @Override
     public Store getStoreById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
-        return s.get(Store.class, id);
+
+        return s.get(Store.class,
+                 id);
+    }
+
+    @Override
+    public Store getStoreByUser() {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Store> q = b.createQuery(Store.class
+        );
+        Authentication authentication
+                = SecurityContextHolder.getContext().getAuthentication();
+
+        List<Predicate> predicates = new ArrayList<>();
+        Root rStr = q.from(Store.class
+        );
+
+        predicates.add(b.equal(rStr.get("userId"), this.userRepository.getUserByUsername(authentication.getName()).getId()));
+
+        q.where(predicates.toArray(Predicate[]::new));
+
+        Query query = session.createQuery(q);
+        List<Store> stores = query.getResultList();
+        if (!stores.isEmpty()) {
+            return stores.get(0);
+        } else {
+            return null;
+        }
     }
 
     //------------Api---------------------
@@ -162,12 +196,16 @@ public class StoreRepositoryImpl implements StoreRepository {
     public List<Object[]> getApiCateByStoreId(int id) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class
+        );
 
         List<Predicate> predicates = new ArrayList<>();
-        Root rP = q.from(Product.class);
-        Root rStr = q.from(Store.class);
-        Root rCate = q.from(Category.class);
+        Root rP = q.from(Product.class
+        );
+        Root rStr = q.from(Store.class
+        );
+        Root rCate = q.from(Category.class
+        );
 
         predicates.add(b.equal(rStr.get("id"), id));
         predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
@@ -185,9 +223,12 @@ public class StoreRepositoryImpl implements StoreRepository {
     public List<Object[]> getApiInfoStore(int id) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rStr = q.from(Store.class);
-        Root rU = q.from(User.class);
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class
+        );
+        Root rStr = q.from(Store.class
+        );
+        Root rU = q.from(User.class
+        );
 
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(b.equal(rStr.get("id"), id));
@@ -204,10 +245,14 @@ public class StoreRepositoryImpl implements StoreRepository {
     public List<Object[]> getProdFromStore(int id, Map<String, String> params) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rP = q.from(Product.class);
-        Root rStr = q.from(Store.class);
-        Root rCate = q.from(Category.class);
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class
+        );
+        Root rP = q.from(Product.class
+        );
+        Root rStr = q.from(Store.class
+        );
+        Root rCate = q.from(Category.class
+        );
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(b.equal(rStr.get("id"), id));
         predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
@@ -246,10 +291,14 @@ public class StoreRepositoryImpl implements StoreRepository {
     public List<Object[]> getProdFromStoreAsc(int id, Map<String, String> params) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rP = q.from(Product.class);
-        Root rStr = q.from(Store.class);
-        Root rCate = q.from(Category.class);
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class
+        );
+        Root rP = q.from(Product.class
+        );
+        Root rStr = q.from(Store.class
+        );
+        Root rCate = q.from(Category.class
+        );
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(b.equal(rStr.get("id"), id));
         predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
@@ -276,7 +325,7 @@ public class StoreRepositoryImpl implements StoreRepository {
                 predicates.add(b.equal(rP.get("categoryId"), Integer.parseInt(cateId)));
             }
         }
-        
+
         q.orderBy(b.asc(rP.get("price")));
 
         q.where(predicates.toArray(Predicate[]::new));
@@ -291,10 +340,14 @@ public class StoreRepositoryImpl implements StoreRepository {
     public List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params) {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
-        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
-        Root rP = q.from(Product.class);
-        Root rStr = q.from(Store.class);
-        Root rCate = q.from(Category.class);
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class
+        );
+        Root rP = q.from(Product.class
+        );
+        Root rStr = q.from(Store.class
+        );
+        Root rCate = q.from(Category.class
+        );
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(b.equal(rStr.get("id"), id));
         predicates.add(b.equal(rP.get("storeId"), rStr.get("id")));
@@ -330,5 +383,4 @@ public class StoreRepositoryImpl implements StoreRepository {
         return query.getResultList();
     }
 
-    
 }

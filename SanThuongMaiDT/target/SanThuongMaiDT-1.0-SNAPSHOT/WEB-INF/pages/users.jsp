@@ -13,6 +13,7 @@
     <tr>
         <th>ID</th>
         <th>Họ và tên</th>
+        <th>Số điện thoại</th>
         <th>Email</th>
         <th>Tên đăng nhập</th>
         <th>Role</th>
@@ -24,6 +25,7 @@
             <tr>
                 <td>${u.id}</td>
                 <td>${u.firstName} ${u.lastName} </td>
+                <td>${u.phone}</td>
                 <td>${u.email}</td>
                 <td>${u.username}</td>
                 <td>${u.userRole}</td>

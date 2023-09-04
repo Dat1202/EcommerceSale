@@ -7,6 +7,7 @@ D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\Orders.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\DispatcherServletInit.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\TilesConfig.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\ReceiptRepositoryImpl.java
+D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\impl\StatsServiceImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\ReviewService.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\WebAppContextConfig.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\controllers\AdminController.java
@@ -35,6 +36,7 @@ D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\Store.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\ReviewRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\ProductService.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\filters\CustomAccessDeniedHandler.java
+D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\StatsService.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\OrderDetails.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\impl\ReceiptServiceImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\ProductRepository.java

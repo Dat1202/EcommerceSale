@@ -86,4 +86,22 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/pages/users.jsp" />
     </definition>
+    
+    <definition name="info-store" extends="baseLayout">
+        <put-attribute name="title" value="Quản lí thông tin cửa hàng" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/info-store.jsp" />
+    </definition>
+    
+    <definition name="stats-product" extends="baseLayout">
+        <put-attribute name="title" value="Thông kê theo sản phẩm" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/stats-product.jsp" />
+    </definition>
+    
+    <definition name="stats-categories" extends="baseLayout">
+        <put-attribute name="title" value="Thông kê theo thể loại" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/stats-categories.jsp" />
+    </definition>
 </tiles-definitions>

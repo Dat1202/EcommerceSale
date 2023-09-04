@@ -76,9 +76,6 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store createStore(Store store) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        User u = this.userRepository.getUserByUsername(authentication.getName());
-//        store.setUserId(u);
         store.setStatus("pending");
         return this.storeRepo.createStore(store);
     }
@@ -92,4 +89,15 @@ public class StoreServiceImpl implements StoreService {
     public List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params) {
         return this.storeRepo.getProdFromStoreDesc(id, params);
     }
+
+    @Override
+    public Store getStoreByUser() {
+        return this.storeRepo.getStoreByUser();
+    }
+
+    @Override
+    public boolean updateStore(Store store) {
+        return this.storeRepo.updateStore(store);
+    }
+    
 }

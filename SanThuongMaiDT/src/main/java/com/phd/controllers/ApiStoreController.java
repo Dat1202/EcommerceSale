@@ -49,6 +49,7 @@ public class ApiStoreController {
 //    public ResponseEntity<?> store(@RequestParam Map<String, String> params, @PathVariable(value = "id") int id) {
 //        return new ResponseEntity<>(this.storeService.getProdFromStore(id, params), HttpStatus.OK);
 //    }
+    
     @GetMapping("/store-product-desc/{id}")
     public ResponseEntity<?> storeProductDesc(@RequestParam Map<String, String> params, @PathVariable(value = "id") int id) {
         return new ResponseEntity<>(this.storeService.getProdFromStoreDesc(id, params), HttpStatus.OK);

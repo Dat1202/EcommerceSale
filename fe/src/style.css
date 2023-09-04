@@ -584,8 +584,6 @@ input[type=number] {
 .card-hover:hover {
     transform: translateY(-5px) scale(1.05) translateZ(0);
     cursor: pointer;
-    /* transform: translateX(22px); */
-    /* transform: scale(1.05) */
 }
 
 .product-filter-sort {
@@ -670,9 +668,10 @@ input[type=number] {
     padding: 10px 30px;
 }
 
-.product-btn.active {
-    border: 1px solid #000;
-    /* Màu và kiểu viền tuỳ ý */
+.review-filter-btn.active {
+    border:1px solid var(--main-color);
+    background-color: transparent;
+    color: #000;
 }
 
 .pagination-products {
@@ -682,7 +681,6 @@ input[type=number] {
 
 .pagination-products:hover {
     background-color: var(--primary-color);
-
 }
 
 .active-category {
@@ -701,4 +699,11 @@ input[type=number] {
     border-width: 8px;
     border-style: solid;
     border-color: transparent transparent transparent var(--primary-color);
+}
+
+.review-filter-btn{
+    background-color: var(--primary-color);
+    color: #000;
+    margin:5px;
+    padding:0 22px;
 }

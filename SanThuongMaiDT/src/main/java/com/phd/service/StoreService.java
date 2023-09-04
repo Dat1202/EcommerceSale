@@ -36,4 +36,8 @@ public interface StoreService {
 
     List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params);
 
+    Store getStoreByUser();
+
+    boolean updateStore(Store store);
+
 }

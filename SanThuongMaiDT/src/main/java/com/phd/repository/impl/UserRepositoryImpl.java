@@ -91,4 +91,17 @@ public class UserRepositoryImpl implements UserRepository {
         return u;
     }
 
+    @Override
+    public User getUserByMail(String mail) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createNamedQuery("User.findByEmail", User.class);
+        q.setParameter("email", mail);
+        List<User> u = q.getResultList();
+        try {
+            return u.get(0);
+        } catch (IndexOutOfBoundsException ex) {
+            return null;
+        }
+    }
+
 }
