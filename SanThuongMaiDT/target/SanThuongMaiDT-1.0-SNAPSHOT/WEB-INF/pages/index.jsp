@@ -7,54 +7,42 @@
     <c:when test="${user.userRole == 'ROLE_STORE'}">
         <h1 class="text-center">Quản lí cửa hàng</h1>
         <div class="">
-            <!--            <div 
-                            class="m-5 dashboard">Số lượng sản phẩm của cửa hàng: ${countProduct}  
-                            <a style = "font-size:12px;" href="<c:url value="/store/products?page=1"/>"><i class="fa-solid fa-chevron-right"></i></a>
-                        </div>-->
-            <div>
-                <table class="table table-hover">
-                    <tr class="table-info ">
-                        <th>Id</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Doanh thu</th>
-                    </tr>
+            <div 
+                class="m-5 dashboard">Số lượng sản phẩm của cửa hàng: ${countProduct}  
+                <a style = "font-size:12px;" href="<c:url value="/store/products?page=1"/>"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
 
-                    <c:forEach items="${countProductByCate}" var="c">
-                        <tr>
-                            <td>${c[0]}</td>
-                            <td>${c[1]}</td>
-                            <td>${c[2]}</td>
-                        </tr>
-                    </c:forEach>
-                        
-                </table>
+            <div class="d-flex  align-self-stretch" style="justify-content: space-evenly;">
                 <div>
-                    <h2>Số lượng sản phẩm theo thể loại</h2>
-                    <form style="width: 500px">
-                        <canvas id="chartProduct"></canvas>
-                    </form>
+                    <div style="height: 490px; width: 450px; background-color: white;">
+                        <h2 class="text-center py-2">Số lượng sản phẩm theo thể loại</h2>
+                        <canvas class="p-4" id="chartProduct"></canvas>
+                    </div>
                 </div>
+                <div>
+                    <div style="height: 490px; width: 650px; background-color: white;">
+                        <h2 class="text-center py-2">Doanh thu theo tháng</h2>
+                        <canvas class="p-4" id="lineChartStore"></canvas>
+                    </div>   
+                </div>    
             </div>
         </div>
-
-
-
     </c:when>
     <c:when test="${user.userRole == 'ROLE_STAFF'}">
         <div class="text-center mt-2 text">Quản lí nhân viên</div>
     </c:when>
 
     <c:when test="${user.userRole == 'ROLE_ADMIN'}">
-        
+
         <div 
             class="m-5 dashboard">Tổng số sản phẩm của sàn: ${count}
         </div>    
-        
+
         <div 
             class="m-5 dashboard" style="border-left: 5px solid red;">Tổng số thể loại của sàn: ${countCategory}
         </div>  
-        
-            
+
+
         <div style="width: 500px; background-color: white; margin: 0 auto;">
             <canvas id="lineChart"></canvas>
         </div>
@@ -70,11 +58,17 @@
     let colors = [];
     let borderColors = [];
     let r, g, b;
+
     let labels1 = [];
     let data1 = [];
     let colors1 = [];
     let borderColors1 = [];
-    
+
+    let labels2 = [];
+    let data2 = [];
+    let colors2 = [];
+    let borderColors2 = [];
+
     <c:forEach items="${countProductByCate}" var="c">
     labels.push('${c[1]}');
     data.push(${c[2]});
@@ -94,14 +88,29 @@
     colors1.push('rgba(' + r + ',' + g + ',' + b + ',0.5)');
     borderColors1.push('rgba(' + r + ',' + g + ',' + b + ',1)');
     </c:forEach>
-        
+
+    <c:forEach items="${statsByMonthInStore}" var="c">
+    labels2.push('${c[0]}');
+    data2.push(${c[1]});
+    r = Math.floor(Math.random() * 256);
+    g = Math.floor(Math.random() * 256);
+    b = Math.floor(Math.random() * 256);
+    colors2.push('rgba(' + r + ',' + g + ',' + b + ',0.5)');
+    borderColors2.push('rgba(' + r + ',' + g + ',' + b + ',1)');
+    </c:forEach>
+
+
     window.onload = function () {
         const ctx = document.getElementById('chartProduct');
         const ctx1 = document.getElementById('lineChart');
+        const ctx2 = document.getElementById('lineChartStore');
+
         loadChart(ctx, labels, data, 'doughnut', colors, borderColors);
         loadChartStore(ctx1, labels1, data1, 'line', colors1, borderColors1);
+        lineChartStore(ctx2, labels2, data2, 'line', colors2, borderColors2);
+
     };
-    
+
     function loadChart(ctx, labels, data, type, colors, borderColors) {
         const chartProduct = new Chart(ctx, {
             type: type,
@@ -129,6 +138,31 @@
                         data: data1,
                         backgroundColor: colors1,
                         borderColor: borderColors1,
+                        borderWidth: 1,
+                        fill: false,
+                        tension: 0.5
+                    }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+    }
+
+    function lineChartStore(ctx2, labels2, data2, type, colors2, borderColors2) {
+        const chartProduct = new Chart(ctx2, {
+            type: type,
+            data: {
+                labels: labels2,
+                datasets: [{
+                        label: '',
+                        data: data2,
+                        backgroundColor: colors2,
+                        borderColor: borderColors2,
                         borderWidth: 1,
                         fill: false,
                         tension: 0.5

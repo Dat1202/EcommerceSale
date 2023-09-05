@@ -40,5 +40,10 @@ public class StatsServiceImpl implements StatsService{
     public List<Object[]> statsRevenueInEachStore() {
         return this.statsRepository.statsRevenueInEachStore();
     }
+
+    @Override
+    public List<Object[]> statsByMonthInStore() {
+        return this.statsRepository.statsByMonthInStore();
+    }
     
 }

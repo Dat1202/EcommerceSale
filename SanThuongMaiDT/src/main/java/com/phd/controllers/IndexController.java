@@ -61,6 +61,7 @@ public class IndexController {
 
             model.addAttribute("countProductByCate", this.statsService.statsNumberProductByCate());
             model.addAttribute("countCategory", this.cateService.countCategory());
+            model.addAttribute("statsByMonthInStore", this.statsService.statsByMonthInStore());
 
         }
 

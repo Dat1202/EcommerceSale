@@ -17,4 +17,5 @@ public interface StatsService {
     List<Object[]> statsByCate(Map<String, String> params);
     List<Object[]> statsNumberProductByCate();
     List<Object[]> statsRevenueInEachStore();
+    List<Object[]> statsByMonthInStore();
 }

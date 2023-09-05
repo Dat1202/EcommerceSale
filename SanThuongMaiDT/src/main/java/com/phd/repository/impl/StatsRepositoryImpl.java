@@ -198,6 +198,36 @@ public class StatsRepositoryImpl implements StatsRepository {
         return query.getResultList();
     }
 
+    //thống kê theo tháng của cửa hàng
+    @Override
+    public List<Object[]> statsByMonthInStore() {
+        Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        Root rOrderDetail = q.from(OrderDetails.class);
+        Root rProduct = q.from(Product.class);
+        Root rStote = q.from(Store.class);
+        Root rOrder = q.from(Orders.class);
+        Authentication authentication
+                = SecurityContextHolder.getContext().getAuthentication();
+
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(rStote.get("userId"), this.userRepository.getUserByUsername(authentication.getName()).getId()));
+        predicates.add(b.equal(rOrderDetail.get("productId"), rProduct.get("id")));
+        predicates.add(b.equal(rStote.get("id"), rProduct.get("storeId")));
+        predicates.add(b.equal(rOrderDetail.get("orderId"), rOrder.get("id")));
+
+        q.where(predicates.toArray(Predicate[]::new));
+
+        q.multiselect(b.function("MONTH", Integer.class, rOrder.get("orderDate")),b.sum(b.prod(rOrderDetail.get("unitPrice"), rOrderDetail.get("quantity"))));
+
+        q.groupBy(b.function("MONTH", Integer.class, rOrder.get("orderDate")));
+        q.orderBy(b.asc(b.function("MONTH", Integer.class, rOrder.get("orderDate"))));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+
     public List<Object[]> statsNumberProductByCate() {
         Session session = this.factory.getObject().getCurrentSession();
         CriteriaBuilder b = session.getCriteriaBuilder();
