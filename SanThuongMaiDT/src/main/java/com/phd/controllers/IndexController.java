@@ -8,7 +8,6 @@ import com.phd.pojo.User;
 import com.phd.repository.UserRepository;
 import com.phd.service.CategoryService;
 import com.phd.service.ProductService;
-import com.phd.service.StatsService;
 import com.phd.service.StoreService;
 import java.security.Principal;
 import java.util.Map;
@@ -41,8 +40,6 @@ public class IndexController {
     private StoreService storeService;
     @Autowired
     private Environment env;
-    @Autowired
-    private StatsService statsService;
 
     @ModelAttribute
     public void commonAttr(Model model, Principal principal) {
@@ -52,16 +49,12 @@ public class IndexController {
             model.addAttribute("user", user);
             model.addAttribute("categoriesByStore", this.storeService.getCateByStoreId());
             model.addAttribute("categoriesSelect", this.cateService.getCates());
-
+            
             int count = this.productService.countProduct();
             model.addAttribute("count", count);
 
             int countProduct = this.storeService.countProductByStore();
             model.addAttribute("countProduct", countProduct);
-
-            model.addAttribute("countProductByCate", this.statsService.statsNumberProductByCate());
-            model.addAttribute("countCategory", this.cateService.countCategory());
-
         }
 
     }
@@ -70,7 +63,6 @@ public class IndexController {
     public String index(Model model, @RequestParam Map<String, String> params) {
 
         model.addAttribute("products", this.productService.getProducts(params));
-        model.addAttribute("statsRevenueInEachStore", this.statsService.statsRevenueInEachStore());
 
         return "index";
     }

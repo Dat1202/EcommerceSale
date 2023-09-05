@@ -18,8 +18,6 @@ public interface StoreRepository {
 
     Store getStoreById(int id);
 
-    boolean updateStore(Store store);
-
     boolean addStore(Store store);
 
     List<Object[]> getProductByStoreId(Map<String, String> params);
@@ -29,15 +27,12 @@ public interface StoreRepository {
     List<Object[]> getApiInfoStore(int id);
 
     int countProductByStore();
-
+    
     List<Object[]> getApiCateByStoreId(int id);
 //    int countCateByStore();
-
     Store createStore(Store store);
-
+    
     List<Object[]> getProdFromStoreAsc(int id, Map<String, String> params);
-
+    
     List<Object[]> getProdFromStoreDesc(int id, Map<String, String> params);
-
-    Store getStoreByUser();
 }

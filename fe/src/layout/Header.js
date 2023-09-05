@@ -1,12 +1,14 @@
-import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faMagnifyingGlass, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { MyUserContext } from "../App";
-import { Form } from "react-bootstrap";
+import { MyCartContext, MyUserContext } from "../App";
+import { Badge, Form } from "react-bootstrap";
+import { faInstagram, faOpencart } from "@fortawesome/free-brands-svg-icons";
 
 function Header() {
   const [user, dispatch] = useContext(MyUserContext);
+  const [cartCounter, ] = useContext(MyCartContext);
   const [kw, setKw] = useState("")
   const nav = useNavigate();
 
@@ -26,8 +28,8 @@ function Header() {
         <div class="header grid__auto">
           <div class="header__navbar-flex-user grid__auto ">
             <ul class="header__navbar-items ">
-              <li class="header__navbar-item ">
-                <Link to="/" >Trang chủ </Link>
+              <li class="header__navbar-item">
+                <Link to="/">Trang chủ </Link>
               </li>
 
               {user === null ?
@@ -42,7 +44,7 @@ function Header() {
                 user.userRole === 'ROLE_STORE' ?
                   <>
                     <li class="header__navbar-item">
-                      <Link to="http://localhost:8090/SanThuongMaiDT/" >Cửa hàng của bạn</Link>
+                      <Link to="http://localhost:8080/SanThuongMaiDT/" >Cửa hàng của bạn</Link>
                     </li>
                     <li class="header__navbar-item">
                       <img src={user.avatar} width="30" height="30" class="rounded-circle" alt="logo" />
@@ -84,19 +86,9 @@ function Header() {
               </Form>
             </div>
 
-            <div class="header__cart">
-              <a href="cart.html">
-                <div class="header__cart-hover">
-                  <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '20px' }} />
-                  <div class="header__cart-list header__cart-list-no-cart">
-                    <div class="header__cart-text-center">
-                      <span>Chưa có sản phẩm</span>
-                    </div>
-                  </div>
-                  <span class="header__cart-number">0</span>
-                </div>
-              </a>
-            </div>
+            {/* <Link to="/cart" className="nav-link">&#128722; <Badge bg="danger">{cartCounter}</Badge></Link> */}
+            <Link to="/cart" className="nav-link"><FontAwesomeIcon icon={faShoppingCart} /><Badge bg="danger">{cartCounter}</Badge></Link>
+
           </div>
         </div>
       </div>

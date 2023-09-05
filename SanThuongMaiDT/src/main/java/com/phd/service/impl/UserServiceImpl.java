@@ -25,6 +25,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ *
+ * @author dat98
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -104,10 +108,4 @@ public class UserServiceImpl implements UserService {
         this.userRepo.addUser1(u);
         return u;
     }
-
-    @Override
-    public User getUserByMail(String mail) {
-        return this.userRepo.getUserByMail(mail);
-    }
-    
 }

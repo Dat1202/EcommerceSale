@@ -1,6 +1,6 @@
 :root {
-    --main-color: #8ed9ff;
-    --primary-color: #85c7e8;
+    --main-color: #ffa500;
+    --primary-color: #ffb733;
     --white-color: #ffffff;
     --border-color: #A9A9A9;
     --text-color: #000000;
@@ -15,7 +15,7 @@ a {
 }
 
 html {
-    font-size: 62.5%;
+    /* font-size: 62.5%; */
     line-height: 1.6rem;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;

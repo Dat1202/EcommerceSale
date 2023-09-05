@@ -49,7 +49,7 @@ public class ApiStoreController {
 //    public ResponseEntity<?> store(@RequestParam Map<String, String> params, @PathVariable(value = "id") int id) {
 //        return new ResponseEntity<>(this.storeService.getProdFromStore(id, params), HttpStatus.OK);
 //    }
-    
+
     @GetMapping("/store-product-desc/{id}")
     public ResponseEntity<?> storeProductDesc(@RequestParam Map<String, String> params, @PathVariable(value = "id") int id) {
         return new ResponseEntity<>(this.storeService.getProdFromStoreDesc(id, params), HttpStatus.OK);
@@ -66,8 +66,8 @@ public class ApiStoreController {
     }
 
     @GetMapping("/store/{id}/reviews/")
-    public ResponseEntity<List<Review>> listComments(@RequestParam Map<String, String> params, @PathVariable(value = "id") int id) {
-        return new ResponseEntity<>(this.reviewService.getReviews(id, params), HttpStatus.OK);
+    public ResponseEntity<List<Review>> listComments(@PathVariable(value = "id") int id) {
+        return new ResponseEntity<>(this.reviewService.getReviews(id), HttpStatus.OK);
     }
 
     @PostMapping(path = "/reviews/", produces = MediaType.APPLICATION_JSON_VALUE)

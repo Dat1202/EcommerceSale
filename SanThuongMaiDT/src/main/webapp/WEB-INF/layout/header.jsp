@@ -37,7 +37,7 @@ Author     : dat98
                         </div>
                     </c:otherwise>
                 </c:choose>
-
+                
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <c:choose>
                         <c:when test="${user.userRole == 'ROLE_STORE'}">
@@ -54,13 +54,6 @@ Author     : dat98
                                 </a>
                             </li>
 
-                            <li class="nav-item sidebar-items" >
-                                <a href="<c:url value="/store/info-store"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
-                                   display: block;
-                                   padding: 15px;">
-                                    <i class="fa-solid fa-info text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Thông tin cửa hàng</span> </a>
-                            </li>
-                            
                             <li class="nav-item sidebar-items" >
                                 <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle admin-menu">
                                     <i class="fa-solid fa-bars-progress text-white"></i>
@@ -80,7 +73,6 @@ Author     : dat98
                                     </c:forEach>
                                 </ul>
                             </li>
-                            
                             <c:url value="/store/products" var="pageAction">
                                 <c:param name="page" value="1" />
                             </c:url>
@@ -89,29 +81,12 @@ Author     : dat98
                                     <i class="fa-solid fa-database text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Sản phẩm</span> 
                                 </a>
                             </li>
-                            
-                         
-                            
                             <li class="nav-item sidebar-items" >
-                                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle admin-menu">
-                                    <i class="fa-solid fa-chart-simple text-white"></i>
-                                    <span class="ms-1 d-none d-sm-inline text-white">Thống kê</span>
-                                    <i style="margin-left: 8px;
-                                       font-size: 16px;" class="text-white fa-solid fa-chevron-down"></i>
-                                </a>
-                                <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                    
-                                        <li class="w-200">
-                                            <a href="<c:url value="/store/stats-product"/>" class="nav-link px-0"> <span class="fs-2 d-none d-sm-inline text-white">Thống kê doanh thu theo sản phẩm</span></a>
-                                        </li>
-                                    <li class="w-200">
-                                            <a href="<c:url value="/store/stats-categories"/>" class="nav-link px-0"> <span class="fs-2 d-none d-sm-inline text-white">Thống kê doanh thu theo thể loại</span></a>
-                                        </li>
-                                </ul>
+                                <a href="#" class="nav-link px-0 align-middle admin-menu" >
+                                    <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Thống kê</span> </a>
                             </li>
-                            
+
                         </c:when>
-                            
                         <c:when test="${user.userRole == 'ROLE_STAFF'}">
                             <h1 style="width: 275px;
                                 padding: 15px;
@@ -128,7 +103,6 @@ Author     : dat98
                                     <i class="fa-solid fa-shop-lock text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Xác nhận cửa hàng</span> </a>
                             </li>
                         </c:when>
-                            
                         <c:when test="${user.userRole == 'ROLE_USER'}">
                             <li class="nav-item sidebar-items" >
                                 <a href="<c:url value="/register-store"/>" class="admin-menu nav-link align-middle px-0" >
@@ -171,4 +145,3 @@ Author     : dat98
 
             </div>
         </div>
-        

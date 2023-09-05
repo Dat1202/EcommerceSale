@@ -9,24 +9,32 @@ import com.phd.repository.ReviewRepository;
 import com.phd.service.ReviewService;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+/**
+ *
+ * @author dat98
+ */@Service
+
 public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewRepository reviewRepo;
 
     @Override
-    public List<Review> getReviews(int storeId, Map<String, String> params) {
-        return this.reviewRepo.getReviews(storeId, params);
+    public List<Review> getReviews(int storeId) {
+        return this.reviewRepo.getReviews(storeId);
     }
 
     @Override
     public Review addReview(Review r) {
         r.setCreatedAt(new Date());
+
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        User u = this.userRepo.getUserByUsername(authentication.getName());
+//        r.setUserId(u);
+
         return this.reviewRepo.addReview(r);
     }
 
