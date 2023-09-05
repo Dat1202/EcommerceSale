@@ -4,7 +4,7 @@
 
 
 
-<div class="row mt-4" style="display: flex; justify-content: center;">
+<div class="row mt-4" style="display: flex; justify-content: space-evenly;">
     <div class="col-md-5 col-sm-12">
         <table class="table table-hover">
             <tr class="table-info">
@@ -22,27 +22,29 @@
             </c:forEach>
         </table>
     </div>
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-5 col-sm-12 bg-white">
         <form>
-            <table class="table table-hover">
+            <table class="table">
+                <h4 class="m-2"><i class="fa-solid fa-filter"></i>Bộ lọc</h4>
                 <tr class="">
                     <th><label>Tháng </label></th>
-                    <th><input type="number" name="month"/></th>
+                    <th><input type="number" name="month" placeholder="Nhập tháng..."/></th>
                 </tr>
 
                 <tr>
-                    <th><label>Quý</label></th>
-                    <th><input type="number" name="quarter"/></th>
+                    <th><label>Quý </label></th>
+                    <th><input type="number" name="quarter" placeholder="Nhập quý..."/></th>
                 </tr>
                 <tr>
                     <th><label>Năm </label></td>
-                    <th><input type="number" name="year"/></th>
+                    <th><input type="number" name="year" placeholder="Nhập năm..."/></th>
                 </tr>
                 <tr>
                     <th><label>Tên sản phẩm </label></th>
-                    <th><input type="text" name="prodName"/></th>
+                    <th><input type="text" name="prodName" placeholder="Nhập tên sản phẩm..."/></th>
                 </tr>
             </table>
+            
             <div class="">
                 <button type="submit" class="btn btn-info">Tìm kiếm</button>    
             </div>
