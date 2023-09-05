@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 /**
  *
  * @author dat98
- */
+ */ 
 @Service
 public class ReceiptServiceImpl implements ReceiptService{
 

@@ -61,15 +61,19 @@ public class Product implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "description")
     private String description;
+    
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne
     private Category categoryId;
+    
     @JoinColumn(name = "store_id", referencedColumnName = "id")
     @ManyToOne
     private Store storeId;
+    
     @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Comments> commentsSet;
+    
     @OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<OrderDetails> orderDetailsSet;

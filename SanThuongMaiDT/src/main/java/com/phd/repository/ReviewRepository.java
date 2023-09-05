@@ -6,7 +6,6 @@ package com.phd.repository;
 
 import com.phd.pojo.Review;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -14,7 +13,7 @@ import java.util.Map;
  */
 public interface ReviewRepository {
 
-    List< Review> getReviews(int storeId, Map<String, String> params);
+    List< Review> getReviews(int storeId);
 
     Review addReview(Review c);
     

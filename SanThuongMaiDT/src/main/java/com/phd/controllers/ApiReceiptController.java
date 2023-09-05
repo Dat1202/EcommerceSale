@@ -25,7 +25,7 @@ public class ApiReceiptController {
     @Autowired
     private ReceiptService receiptService;
     
-    @PostMapping("/pay")
+    @PostMapping("/pay/")
     @ResponseStatus(HttpStatus.OK)
     public void addReceipt(@RequestBody Map<String, Cart> carts){
         this.receiptService.addReceipt(carts);

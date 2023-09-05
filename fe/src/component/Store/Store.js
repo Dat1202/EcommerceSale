@@ -39,19 +39,22 @@ export default function Store() {
                         </div>
                     </section >
                 </Tab>
-                <Tab eventKey="Review" title="Hồ sơ">
+                <Tab eventKey="Review" title="Đánh giá">
                     <div className="grid__auto">
-                        <div className=" mb-4" style={{ display: 'flex' }}>
-                            <div className="store-profile">
-                                <Profile />
-                            </div>
-                            <div className="store-review" >
-                                <Review />
-                            </div>
+                        <div className="border border-dark mb-4" style={{ padding: '0px 100px' }}>
+                            <Review />
+                        </div>
+                    </div>
+                </Tab>
+                <Tab eventKey="Profile" title="Hồ sơ">
+                    <div className="grid__auto">
+                        <div className="border border-dark mb-4" style={{ padding: '0px 100px' }}>
+                            <Profile />
                         </div>
                     </div>
                 </Tab>
             </Tabs>
+
         </div >
     )
 }

@@ -26,5 +26,4 @@ public interface UserService extends UserDetailsService {
 
     User addUser1(Map<String, String> params, MultipartFile avatar);
 
-    User getUserByMail(String mail);
 }

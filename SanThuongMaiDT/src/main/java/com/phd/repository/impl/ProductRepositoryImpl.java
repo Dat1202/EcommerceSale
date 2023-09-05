@@ -81,6 +81,12 @@ public class ProductRepositoryImpl implements ProductRepository {
         Collections.shuffle(products);
         return products;
     }
+    
+    @Override
+    public Product getProductById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();  
+        return s.get(Product.class, id);
+    }
 
     @Override
     public List<Product> getProductAsc(Map<String, String> params) {
@@ -155,11 +161,8 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
     }
 
-    @Override
-    public Product getProductById(int id) {
-        Session s = this.factory.getObject().getCurrentSession();
-        return s.get(Product.class, id);
-    }
+
+    
 
     @Override
     public boolean deleteProduct(int id) {
