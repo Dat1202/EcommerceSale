@@ -109,5 +109,15 @@ public class UserServiceImpl implements UserService {
     public User getUserByMail(String mail) {
         return this.userRepo.getUserByMail(mail);
     }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return this.userRepo.getUserByUsername(username);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return this.userRepo.existsByUsername(username);
+    }
     
 }

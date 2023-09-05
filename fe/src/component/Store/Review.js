@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Apis, { endpoints } from '../../configs/Apis';
-import { Link, Outlet, useParams, useSearchParams } from 'react-router-dom';
+import Apis, { authApis, endpoints } from '../../configs/Apis';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import MySpinner from '../../layout/MySpinner';
 import Moment from 'react-moment';
 import { Form, Modal } from 'react-bootstrap';
@@ -39,10 +39,9 @@ export const Review = () => {
     const submitReview = (e) => {
         e.preventDefault();
         const process = async () => {
-            const { data } = await Apis.post(endpoints['add-review'], {
+            const { data } = await authApis().post(endpoints['add-review'], {
                 "note": note,
                 "star": rating,
-                "userId": user.id,
                 "storeId": storeId
             })
             setNote("");
@@ -70,10 +69,10 @@ export const Review = () => {
             <div>
                 {user === null ?
                     <h2 className="m-4">
-                        Vui lòng <Link className="text-warning" to={url}>đăng nhập</Link> để bình luận!
+                        Vui lòng <Link className="text-danger" to={url}>đăng nhập</Link> để bình luận!
                     </h2> :
                     <>
-                        <h2 className="mt-4">Bình luận</h2>
+                        <h2 className="mt-4">Bình luận </h2>
                         <Form onSubmit={submitReview}>
                             <Form.Control
                                 placeholder="Nhập nội dung đánh giá cửa hàng ở đây..."
@@ -108,41 +107,49 @@ export const Review = () => {
 
             <FilterReview />
 
-            <div>
-                {reviews.slice(0, visibleProducts).map(r => (
-                    <div key={r.id} className="modal show"
-                        style={{ display: 'block', position: 'initial' }}>
-                        <Modal.Dialog>
-                            <Modal.Header>
-                                <Modal.Title>
-                                    <img src={r.userId.avatar}
-                                        width="30" height="30" className="rounded-circle" alt="logo" />
-                                    <div class="display-6 ms-4">{r.userId.username}</div>
-                                </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <div class="display-5">{r.note}</div>
-                                {Array.from({ length: 5 }).map((_, index) => (
-                                    <span class="display-3"
-                                        key={index}
-                                        style={{ color: index < r.star ? 'gold' : 'black' }}
-                                    >
-                                        ★
-                                    </span>
-                                ))}
-                                <div><Moment locale="vi" fromNow>{r.createdAt}</Moment></div>
-                            </Modal.Body>
-                        </Modal.Dialog>
-                    </div>
-                ))}
-            </div>
+            {reviews.length === 0 ?
+                (<h1 class="text-center text-info m-4">Chưa có đánh giá</h1>)
+                : 
+                (
+                    <>
+                        <div>
+                            {reviews.slice(0, visibleProducts).map(r => (
+                                <div key={r.id} className="modal show"
+                                    style={{ display: 'block', position: 'initial' }}>
+                                    <Modal.Dialog>
+                                        <Modal.Header>
+                                            <Modal.Title>
+                                                <img src={r.userId.avatar}
+                                                    width="30" height="30" className="rounded-circle" alt="logo" />
+                                                <div class="display-6 ms-4">{r.userId.username} </div>
+                                            </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <div class="display-5">{r.note}</div>
+                                            {Array.from({ length: 5 }).map((_, index) => (
+                                                <span class="display-3"
+                                                    key={index}
+                                                    style={{ color: index < r.star ? 'gold' : 'black' }}
+                                                >
+                                                    ★
+                                                </span>
+                                            ))}
+                                            <div><Moment locale="vi" fromNow>{r.createdAt}</Moment></div>
+                                        </Modal.Body>
+                                    </Modal.Dialog>
+                                </div>
+                            ))}
+                        </div>
 
-            <div className="flex-center">
-                {visibleProducts < reviews.length && (
-                    <button className="btn-lazy-loading" onClick={handleLoadMore}>Xem thêm</button>
+                        <div className="flex-center">
+                            {visibleProducts < reviews.length && (
+                                <button className="btn-lazy-loading" onClick={handleLoadMore}>Xem thêm</button>
+                            )}
+                        </div>
+
+                    </>
                 )}
-            </div>
-            <Outlet />
         </>
+
     );
-};
+}

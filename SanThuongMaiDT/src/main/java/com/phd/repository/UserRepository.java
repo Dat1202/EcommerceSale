@@ -26,5 +26,8 @@ public interface UserRepository {
     boolean authUser(String username, String password);
 
     User addUser1(User user);
+
     User getUserByMail(String mail);
+
+    boolean existsByUsername(String username);
 }

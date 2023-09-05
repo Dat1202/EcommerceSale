@@ -92,7 +92,7 @@ export default function ProductStore() {
                     return (
                         <>
                             <Col xs={12} md={3} className="mt-2 mb-3">
-                                <Card style={{ width: '22rem' }} className="card-hover">
+                                <Card style={{ width: '22rem', height: "100%", }} className="card-hover">
                                     <Link to={h} >
                                         <Card.Img variant="top" src={p[1]} fluid rounded />
                                         <Card.Body>

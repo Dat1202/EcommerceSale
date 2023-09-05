@@ -54,6 +54,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         }
 
         Query query = session.createQuery(q);
+        
         return query.getResultList();
 
     }

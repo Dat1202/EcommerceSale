@@ -62,6 +62,8 @@ public class IndexController {
             model.addAttribute("countProductByCate", this.statsService.statsNumberProductByCate());
             model.addAttribute("countCategory", this.cateService.countCategory());
             model.addAttribute("statsByMonthInStore", this.statsService.statsByMonthInStore());
+            model.addAttribute("statsRevenueByStore", this.statsService.statsRevenueByStore());
+            model.addAttribute("statsRevenueInEachStore", this.statsService.statsRevenueInEachStore());
 
         }
 
@@ -71,7 +73,6 @@ public class IndexController {
     public String index(Model model, @RequestParam Map<String, String> params) {
 
         model.addAttribute("products", this.productService.getProducts(params));
-        model.addAttribute("statsRevenueInEachStore", this.statsService.statsRevenueInEachStore());
 
         return "index";
     }

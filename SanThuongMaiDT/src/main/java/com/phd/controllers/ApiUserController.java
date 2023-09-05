@@ -77,4 +77,11 @@ public class ApiUserController {
         User u = this.userService.getUserByUn(user.getName());
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/check-username-exists/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    public ResponseEntity<Boolean> checkUsernameExists(@RequestParam("username") String username) {
+        boolean exists = this.userService.existsByUsername(username);
+        return new ResponseEntity<>(exists, HttpStatus.OK);
+    }
 }

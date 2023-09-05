@@ -11,8 +11,14 @@
                 class="m-5 dashboard">Số lượng sản phẩm của cửa hàng: ${countProduct}  
                 <a style = "font-size:12px;" href="<c:url value="/store/products?page=1"/>"><i class="fa-solid fa-chevron-right"></i></a>
             </div>
+            <div             
+                <c:forEach items="${statsRevenueByStore}" var="c">
+                    class="m-5 dashboard" style="border-left: 5px solid red;">Doanh thu của cửa hàng: ${c[0]}  
+                </c:forEach>
 
-            <div class="d-flex  align-self-stretch" style="justify-content: space-evenly;">
+            </div>
+            <h1>${c[0]}</h1>
+            <div class="d-flex align-self-stretch" style="justify-content: space-evenly;">
                 <div>
                     <div style="height: 490px; width: 450px; background-color: white;">
                         <h2 class="text-center py-2">Số lượng sản phẩm theo thể loại</h2>

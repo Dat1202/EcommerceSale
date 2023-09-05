@@ -1,6 +1,7 @@
 com\phd\repository\impl\ReviewRepositoryImpl.class
 com\phd\repository\impl\StaffRepositoryImpl.class
 com\phd\service\impl\ReviewServiceImpl.class
+com\phd\repository\impl\CommentRepositoryImpl.class
 com\phd\service\ReceiptService.class
 com\phd\pojo\Category_.class
 com\phd\service\StaffService.class
@@ -19,6 +20,7 @@ com\phd\repository\StoreRepository.class
 com\phd\service\impl\ReceiptServiceImpl.class
 com\phd\pojo\Orders.class
 com\phd\service\impl\ProductServiceImpl.class
+com\phd\service\CommentService.class
 com\phd\configs\TilesConfig.class
 com\phd\configs\DispatcherServletInit.class
 com\phd\formatter\CategoryFormatter.class
@@ -47,6 +49,7 @@ com\phd\repository\impl\ProductRepositoryImpl.class
 com\phd\pojo\Store.class
 com\phd\service\CategoryService.class
 com\phd\repository\impl\AdminRepositoryImpl.class
+com\phd\service\impl\CommentServiceImpl.class
 com\phd\repository\impl\ReceiptRepositoryImpl.class
 com\phd\components\JwtService.class
 com\phd\service\StoreService.class
@@ -59,6 +62,7 @@ com\phd\pojo\StoreCategory.class
 com\phd\pojo\Cart.class
 com\phd\pojo\Store_.class
 com\phd\controllers\StaffController.class
+com\phd\repository\CommentRepository.class
 com\phd\repository\impl\StoreRepositoryImpl.class
 com\phd\controllers\StoreController.class
 com\phd\pojo\OrderDetails.class

@@ -2,10 +2,12 @@ D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\formatter\CategoryFormatte
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\AdminRepository.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\ReviewRepository.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\StoreService.java
+D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\CommentService.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\Cart.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\Orders.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\DispatcherServletInit.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\TilesConfig.java
+D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\impl\CommentServiceImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\ReceiptRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\impl\StatsServiceImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\ReviewService.java
@@ -29,9 +31,11 @@ D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\HibernateConfig.ja
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\UserService.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\JwtSecurityConfig.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\User.java
+D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\CommentRepository.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\StatsRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\controllers\ApiProductController.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\SpringSecurityConfig.java
+D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\CommentRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\Store.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\ReviewRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\ProductService.java

@@ -1,14 +1,15 @@
-import { faCartShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { MyUserContext } from "../App";
-import { Form } from "react-bootstrap";
+import { MyCartContext, MyUserContext } from "../App";
+import { Badge, Form } from "react-bootstrap";
 
 function Header() {
   const [user, dispatch] = useContext(MyUserContext);
   const [kw, setKw] = useState("")
   const nav = useNavigate();
+  const [cartCounter, ] = useContext(MyCartContext);
 
   const logout = () => {
     dispatch({
@@ -84,19 +85,7 @@ function Header() {
               </Form>
             </div>
 
-            <div class="header__cart">
-              <a href="cart.html">
-                <div class="header__cart-hover">
-                  <FontAwesomeIcon icon={faCartShopping} style={{ fontSize: '20px' }} />
-                  <div class="header__cart-list header__cart-list-no-cart">
-                    <div class="header__cart-text-center">
-                      <span>Chưa có sản phẩm</span>
-                    </div>
-                  </div>
-                  <span class="header__cart-number">0</span>
-                </div>
-              </a>
-            </div>
+            <Link to="/cart" className="nav-link"><FontAwesomeIcon icon={faShoppingCart} /><Badge bg="danger">{cartCounter}</Badge></Link>
           </div>
         </div>
       </div>

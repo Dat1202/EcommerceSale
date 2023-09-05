@@ -1,12 +1,12 @@
 import React from 'react'
-import ProductStore from './ProductStore';
-import CategoryStore from './CategoryStore';
-import HeaderStore from './HeaderStore';
-import { SearchRangePrice } from './SearchRangePrice';
-import { SortProduct } from './SortProduct';
-import { Review } from './Review';
+import ProductStore from './Store/ProductStore';
+import CategoryStore from './Store/CategoryStore';
+import HeaderStore from './Store/HeaderStore';
+import { SearchRangePrice } from './Store/SearchRangePrice';
+import { SortProduct } from './Store/SortProduct';
+import { Review } from './Store/Review';
 import { Tab, Tabs } from 'react-bootstrap';
-import { Profile } from './Profile';
+import { Profile } from './Store/Profile';
 
 export default function Store() {
 

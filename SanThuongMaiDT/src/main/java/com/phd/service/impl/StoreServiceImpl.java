@@ -76,6 +76,9 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store createStore(Store store) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User u = this.userRepository.getUserByUsername(authentication.getName());
+        store.setUserId(u);
         store.setStatus("pending");
         return this.storeRepo.createStore(store);
     }

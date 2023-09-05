@@ -71,7 +71,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> getUser() {
         Session session = this.factory.getObject().getCurrentSession();
-        org.hibernate.query.Query q = session.createQuery("From User");
+        Query q = session.createQuery("From User");
 
         return q.getResultList();
     }
@@ -104,4 +104,13 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
+    @Override
+    public boolean existsByUsername(String username) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("SELECT COUNT(*) From User Where username=:un");
+        q.setParameter("un", username);
+
+        int count = Integer.parseInt(q.getSingleResult().toString());
+        return count > 0;
+    }
 }

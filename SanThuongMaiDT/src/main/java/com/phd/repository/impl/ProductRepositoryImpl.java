@@ -180,6 +180,5 @@ public class ProductRepositoryImpl implements ProductRepository {
         Query q = s.createQuery("select Count(*) from Product where storeId.id=:id");
         q.setParameter("id", storeId);
         return Integer.parseInt(q.getSingleResult().toString());
-
     }
 }

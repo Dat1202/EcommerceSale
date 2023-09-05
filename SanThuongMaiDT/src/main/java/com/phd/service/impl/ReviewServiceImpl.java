@@ -5,12 +5,16 @@
 package com.phd.service.impl;
 
 import com.phd.pojo.Review;
+import com.phd.pojo.User;
 import com.phd.repository.ReviewRepository;
+import com.phd.repository.UserRepository;
 import com.phd.service.ReviewService;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +22,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewRepository reviewRepo;
+    @Autowired
+    private UserRepository userRepo;
 
     @Override
     public List<Review> getReviews(int storeId, Map<String, String> params) {
@@ -27,6 +33,9 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Review addReview(Review r) {
         r.setCreatedAt(new Date());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        r.setUserId(this.userRepo.getUserByUsername(authentication.getName()));
+        
         return this.reviewRepo.addReview(r);
     }
 
