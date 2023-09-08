@@ -2,21 +2,25 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './layout/Header';
 import Footer from './layout/Footer';
-import './base.css';
 import './style.css';
+import './base.css';
 import Login from './component/Login';
 import Home from './component/Home';
 import { createContext, useReducer } from 'react';
+import MyUserReducer from "./reducers/MyUserReducer";
 import cookie from "react-cookies";
 import Register from './component/Register';
-import Store from './component/Store';
+import Store from './component/Store/Store';
 import { CreateStore } from './component/Store/CreateStore';
 import 'moment/locale/vi';
-import ProductDetails from './component/ProductDetails';
-import Cart from './component/Cart';
-import { Container } from 'react-bootstrap';
 import MyCartCounterReducer from './reducers/MyCartCounterReducer';
-import MyUserReducer from "./reducers/MyUserReducer";
+import Cart from './component/Cart';
+import ProductDetails from './component/ProductDetails';
+import 'moment/locale/vi';
+import { Container } from 'react-bootstrap';
+import VnPayResult from './component/VNPay connect/VnPayResult';
+import VnPayPayment from './component/VNPay connect/VnpayPayment';
+
 
 export const MyUserContext = createContext();
 export const MyCartContext = createContext();
@@ -39,17 +43,19 @@ function App() {
       <MyCartContext.Provider value={[cartCounter, cartDispatcher]}>
         <BrowserRouter>
           <Header />
-          <Container>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/store/:storeId" element={<Store />} />
-              <Route path="/create-store" element={<CreateStore />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/products/:productId" element={<ProductDetails />} />
-            </Routes>
-          </Container>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/store/:storeId" element={<Store />} />
+            <Route path="/create-store" element={<CreateStore />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/products/:productId" element={<ProductDetails />} />
+            <Route path="/payment" component={VnPayPayment} />
+            {/* <Route path="/payment-result" component={VnPayResult} /> */}
+          </Routes>
+
           <Footer />
         </BrowserRouter>
       </MyCartContext.Provider>
