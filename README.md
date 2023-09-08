@@ -1,34 +1,70 @@
-# EcommerceSale
-- Hệ thống yêu cầu phát triển các chức năng phân hệ quản trị, thống kê, báo cáo bằng
-SpringMVC Framework và sử dụng Spring Security để chứng thực phân quyền.
-- Các chức năng phía client, các nhóm phát triển Restful API bằng SpringMVC và
-phát triển phía front end sử dụng ReactJS.
+# Getting Started with Create React App
 
-ĐỀ TÀI: SÀN GIAO DỊCH THƯƠNG MẠI ĐIỆN TỬ
-- Đăng nhập (các vai trò quản trị, nhân viên sàn giao dịch, người bán hoặc người dùng
-thường.
-- Đăng ký người dùng (phải có avatar) có thể đăng kỳ vai trò người dùng cá nhân trên
-hệ thống hoặc vai trò đại duyện tiểu thương hoặc doanh nghiệp (gọi chung là người
-bán) để giao dịch trên sàn. Khi đăng ký vai trò tiểu thương hoặc doanh nghiệp cần sự
-xác nhận của nhân viên hệ thống.
-- Người bán khi đăng ký thành công có thể tạo cửa hàng và đăng các sản phẩm buôn bán
-của mình, mỗi sản phẩm được bán.
-- Người dùng được phép thực hiện các chức năng tra cứu sản phẩm linh hoạt theo tên,
-mức giá, cửa hàng bán và sắp xếp các sản phẩm hiển thị theo tên hoặc giá. Các sản
-phẩm hiển thị phải được phân trang tối đa 20 sản phẩm/trang.
-- Người dùng được phép đánh giá (review) người bán bằng cách đánh số sao (1 đến 5)
-hoặc viết bình luận trực tiếp. Ngoài ra, người dùng cũng được đánh giá, bình luận, phản
-hồi bình luận cho các sản phẩm trên hệ thống.
-- Người dùng được phép thực hiện mua hàng online. Người dùng có thể chọn hình thức
-thanh toán tiến mặt khi nhận hàng hoặc thanh toán online thông qua papal hoặc stripe
-hoặc zalo pay hoặc momo, tất cả khoản tiền người dùng thanh toán đều phải được ghi
-nhận vào hệ thống.
-- Hệ thống có chức năng so sánh các sản phẩm cùng loại của các cửa hàng khác nhau,
-thông tin so sanh sao cho hiệu quả giúp được người dùng lựa chọn mua hợp lý.
-- Người bán được phép xem thống kê doanh thu các sản phẩm, danh mục sản phẩm theo
-tháng, quý và năm.
-- Người quản trị sàn giao dịch có thể xem thống kê tần suất bán hàng, tổng sản phẩm
-kinh doanh của các cửa hàng theo tháng, quý, năm. Sinh viên có thể phát triển thống
-kê này linh hoạt hơn để các quản trị cúa thể quản lý tốt hơn thông tin sàn giao dịch.
-- Nghiên cứu thêm dùng firebase tích hợp chat thời gian thực.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
+
+In the project directory, you can run:
+
+### `yarn start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `yarn test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
