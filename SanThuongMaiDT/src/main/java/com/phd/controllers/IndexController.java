@@ -45,7 +45,7 @@ public class IndexController {
     private StatsService statsService;
 
     @ModelAttribute
-    public void commonAttr(Model model, Principal principal) {
+    public void commonAttr(Model model, Principal principal, @RequestParam Map<String, String> params) {
         if (principal != null) {
             String username = principal.getName();
             User user = userRepository.getUserByUsername(username);
@@ -55,16 +55,14 @@ public class IndexController {
 
             int count = this.productService.countProduct();
             model.addAttribute("count", count);
-
             int countProduct = this.storeService.countProductByStore();
             model.addAttribute("countProduct", countProduct);
-
             model.addAttribute("countProductByCate", this.statsService.statsNumberProductByCate());
             model.addAttribute("countCategory", this.cateService.countCategory());
             model.addAttribute("statsByMonthInStore", this.statsService.statsByMonthInStore());
             model.addAttribute("statsRevenueByStore", this.statsService.statsRevenueByStore());
             model.addAttribute("statsRevenueInEachStore", this.statsService.statsRevenueInEachStore());
-
+            model.addAttribute("statsProductByCate", this.statsService.statsProductByCate());
         }
 
     }

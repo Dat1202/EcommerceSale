@@ -8,6 +8,7 @@ import com.phd.pojo.Category;
 import com.phd.pojo.Product;
 import com.phd.service.AdminService;
 import com.phd.service.CategoryService;
+import com.phd.service.StatsService;
 import com.phd.service.UserService;
 import java.util.Map;
 import javax.validation.Valid;
@@ -36,6 +37,8 @@ public class AdminController {
     private CategoryService cateService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private StatsService statsService;
 
     @GetMapping("/categories")
     public String categoryView(Model model, @RequestParam Map<String, String> params) {
@@ -72,4 +75,12 @@ public class AdminController {
         model.addAttribute("users", this.userService.getUser());
         return "users";
     }
+
+    @GetMapping("/stats-admin")
+    public String statsAdmin(Model model, @RequestParam Map<String, String> params) {
+
+        model.addAttribute("statsRevenueByStoreAdmin", this.statsService.statsRevenueByStoreAdmin(params));
+        return "stats-admin";
+    }
+
 }

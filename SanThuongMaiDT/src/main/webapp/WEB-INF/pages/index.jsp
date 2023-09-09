@@ -18,6 +18,7 @@
 
             </div>
             <h1>${c[0]}</h1>
+
             <div class="d-flex align-self-stretch" style="justify-content: space-evenly;">
                 <div>
                     <div style="height: 490px; width: 450px; background-color: white;">
@@ -39,19 +40,32 @@
     </c:when>
 
     <c:when test="${user.userRole == 'ROLE_ADMIN'}">
+        <h1 class="text-center">Quản lí cửa hàng</h1>
+        <div class="">
+            <div 
+                class="m-5 dashboard">Tổng số sản phẩm của sàn: ${count}
+            </div>    
 
-        <div 
-            class="m-5 dashboard">Tổng số sản phẩm của sàn: ${count}
-        </div>    
+            <div 
+                class="m-5 dashboard" style="border-left: 5px solid red;">Tổng số thể loại của sàn: ${countCategory}
+            </div> 
 
-        <div 
-            class="m-5 dashboard" style="border-left: 5px solid red;">Tổng số thể loại của sàn: ${countCategory}
-        </div>  
-
-
-        <div style="width: 500px; background-color: white; margin: 0 auto;">
-            <canvas id="lineChart"></canvas>
+            <div class="d-flex align-self-stretch" style="justify-content: space-evenly;">
+                <div>
+                    <div style="height: 490px; width: 450px; background-color: white;">
+                        <h2 class="text-center py-2">Số lượng sản phẩm theo thể loại</h2>
+                        <canvas class="p-4" id="chartPie"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <div style="height: 490px; width: 650px; background-color: white;">
+                        <h2 class="text-center py-2">Doanh thu của các cửa hàng</h2>
+                        <canvas id="lineChart"></canvas>
+                    </div>   
+                </div>    
+            </div>
         </div>
+
     </c:when> 
 </c:choose>
 
@@ -59,11 +73,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    let r, g, b;
+
     let labels = [];
     let data = [];
     let colors = [];
     let borderColors = [];
-    let r, g, b;
 
     let labels1 = [];
     let data1 = [];
@@ -74,6 +89,10 @@
     let data2 = [];
     let colors2 = [];
     let borderColors2 = [];
+
+    let labels4 = [];
+    let data4 = [];
+    let colors4 = [];
 
     <c:forEach items="${countProductByCate}" var="c">
     labels.push('${c[1]}');
@@ -105,17 +124,43 @@
     borderColors2.push('rgba(' + r + ',' + g + ',' + b + ',1)');
     </c:forEach>
 
+    <c:forEach items="${statsProductByCate}" var="c">
+    labels4.push('${c[0]}');
+    data4.push(${c[1]});
+    r = Math.floor(Math.random() * 256);
+    g = Math.floor(Math.random() * 256);
+    b = Math.floor(Math.random() * 256);
+    colors4.push('rgba(' + r + ',' + g + ',' + b + ',0.5)');
+
+    </c:forEach>
 
     window.onload = function () {
-        const ctx = document.getElementById('chartProduct');
-        const ctx1 = document.getElementById('lineChart');
-        const ctx2 = document.getElementById('lineChartStore');
+        let ctx = document.getElementById('chartProduct');
+        let ctx1 = document.getElementById('lineChart');
+        let ctx2 = document.getElementById('lineChartStore');
+        let ctx4 = document.getElementById('chartPie');
 
+        chartStatsProductByCate(ctx4, labels4, data4, 'pie', colors4);
         loadChart(ctx, labels, data, 'doughnut', colors, borderColors);
         loadChartStore(ctx1, labels1, data1, 'line', colors1, borderColors1);
-        lineChartStore(ctx2, labels2, data2, 'line', colors2, borderColors2);
+        lineChartStore1(ctx2, labels2, data2, 'line', colors2, borderColors2);
 
     };
+
+    function chartStatsProductByCate(ctx4, labels4, data4, type, colors4) {
+        const chartProduct = new Chart(ctx4, {
+            type: type,
+            data: {
+                labels: labels4,
+                datasets: [{
+                        label: 'Số lượng sản phẩm theo thể loại',
+                        data: data4,
+                        backgroundColor: colors4,
+                        borderWidth: 1
+                    }]
+            }
+        });
+    }
 
     function loadChart(ctx, labels, data, type, colors, borderColors) {
         const chartProduct = new Chart(ctx, {
@@ -130,9 +175,9 @@
                         borderWidth: 1
                     }]
             }
-
         });
     }
+
 
     function loadChartStore(ctx1, labels1, data1, type, colors1, borderColors1) {
         const chartProduct = new Chart(ctx1, {
@@ -159,7 +204,7 @@
         });
     }
 
-    function lineChartStore(ctx2, labels2, data2, type, colors2, borderColors2) {
+    function lineChartStore1(ctx2, labels2, data2, type, colors2, borderColors2) {
         const chartProduct = new Chart(ctx2, {
             type: type,
             data: {

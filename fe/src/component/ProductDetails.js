@@ -13,7 +13,8 @@ const ProductDetails = () => {
     const [comments, setComments] = useState(null);
     const [content, setContent] = useState();
     const [user,] = useContext(MyUserContext);
-
+    let compare = cookie.load("compare") || {};
+    const [noti, setNoti] = useState();
 
     useEffect(() => {
         const loadProduct = async () => {
@@ -42,12 +43,6 @@ const ProductDetails = () => {
 
         process();
     }
-
-    if (product === null || comments === null)
-        return <MySpinner />;
-
-    let url = `/login?next=/products/${productId}`;
-    let compare = cookie.load("compare") || {};
 
     const compareProduct = (p) => {
 
@@ -79,13 +74,21 @@ const ProductDetails = () => {
                 };
             }
             else {
-                alert("You can only add up to three products to the comparison.");
+                setNoti("Bạn chỉ có thể so sánh tối đa 3 sản phẩm cùng loại.");
+                setTimeout(() => {
+                    setNoti(null);
+                }, 2000);
                 return;
             }
         }
         cookie.save('compare', compare);
         console.log(compare);
     };
+
+    let url = `/login?next=/products/${productId}`;
+
+    if (product === null || comments === null)
+        return <MySpinner />;
 
     return <>
         <h1 className="text-center text-info mt-2">CHI TIẾT SẢN PHẨM ({productId})</h1>
@@ -99,7 +102,7 @@ const ProductDetails = () => {
                 <h3>{product.price} VNĐ</h3>
 
                 <Button onClick={() => compareProduct(product)}>So sánh</Button>
-                {/* {Object.keys(compare).length < 3 ? <h1>hi</h1> : <h1>thêm tối đa 3 sản phẩm</h1>} */}
+                {Object.keys(compare).length < 3 ? <h1></h1> : <span>{noti}</span>}
 
             </Col>
         </Row>

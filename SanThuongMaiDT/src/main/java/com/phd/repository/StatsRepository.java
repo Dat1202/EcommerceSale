@@ -22,4 +22,8 @@ public interface StatsRepository {
     List<Object[]> statsByMonthInStore();
 
     List<Object[]> statsRevenueByStore();
+
+    List<Object[]> statsRevenueByStoreAdmin(Map<String, String> params);
+
+    List<Object[]> statsProductByCate();
 }

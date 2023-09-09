@@ -50,5 +50,15 @@ public class StatsServiceImpl implements StatsService{
     public List<Object[]> statsRevenueByStore() {
         return this.statsRepository.statsRevenueByStore();
     }
+
+    @Override
+    public List<Object[]> statsRevenueByStoreAdmin(Map<String, String> params) {
+        return this.statsRepository.statsRevenueByStoreAdmin(params);
+    }
+
+    @Override
+    public List<Object[]> statsProductByCate() {
+        return this.statsRepository.statsProductByCate();
+    }
     
 }

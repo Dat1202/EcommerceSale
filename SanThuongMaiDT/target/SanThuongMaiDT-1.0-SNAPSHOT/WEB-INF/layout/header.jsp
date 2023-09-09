@@ -158,6 +158,13 @@ Author     : dat98
                                     <i class="fa-regular fa-user text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Quản lý người dùng</span>
                                 </a>
                             </li> 
+                            <li class="nav-item sidebar-items">
+                                <a href="<c:url value="/admin/stats-admin"/>" class="admin__menu nav-link align-middle px-0" style="border-radius: 0px;font-size: 20px;
+                                   display: block;
+                                   padding: 15px;">
+                                    <i class="fa-solid fa-chart-simple text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Thống kê doanh thu cửa hàng</span>
+                                </a>
+                            </li> 
                         </c:when>
 
                         <c:otherwise>

@@ -18,8 +18,6 @@ export default function ProductStore() {
     const lastIndex = recordsPerPage * currentPage;
     const firstIndex = lastIndex - recordsPerPage;
 
-
-
     useEffect(() => {
         const loadProductsFromStore = async () => {
 
@@ -41,9 +39,7 @@ export default function ProductStore() {
                 e = `${e}?toPrice=${toPrice}&fromPrice=${fromPrice}`;
             } else if (cateId !== null) {
                 e = `${e}?cateId=${cateId}`;
-            }
-
-            else if (all === true) {
+            } else if (all === true) {
                 e = `${e}`;
             }
 

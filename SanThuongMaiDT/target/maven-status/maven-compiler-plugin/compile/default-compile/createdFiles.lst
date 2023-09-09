@@ -27,7 +27,6 @@ com\phd\formatter\CategoryFormatter.class
 com\phd\controllers\ApiStoreController.class
 com\phd\pojo\Review_.class
 com\phd\repository\ReceiptRepository.class
-com\phd\pojo\Compare.class
 com\phd\pojo\Review.class
 com\phd\service\ReviewService.class
 com\phd\controllers\AdminController.class

@@ -4,6 +4,7 @@ import Apis, { endpoints } from '../configs/Apis';
 import { useNavigate } from 'react-router-dom';
 import MySpinner from '../layout/MySpinner';
 
+
 const Register = () => {
   const nav = useNavigate();
   const avatar = useRef();
@@ -56,13 +57,13 @@ const Register = () => {
       isValid = false;
     }
 
-    // if (!user.password) {
-    //   setPasswordError("Vui lòng nhập mât khẩu.");
-    //   isValid = false;
-    // } else if (!specialCharacterRegex.test(user.password)) {
-    //   setPasswordError("Mật khẩu phải chứa ít nhất một ký tự đặc biệt.");
-    //   isValid = false;
-    // }
+    if (!user.password) {
+      setPasswordError("Vui lòng nhập mât khẩu.");
+      isValid = false;
+    } else if (!specialCharacterRegex.test(user.password)) {
+      setPasswordError("Mật khẩu phải chứa ít nhất một ký tự đặc biệt.");
+      isValid = false;
+    }
 
     if (!user.confirmPass) {
       setConfirmPassError("Vui lòng xác nhận mật khẩu.");
@@ -80,7 +81,7 @@ const Register = () => {
   const checkUsernameExists = async () => {
     try {
       const response = await Apis.get(endpoints["check-username-exists"] + `?username=${user.username}`);
-      console.info(response);
+      // console.info(response);
 
       return response.data;
     } catch (ex) {
@@ -101,15 +102,25 @@ const Register = () => {
       } else {
         setUsernameError("");
       }
-
+      let email, password;
       const process = async () => {
         let formData = new FormData();
-        for (let field in user)
+        for (let field in user) {
+          if (field === "email") {
+            email = user[field];
+          }
+          if (field === "password") {
+            password = user[field];
+          }
           if (field !== "confirmPass")
             formData.append(field, user[field]);
+        }
 
         if (avatar.current.files.length > 0)
           formData.append("avatar", avatar.current.files[0]);
+
+        console.info(email);
+        console.info(password);
 
         setLoading(true);
 
@@ -205,7 +216,7 @@ const Register = () => {
 
           {loading === true ? <MySpinner /> : <input class="btn" type="submit" value="Đăng ký" />}
           {err === null ? "" : <span className="text-danger">{err}</span>}
-
+          
         </Form>
       </section>
     </div>

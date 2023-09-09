@@ -20,4 +20,8 @@ public interface StatsService {
     List<Object[]> statsByMonthInStore();
 
     List<Object[]> statsRevenueByStore();
+
+    List<Object[]> statsRevenueByStoreAdmin(Map<String, String> params);
+
+    List<Object[]> statsProductByCate();
 }
