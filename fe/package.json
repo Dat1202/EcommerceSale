@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^13.2.1",
     "axios": "^1.4.0",
     "bootstrap-icons": "^1.10.5",
+    "firebase": "^10.3.1",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",

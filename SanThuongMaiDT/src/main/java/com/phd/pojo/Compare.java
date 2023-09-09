@@ -7,10 +7,10 @@ package com.phd.pojo;
 import lombok.Data;
 
 @Data
-public class Cart {
+public class Compare {
     private int id;
     private String name;
-    private Long unitPrice;
-    private int quantity;
+    private Long price;
+    private String description;
 }
     

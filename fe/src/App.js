@@ -17,6 +17,7 @@ import Cart from './component/Cart';
 import { Container } from 'react-bootstrap';
 import MyCartCounterReducer from './reducers/MyCartCounterReducer';
 import MyUserReducer from "./reducers/MyUserReducer";
+import { CompareProduct } from './component/CompareProduct';
 
 export const MyUserContext = createContext();
 export const MyCartContext = createContext();
@@ -48,6 +49,8 @@ function App() {
               <Route path="/create-store" element={<CreateStore />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/products/:productId" element={<ProductDetails />} />
+              <Route path="/compare-product" element={<CompareProduct />} />
+              {/* <Route path="/payment" component={VnPayPayment} /> */}
             </Routes>
           </Container>
           <Footer />

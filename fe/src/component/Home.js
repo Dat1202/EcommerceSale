@@ -79,7 +79,7 @@ const Home = () => {
                             <Card style={{ width: '18.5rem' }}>
                                 <Card.Img variant="top" className="w-100 h-100" src={p.image} />
                                 <Card.Body>
-                                    <Card.Title>{p.name}</Card.Title>
+                                    <Card.Title>{p.name} {p.categoryId.id}</Card.Title>
                                     <Card.Text>{p.price} 1VNĐ</Card.Text>
                                     <Container>
                                         <Link to={url} className="btn btn-info text-black" style={{ marginRight: "5px" }} variant="primary">Xem chi tiết</Link>

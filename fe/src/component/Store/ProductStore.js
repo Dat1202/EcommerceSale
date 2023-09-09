@@ -101,7 +101,7 @@ export default function ProductStore() {
                                         </Card.Body>
                                     </Link>
                                 </Card>
-                            </Col >
+                            </Col>
                         </>
                     )
                 })}

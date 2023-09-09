@@ -9,7 +9,7 @@ function Header() {
   const [user, dispatch] = useContext(MyUserContext);
   const [kw, setKw] = useState("")
   const nav = useNavigate();
-  const [cartCounter, ] = useContext(MyCartContext);
+  const [cartCounter,] = useContext(MyCartContext);
 
   const logout = () => {
     dispatch({
@@ -30,7 +30,9 @@ function Header() {
               <li class="header__navbar-item ">
                 <Link to="/" >Trang chủ </Link>
               </li>
-
+              <li class="header__navbar-item ">
+                <Link to="/compare-product" >SS</Link>
+              </li>
               {user === null ?
                 <>
                   <li class="header__navbar-item">
@@ -53,7 +55,7 @@ function Header() {
                       <Link to="/" onClick={logout}>Đăng xuất</Link>
                     </li>
 
-                  </> : user.userRole === 'ROLE_USER' || user.userRole === 'ROLE_ADMIN'?
+                  </> : user.userRole === 'ROLE_USER' || user.userRole === 'ROLE_ADMIN' ?
                     <>
                       <li class="header__navbar-item">
                         <Link to="/create-store">Tạo cửa hàng</Link>
@@ -85,7 +87,9 @@ function Header() {
               </Form>
             </div>
 
-            <Link to="/cart" className="nav-link"><FontAwesomeIcon icon={faShoppingCart} /><Badge bg="danger">{cartCounter}</Badge></Link>
+            <Link to="/cart" className="nav-link"><FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: '20px' }} />
+              <Badge bg="danger">{cartCounter}</Badge>
+            </Link>
           </div>
         </div>
       </div>
