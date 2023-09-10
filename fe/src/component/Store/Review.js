@@ -19,11 +19,11 @@ export const Review = () => {
     useEffect(() => {
         const loadReview = async () => {
             try {
-                let e = endpoints['reviews'](storeId)
-                let star = q.get("star")
+                let e = endpoints['reviews'](storeId);
+                let star = q.get("star");
 
                 if (star !== null) {
-                    e = `${e}?star=${star}`
+                    e = `${e}?star=${star}`;
                 }
 
                 const res = await Apis.get(e);
@@ -46,7 +46,7 @@ export const Review = () => {
             })
             setNote("");
             setRating(5);
-            setReview([data, ...reviews])
+            setReview([data, ...reviews]);
         }
         process();
     }

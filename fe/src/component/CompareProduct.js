@@ -33,14 +33,14 @@ export const CompareProduct = () => {
                                     <div className="compare__product mx-4" key={compare.id}>
                                         <div className="compare__product-text">
                                             <div className="compare__product-img">
-                                                <Card className="" style={{ width: '18.5rem', margin: ' 0 auto' }}>
-                                                    <Card.Img variant="top" src={compare.image} />
+                                                <Card className="" style={{ margin: '15px auto' }}>
+                                                    <Card.Img style={{height: "250px"}} className="w-100" variant="top" src={compare.image} />
                                                 </Card>
                                             </div>
                                         </div>
                                         <div>
                                             <h1>{compare.name}</h1>
-                                            <p className="fs-2">{compare.price} VNĐ</p>
+                                            <p className="fs-2 text-danger">{compare.price} VNĐ</p>
                                             <p className="fs-3">{compare.description}</p>
                                             <div className="compare-close" onClick={() => handleRemoveItem(compare.id)}>
                                                 <FontAwesomeIcon icon={faXmark} />

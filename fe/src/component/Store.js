@@ -11,7 +11,6 @@ import { Profile } from './Store/Profile';
 export default function Store() {
 
     return (
-
         <div>
             <HeaderStore />
             <Tabs

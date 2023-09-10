@@ -4,6 +4,7 @@ import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { MyCartContext } from "../../App";
 import { authApis, endpoints } from "../../configs/Apis";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 
 const PayPalPayment = (props) => {
@@ -12,10 +13,10 @@ const PayPalPayment = (props) => {
     const {sum} = props;
     const nav = useNavigate("");
 
-
+    if (cart === null)
+        return <Alert variant="info"><h2 className="flex-center">Không có sản phẩm trong giỏ!</h2></Alert>
 
     const handlePaymentSuccess = async (details, data) => {
-        // Xử lý kết quả thanh toán thành công
         try {
             let res = await authApis().post(endpoints['pay'], cart);
             if (res.status === 200) {

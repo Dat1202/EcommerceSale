@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import slideImage from '../images/slide1.png';
-import slideImage2 from '../images/slide2.png';
-import slideImage3 from '../images/slide3.png';
-import slideImage4 from '../images/slide4.png';
+import slideImage from "./images/slide1.png";
+import slideImage2 from "./images/slide2.png";
+import slideImage3 from "./images/slide3.png";
+import slideImage4 from "./images/slide4.png";
 import { Button } from 'react-bootstrap';
 export const SlideShow = () => {
 
@@ -21,7 +21,7 @@ export const SlideShow = () => {
         setSlidIndex((prevIndex) => (prevIndex + 1) % slides.length);
     };
     return (
-        <div>
+        <div className="my-5">
             <div style={{ position: "relative" }}>
                 <div >
                     {slides.map((slide, index) => (

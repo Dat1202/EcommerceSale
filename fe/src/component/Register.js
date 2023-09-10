@@ -81,7 +81,6 @@ const Register = () => {
   const checkUsernameExists = async () => {
     try {
       const response = await Apis.get(endpoints["check-username-exists"] + `?username=${user.username}`);
-      // console.info(response);
 
       return response.data;
     } catch (ex) {

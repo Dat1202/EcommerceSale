@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
-import Apis, { endpoints } from "../configs/Apis";
+import Apis, { endpoints } from "../../configs/Apis";
 
 const Category = () => {
     const [category, setCategory] = useState([]);

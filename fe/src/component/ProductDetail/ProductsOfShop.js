@@ -1,20 +1,14 @@
-import {useEffect, useState } from "react";
-import Apis, { endpoints } from '../configs/Apis';
-import {Card, Col, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import Apis, { endpoints } from '../../configs/Apis';
+import { Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
 const ProductsOfShop = (props) => {
-    const [visibleProducts, setVisibleProducts] = useState(8);
+    const [visibleProducts, setVisibleProducts] = useState(10);
     const [records, setRecords] = useState([]);
-    // const nav = useNavigate("");
-
-
 
     let storeId = props.number;
-
-
-
 
 
     useEffect(() => {
@@ -33,26 +27,24 @@ const ProductsOfShop = (props) => {
     }, [storeId]);
 
     const handleLoadMore = () => {
-        setVisibleProducts(prevVisibleProducts => prevVisibleProducts + 8);
+        setVisibleProducts(prevVisibleProducts => prevVisibleProducts + 10);
     };
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <>
             <div>
-                <h4>CÁC SẢN PHẨM KHÁC CỦA SHOP</h4>
+                <h3 className="m-4">CÁC SẢN PHẨM KHÁC CỦA SHOP</h3>
                 <Row>
                     {records.slice(0, visibleProducts).map(p => {
                         let url = `/products/${p[0]}`;
 
-                        return <Col xs={12} md={3} className="mt-1" >
-                            <Card className="w-100">
-                                <Link to={url} variant="primary" onClick={() => 
-                                    setTimeout(() => {
-                                        window.location.reload();
-                                    }, 1)
-                                }>
-
+                        return <Col xs={12} md={3} className="mt-4 px-4" style={{width: "20%"}}>
+                            <Card className="">
+                                <Link to={url} variant="primary" onClick={scrollToTop}>
                                     <Card.Img variant="top" className="link_hover w-100" src={p[1]} />
                                     <Card.Body>
                                         <Card.Title>

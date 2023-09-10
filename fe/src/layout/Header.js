@@ -24,8 +24,8 @@ function Header() {
   return (
     <>
       <div id="header">
-        <div class="header grid__auto">
-          <div class="header__navbar-flex-user grid__auto ">
+        <div class="header">
+          <div class="header__navbar-flex-user">
             <ul class="header__navbar-items ">
               <li class="header__navbar-item ">
                 <Link to="/" >Trang chủ </Link>

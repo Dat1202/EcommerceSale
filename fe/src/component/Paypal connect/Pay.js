@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { authApis, endpoints } from "../configs/Apis";
+import { authApis, endpoints } from "../../configs/Apis";
 import cookie from "react-cookies";
-import { MyCartContext } from "../App";
-import PayPalPayment from "./Paypal connect/PayPalPayment";
+import { MyCartContext } from "../../App";
+import PayPalPayment from "./PayPalPayment";
 import { useNavigate } from "react-router-dom";
 
 

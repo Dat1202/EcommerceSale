@@ -3,10 +3,9 @@ import Apis, { endpoints } from '../configs/Apis';
 import { Alert, Card, Col, Row } from "react-bootstrap";
 import MySpinner from "../layout/MySpinner";
 import { Link, useSearchParams } from "react-router-dom";
-import Category from "../Home/Category";
-import { SearchRangePrice } from "../Home/SearchRangePrice";
-import { SlideShow } from "../Home/SlideShow";
-
+import { SearchRangePrice } from "../component/Home/SearchRangePrice";
+import { SlideShow } from "../component/Home/SlideShow";
+import Category from "../component/Home/Category";
 
 const Home = () => {
     const [products, setProducts] = useState(null);
@@ -32,7 +31,6 @@ const Home = () => {
                 const res = await Apis.get(e);
                 setProducts(res.data);
 
-
             } catch (ex) {
                 console.error(ex);
             }
@@ -48,19 +46,16 @@ const Home = () => {
         setVisibleProducts(prevVisibleProducts => prevVisibleProducts + 8);
     };
 
-    if (products.length === 0)
-        return <Alert variant="info" className="mt-5">Không có sản phẩm nào!</Alert>
 
     return (
         <>
             <div style={{ backgroundColor: "#f0f0f2" }}>
                 <SlideShow />
-
                 <div className="container d-flex mt-1">
-                    <div style={{ width: "30%", marginRight: "5px" }}>
+                    <div style={{ width: "20%", marginRight: "5px" }}>
                         <Category />
                     </div>
-                    <div>
+                    <div style={{ width: "80%" }}>
                         <div className="custom-border pt-2" style={{ backgroundColor: "rgb(240, 219, 219)" }}>
                             <div className="d-flex">
                                 <div className="mt-3 ms-5">
@@ -71,27 +66,30 @@ const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <Row>
-                            {products.slice(0, visibleProducts).map(p => {
-                                let url = `/products/${p.id}`;
+                        {products.length === 0 ? <Alert variant="info" className="mt-5 text-center">Không có sản phẩm nào!</Alert> :
+                            <Row>
+                                {products.slice(0, visibleProducts).map(p => {
+                                    let url = `/products/${p.id}`;
 
-                                return <Col xs={12} md={3} className="mt-1">
-                                    <Card style={{ width: '16rem' }}>
-                                        <Link to={url} variant="primary">
-                                            <Card.Img variant="top" className="w-100 h-100 link_hover" src={p.image} />
-                                            <Card.Body>
-                                                <Card.Title>
-                                                    <div className="d-flex justify-content-center">{p.name}</div>
-                                                </Card.Title>
-                                                <Card.Text>
-                                                    <div className="d-flex justify-content-center text-danger">{p.price.toFixed(2)} VNĐ</div>
-                                                </Card.Text>
-                                            </Card.Body>
-                                        </Link>
-                                    </Card>
-                                </Col>
-                            })}
-                        </Row>
+                                    return <Col xs={12} md={3} className="mt-1 p-4">
+                                        <Card style={{ width: '22rem' }} >
+                                            <Link to={url} variant="primary">
+                                                <Card.Img variant="top" className="link_hover" src={p.image} />
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        <div className="d-flex justify-content-center">{p.name}</div>
+                                                    </Card.Title>
+                                                    <Card.Text>
+                                                        <div className="d-flex justify-content-center text-danger">{p.price.toFixed(2)} VNĐ</div>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Link>
+                                        </Card>
+                                    </Col>
+                                })}
+                            </Row>
+                        }
+
                     </div>
                 </div>
 
