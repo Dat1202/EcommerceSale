@@ -93,6 +93,7 @@ const Home = () => {
         { image: slideImage4, caption: 'Slide 4' },
 
     ];
+    
 
     const handleNextSlide = () => {
         setSlidIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -105,7 +106,6 @@ const Home = () => {
         return <MySpinner />
 
     const handleLoadMore = () => {
-        // Tăng số lượng sản phẩm hiển thị lên 8
         setVisibleProducts(prevVisibleProducts => prevVisibleProducts + 8);
     };
     if (products.length === 0)
@@ -141,7 +141,7 @@ const Home = () => {
                                     <h3>Sắp xếp theo </h3>
                                 </div>
                                 <div className="mt-1 ms-5">
-                                    <SearchRangePrice />
+                                    <SearchRangePrice/>
                                 </div>
                             </div>
                         </div>

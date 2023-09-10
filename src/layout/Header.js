@@ -28,6 +28,9 @@ function Header() {
     loadCategory();
   }, []);
 
+  const updating = () => {
+    alert("Hệ thống đang cập nhật tính năng này!!!");
+  }
 
   const logout = () => {
     dispatch({
@@ -90,7 +93,7 @@ function Header() {
               <div className="mt-4" style={{ marginLeft: "-13rem" }}>
                 <img src="https://laz-img-cdn.alicdn.com/images/ims-web/TB1T7K2d8Cw3KVjSZFuXXcAOpXa.png" width="135" height="50" alt="logo" />
               </div>
-              <div style={{marginLeft:"10rem"}}>
+              <div style={{ marginLeft: "10rem" }}>
                 <Form style={{ width: "35rem" }} onSubmit={search} className="d-flex">
                   <div className="input-group">
                     <input
@@ -117,7 +120,7 @@ function Header() {
               <hr />
               <Row>
                 <Col>
-                  <div className="d-flex" style={{ marginLeft: "20rem" }}>
+                  <div className="d-flex" style={{ marginLeft: "24rem" }}>
                     <div >
                       <Link to="/#" className="text-decoration-none danhMuc" style={{ margin: "0 7rem 0 3rem" }}>Home</Link>
                     </div>
@@ -125,14 +128,10 @@ function Header() {
                       <Link to="/cart" className="text-decoration-none danhMuc" style={{ marginRight: "5rem" }}>Cart<Badge bg="danger">{cartCounter}</Badge></Link>
                     </div>
                     <div>
-                      <Link to="/category" className="text-decoration-none danhMuc" style={{ marginRight: "5rem" }}>Category</Link>
-                      {/* <h1 class="parent">hover me</h1> */}
+                      <button className="danhMuc" onClick={updating}>Shop</button>
                     </div>
                     <div>
-                      <Link to="/shop" className="text-decoration-none danhMuc" style={{ marginRight: "5rem" }}>Shop</Link>
-                    </div>
-                    <div>
-                      <Link to="/#" className="text-decoration-none danhMuc" style={{ marginRight: "5rem" }}>My Account</Link>
+                    <button className="danhMuc" style={{marginLeft:"4rem"}} onClick={updating}>My Account</button>
                     </div>
                   </div>
                 </Col>

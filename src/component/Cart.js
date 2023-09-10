@@ -1,22 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Alert, Button, Container, Form, Table } from "react-bootstrap";
 import cookie from "react-cookies";
 import { Link } from "react-router-dom";
 import { MyCartContext, MyUserContext } from "../App";
 import { authApis, endpoints } from "../configs/Apis";
 import Pay from "./Pay";
-
+import PayPalPayment from "./Paypal connect/PayPalPayment";
 
 const Cart = () => {
     const [user,] = useContext(MyUserContext);
     const [, cartDispatch] = useContext(MyCartContext);
     const [cart, setCart] = useState(cookie.load("cart") || null);
-    const [data, setData] = useState([]);
-    const [isChecked, setIsChecked] = useState(false);
-    const [isHidden, setIsHidden] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0); // khởi tạo biến totalPrice với giá trị ban đầu là 0
 
-
-
+    useEffect(() => {
+        let totalPrice = 0;
+        Object.values(cart).forEach(c => {
+            totalPrice += parseInt(c.unitPrice) * parseInt(cart[c.id]["quantity"]);
+        });
+        setTotalPrice(totalPrice);
+    }, [cart]);
 
     const deleteItem = (item) => {
         if (item.id in cart) {
@@ -58,35 +61,11 @@ const Cart = () => {
         process();
     }
 
-    const showPay = () => {
-        setIsHidden(1);
-    };
-
-    const AddProducts = (c) => {
-        const p = {
-            id: c.id,
-            image: c.image,
-            name: c.name,
-            unitPrice: parseInt(c.unitPrice) * parseInt(c.quantity),
-            quantity: c.quantity
-        };
-
-        setIsChecked(!isChecked);
-
-        if (isChecked) {
-            setData((prevData) => prevData.filter((item) => item.id !== p.id));
-            console.log(`Removed product with ID ${c.id}`);
-        } else {
-            setData((prevData) => prevData.concat(p));
-            console.log(p);
-        }
-    };
-
     if (cart === null)
-        return <Alert variant="info">Không có sản phẩm trong giỏ!</Alert>
+        return <Alert variant="info"><h2 className="flex-center">Không có sản phẩm trong giỏ!</h2></Alert>
 
     if (cart.length === 0)
-        return <Alert variant="info">Thanh toán thành công!</Alert>
+        return <Alert variant="info"><h2 className="flex-center">Thanh toán thành công!</h2></Alert>
 
     return (
         <div style={{ backgroundColor: "#f0f0f2", marginTop: "-0.5rem" }}>
@@ -95,7 +74,6 @@ const Cart = () => {
                 <Table striped hover className="table_border">
                     <thead >
                         <tr>
-                            <th></th>
                             <th></th>
                             <th>Tên sản phẩm</th>
                             <th>Đơn giá</th>
@@ -107,14 +85,6 @@ const Cart = () => {
                     <tbody>
                         {Object.values(cart).map(c => {
                             return <tr key={c.id} >
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        checked={c.isChecked}
-                                        onChange={() => AddProducts(c)}
-                                        className="custom-checkbox"
-                                    />
-                                </td>
                                 <td><img src={c.image} width="150" height="150" alt="ImageProduct" /></td>
                                 <td><h5 className="mt-5">{c.name}</h5></td>
                                 <td><p className="mt-5">{c.unitPrice.toFixed(2)} VNĐ</p></td>
@@ -136,25 +106,22 @@ const Cart = () => {
                     </tbody>
                 </Table>
 
-                <div className="custom-border" style={{ paddingTop: "30px", backgroundColor: "red" }}>
-                    <div className="d-flex justify-content-around">
-                        <div><h5>Đã chọn ({data.length})</h5></div>
-                        <div><h2>Tổng thanh toán: {data.reduce((total, item) => total + item.unitPrice, 0).toFixed(2)}</h2></div>
-                        <div>
-                            {user === null ? <p>Vui lòng <Link to="/login?next=/cart">đăng nhập</Link> để thanh toán!</p> : <Button className="mb-2" onClick={showPay}>Thanh toán</Button>}
+                <div>
+                    <div style={{ marginLeft: "59rem" }}><h4>Tổng thanh toán: <span className="text-danger">{totalPrice.toFixed(2)}VND</span></h4></div>
+                    <div className="custom-border" style={{ paddingTop: "30px" }}>
+                        <div className="d-flex justify-content-around" style={{ margin: "0 20px" }}>
+                            <div><h6>Phương thức thanh toán:</h6></div>
+                            <div style={{ marginTop: "-17px" }}>
+                                <Button onClick={pay} variant="info" className="mt-2 mb-2 ">Tiền mặt</Button>
+                            </div>
+                            <div><h6>hoặc </h6></div>
+                            <div style={{ marginTop: "-10px" }}>
+                                <PayPalPayment sum={totalPrice} />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {isHidden ===0 ? (
-                    <div style={{ display: 'none' }}>
-                        <Pay data={data}/>
-                    </div>
-                ) : (
-                    <div style={{ display: 'block' }}>
-                        <Pay data={data} sum ={data.reduce((total, item) => total + item.unitPrice, 0)}/>
-                    </div>
-                )}
             </Container>
 
         </div>

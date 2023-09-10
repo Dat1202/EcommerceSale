@@ -62,6 +62,10 @@ html {
     padding: 3px 0 10px 0;
 }
 
+.danhMuc{
+    border: none; 
+    background-color: transparent;
+}
 .danhMuc:hover {
     color: red;
 }

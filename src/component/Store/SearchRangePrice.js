@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const SearchRangePrice = () => {
+export const SearchRangePrice = (props) => {
     const { storeId } = useParams();
     const [fromPrice, setFromPrice] = useState("");
     const [toPrice, setToPrice] = useState("");
