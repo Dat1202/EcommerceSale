@@ -21,7 +21,7 @@ public class CommentRepositoryImpl implements CommentRepository {
     @Override
     public List<Comments> getComments(int productId) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("From Comments Where productId.id=:id");
+        Query q = s.createQuery("From Comments Where productId.id=:id Order by id desc" );
 
         q.setParameter("id", productId);
 

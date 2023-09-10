@@ -60,10 +60,11 @@ public class AdminController {
     }
 
     @PostMapping("/add-categories")
-    public String add(@ModelAttribute(value = "categories") Category c) {
-
-        if (this.adminService.addOrUpdateCate(c) == true) {
-            return "redirect:/admin/categories";
+    public String add(@ModelAttribute(value = "categories") @Valid Category c, BindingResult rs) {
+        if (!rs.hasErrors()) {
+            if (this.adminService.addOrUpdateCate(c) == true) {
+                return "redirect:/admin/categories";
+            }
         }
 
         return "add-categories";

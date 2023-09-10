@@ -19,7 +19,6 @@
     <form:form modelAttribute="product" method="post" action="${action}" enctype="multipart/form-data">
         <form:hidden path="id" />
         <form:hidden path="image" />
-        <form:errors path="*" element="div" class="text text-danger" />
         <div class="form-floating mb-3 mt-3">
             <form:input type="text" class="form-control" path="name" id="name" 
                         placeholder="Tên sản p
@@ -29,9 +28,17 @@
         </div>
 
         <div class="form-floating mb-3 mt-3">
-            <form:input type="text" class="form-control" path="price" id="price" 
+            <form:input type="number" class="form-control" path="price" id="price" 
                         placeholder="Giá sản phẩm" name="price" />
             <label for="name">Giá sản phẩm</label>
+            <form:errors path="price" element="div" class="text text-danger" />
+        </div>
+
+        <div class="form-floating mb-3 mt-3">
+            <form:input type="text" class="form-control" path="description" id="description" 
+                        placeholder="Mô tả sản phẩm" name="description" />
+            <label for="name">Mô tả sản phẩm</label>
+            <form:errors path="description" element="div" class="text text-danger" />
         </div>
 
         <div class="form-floating">
@@ -54,8 +61,9 @@
             <form:input type="file" class="form-control" path="file" id="file" 
                         placeholder="Ảnh sản phẩm"  />
             <label for="file">Ảnh sản phẩm</label>
+            <form:errors path="file" element="div" class="text text-danger" />
         </div>
-            
+
         <div class="form-floating mb-3 mt-3">
             <button class="btn btn-info mt-1" type="submit">
                 <c:choose>

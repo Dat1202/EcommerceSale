@@ -10,11 +10,8 @@ export const CompareProduct = () => {
 
     const handleRemoveItem = (itemId) => {
         const updatedCompares = { ...compares };
-
         delete updatedCompares[itemId];
-
         setCompares(updatedCompares);
-
         cookie.save('compare', updatedCompares);
     }
 
@@ -26,30 +23,36 @@ export const CompareProduct = () => {
         <>
             <div className="grid__auto">
                 <div className="compare__products m-4">
-                    <h2>So sánh sản phẩm </h2>
-                    {Object.values(compares).map((compare) => {
-                        return (
-                            <div className="compare__product mx-4" key={compare.id}>
-                                <div className="compare__product-text">
-                                    <div className="compare__product-img">
-                                        <Card className="" style={{ width: '18.5rem', margin: ' 0 auto' }}>
-                                            <Card.Img variant="top" src={compare.image} />
-                                        </Card>
+                    <h2>So sánh sản phẩm</h2>
+                    {Object.values(compares).length === 0 ? (
+                        <h2 style={{ margin: '0 auto', }} className="text-center text">Hiện chưa có sản phẩm</h2>
+                    ) : (
+                        Object.values(compares).map((compare) => {
+                            return (
+                                <>
+                                    <div className="compare__product mx-4" key={compare.id}>
+                                        <div className="compare__product-text">
+                                            <div className="compare__product-img">
+                                                <Card className="" style={{ width: '18.5rem', margin: ' 0 auto' }}>
+                                                    <Card.Img variant="top" src={compare.image} />
+                                                </Card>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h1>{compare.name}</h1>
+                                            <p className="fs-2">{compare.price} VNĐ</p>
+                                            <p className="fs-3">{compare.description}</p>
+                                            <div className="compare-close" onClick={() => handleRemoveItem(compare.id)}>
+                                                <FontAwesomeIcon icon={faXmark} />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <h1>{compare.name}</h1>
-                                    <p className="fs-2">{compare.price} VNĐ</p>
-                                    <p className="fs-3">{compare.description}</p>
-                                    <div className="compare-close" onClick={() => handleRemoveItem(compare.id)}>
-                                        <FontAwesomeIcon icon={faXmark} />
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+                                </>
+                            );
+                        })
+                    )}
                 </div>
             </div>
         </>
     );
-};
+}

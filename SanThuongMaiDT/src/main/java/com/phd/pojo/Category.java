@@ -18,14 +18,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author dat98
- */
 @Entity
 @Table(name = "category")
 @XmlRootElement
@@ -41,7 +38,9 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 100)
+    @NotNull(message = "{product.image.notNull}")
+
+    @Size(min = 5, max = 100, message = "{category.name.lenErr}")
     @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL)
@@ -116,5 +115,5 @@ public class Category implements Serializable {
     public String toString() {
         return "com.phd.pojo.Category[ id=" + id + " ]";
     }
-    
+
 }

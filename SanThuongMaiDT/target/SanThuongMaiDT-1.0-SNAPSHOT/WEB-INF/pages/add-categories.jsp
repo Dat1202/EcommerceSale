@@ -21,6 +21,8 @@
             <form:input type="text" class="form-control" path="name" id="name" 
                         placeholder="Tên thể loại" name="name" />
             <label for="name">Tên thể loại</label>
+            <form:errors path="name" element="div" class="text text-danger" />
+
         </div>
         <div class="form-floating mb-3 mt-3">
             <button class="btn btn-info mt-1" type="submit">

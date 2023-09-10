@@ -38,9 +38,6 @@ public class StoreController {
 
     @Autowired
     private StatsService statsService;
-
-    @Autowired
-    private CategoryService categoryService;
     
     @Autowired
     private Environment env;

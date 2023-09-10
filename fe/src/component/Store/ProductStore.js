@@ -10,10 +10,10 @@ export default function ProductStore() {
     const { storeId } = useParams();
     const [q] = useSearchParams();
     const [products, setProducts] = useState(null);
+    const [all,] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [numbers, setNumbers] = useState([]);
     const [records, setRecords] = useState([]);
-    const [all,] = useState("");
     const recordsPerPage = 8;
     const lastIndex = recordsPerPage * currentPage;
     const firstIndex = lastIndex - recordsPerPage;

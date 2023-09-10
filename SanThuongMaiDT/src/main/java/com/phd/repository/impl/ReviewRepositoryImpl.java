@@ -52,7 +52,7 @@ public class ReviewRepositoryImpl implements ReviewRepository {
             }
             q.where(predicates.toArray(Predicate[]::new));
         }
-
+        q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
         
         return query.getResultList();

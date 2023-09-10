@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MyCartContext, MyUserContext } from "../App";
-import { Badge, Form } from "react-bootstrap";
+import { Badge, Form, Image } from "react-bootstrap";
 
 function Header() {
   const [user, dispatch] = useContext(MyUserContext);
@@ -31,7 +31,7 @@ function Header() {
                 <Link to="/" >Trang chủ </Link>
               </li>
               <li class="header__navbar-item ">
-                <Link to="/compare-product" >SS</Link>
+                <Link to="/compare-product" >So sánh</Link>
               </li>
               {user === null ?
                 <>
@@ -73,7 +73,9 @@ function Header() {
 
           <div class="header-flex-with-search">
             <div class="header__logo">
-              <Link to="/">Trang chủ</Link>
+              <Link to="/">
+                <Image class="fluid" style={{width:'90%'}} src="https://phuongnamvina.com/img_data/images/lam-logo-ban-hang-online-dep.jpg" />
+              </Link>
             </div>
 
             <div class="header__search">

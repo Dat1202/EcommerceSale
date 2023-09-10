@@ -206,10 +206,10 @@
     content: '';
     position: absolute;
     background-color: #333333;
-    width: 50px;
+    width: 120px;
     height: 2px;
     left: 0;
-    top: 43px;
+    top: 47px;
 }
 
 .footer__map {
@@ -427,7 +427,7 @@ small {
 
 .product-item-price {
     font-size: 1.4rem;
-    color:red;
+    color: red;
     margin: -10px;
     padding: 10px;
     text-align: center;
@@ -669,7 +669,7 @@ input[type=number] {
 }
 
 .review-filter-btn.active {
-    border:1px solid var(--main-color);
+    border: 1px solid var(--main-color);
     background-color: transparent;
     color: #000;
 }
@@ -695,95 +695,102 @@ input[type=number] {
     content: '';
     position: absolute;
     top: 7.5px;
-    right: 145px;   
+    right: 145px;
     border-width: 8px;
     border-style: solid;
     border-color: transparent transparent transparent var(--primary-color);
 }
 
-.review-filter-btn{
+.review-filter-btn {
     background-color: var(--primary-color);
     color: #000;
-    margin:5px;
-    padding:0 22px;
+    margin: 5px;
+    padding: 0 22px;
 }
 
-form .form-control{
-    margin:20px 0;
+form .form-control {
+    margin: 20px 0;
 }
 
-.compare__products{
+.compare__products {
     display: flex;
 }
 
-.compare__product{
+.compare__product {
     width: 26%;
-    border:1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     text-align: center;
     position: relative;
-    box-shadow: 0 15px 10px -15px rgba(102,102,102,.3);
+    box-shadow: 0 15px 10px -15px rgba(102, 102, 102, .3);
 
 }
 
-.compare__product-img{
+.compare__product-img {
     padding: 10px;
 }
 
-.compare-close{
+.compare-close {
     position: absolute;
     top: 5px;
-    right:5px;
+    right: 5px;
 }
 
-.compare-close .svg-inline--fa{
+.compare-close .svg-inline--fa {
     border-radius: 30px;
     border: 1px solid #333;
-    padding:2px;
+    padding: 2px;
 }
 
-.compare-close:hover{
+.compare-close:hover {
     cursor: pointer;
 }
 
-.card-hover{
+.card-hover {
     display: flex;
     width: 100%;
     height: 100%;
     align-items: center;
-    padding:2rem;
+    padding: 2rem;
 }
 
-.custom-border{
-    background-color: white; 
-    border-radius: 5px; 
+.custom-border {
+    background-color: white;
+    border-radius: 5px;
     padding: 3px 0 10px 0;
 }
+
 .custom-button {
     border: none;
     background: none;
     padding: 0;
     font-size: inherit;
     cursor: pointer;
-  }
+}
+
+.danhMuc{
+    border: none; 
+    background-color: transparent;
+}
 
 .danhMuc:hover {
     color: red;
 }
 
-.link_hover:hover{
+.link_hover:hover {
     filter: blur(1.5px);
 }
 
-.table_border{
+.table_border {
     border-collapse: collapse;
     border: none;
 }
 
-.table_border td, .table_border th {
+.table_border td,
+.table_border th {
     border: none;
 }
 
-.table_border th{
+.table_border th {
     background-color: #a9cbea;
 }
 
@@ -793,7 +800,7 @@ form .form-control{
     margin-top: 60px;
 }
 
-#hide_div{
+#hide_div {
     position: absolute;
     position: fixed;
     background-color: rgb(212, 229, 236);
@@ -803,4 +810,142 @@ form .form-control{
     top: 10%;
     left: 0;
     border-style: ridge;
+}
+
+.border-animation {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    margin: 1px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from var(--angle),
+            #ff0050 0%,
+            #ff0050 5%,
+            transparent 5%,
+            transparent 40%,
+            #ff0050 50%);
+    animation: rotate 4s linear infinite;
+}
+
+.hi {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+}
+
+.border-animation::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    /* border: 4px solid var(--primary-color); */
+    border-radius: 50%;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes rotate {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+.loading {
+    display: flex;
+    position: relative;
+}
+
+.loading span {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 5px 5px;
+    animation: loading 3.6s linear infinite;
+}
+
+@keyframes loading {
+    0% {
+        text-shadow: 0 0 10px;
+        color: #2A2DD5;
+        transform: translateY(0px);
+    }
+
+    50% {
+        text-shadow: 0 10px 20px;
+        color:#D52A2D;
+        transform: translateY(10px);
+    }
+
+    100% {
+        text-shadow: 0 10px 20px;
+        color: #2DD52A;
+        transform: translateY(0px);
+    }
+}
+
+
+.loading span:nth-child(1){
+    animation-delay: 0s;
+}
+
+.loading span:nth-child(2){
+    animation-delay: .2s;
+}
+
+.loading span:nth-child(3){
+    animation-delay: .4s;
+}
+
+.loading span:nth-child(4){
+    animation-delay: .6s;
+}
+
+.loading span:nth-child(5){
+    animation-delay: .8s;
+}
+
+.loading span:nth-child(6){
+    animation-delay: 1s;
+}
+
+.loading span:nth-child(7){
+    animation-delay: 1.2s;
+}
+
+.loading span:nth-child(8){
+    animation-delay: 1.4s;
+}
+
+.loading span:nth-child(9){
+    animation-delay: 1.6s;
+}
+
+.loading span:nth-child(10){
+    animation-delay: 1.8s;
+}
+
+#location_button_left{
+    position: absolute;
+    left: 5px;
+    top: 40%;
+    background-color: rgba(242, 248, 57, 0.5);
+}
+#location_button_left:hover{
+    background-color: rgba(98, 104, 230, 0.8);
+}
+#location_button_right{
+    position: absolute;
+    right: 5px;
+    top: 40%;
+    background-color: rgba(242, 248, 57, 0.5);
+}
+#location_button_right:hover{
+    background-color: rgba(98, 104, 230, 0.8);
 }

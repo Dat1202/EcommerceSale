@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+     * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+     * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.phd.pojo;
 
@@ -22,15 +22,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author dat98
- */
 @Entity
 @Table(name = "product")
 @XmlRootElement
@@ -49,16 +46,19 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 100)
+    @NotNull(message = "{product.name.notNull}")
+    @Size(min = 5, max = 100, message = "{product.name.lenErr}")
     @Column(name = "name")
     private String name;
+    @NotNull(message = "{product.price.notNull}")
     @Column(name = "price")
     private Long price;
+    @NotNull(message = "{product.file.notNull}")
     @Size(max = 500)
     @Column(name = "image")
     private String image;
     @Lob
-    @Size(max = 2147483647)
+    @Size(min = 10, max = 2147483647, message = "{product.description.lenErr}")
     @Column(name = "description")
     private String description;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -75,6 +75,7 @@ public class Product implements Serializable {
     private Set<OrderDetails> orderDetailsSet;
 
     @Transient
+    @NotNull(message = "{product.file.notNull}")
     private MultipartFile file;
 
     public Product() {
@@ -132,13 +133,13 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-//    public Date getCreatedAt() {
-//        return createdAt;
-//    }
-//
-//    public void setCreatedAt(Date createdAt) {
-//        this.createdAt = createdAt;
-//    }
+    //    public Date getCreatedAt() {
+    //        return createdAt;
+    //    }
+    //
+    //    public void setCreatedAt(Date createdAt) {
+    //        this.createdAt = createdAt;
+    //    }
     public Category getCategoryId() {
         return categoryId;
     }

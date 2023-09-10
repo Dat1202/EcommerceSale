@@ -43,12 +43,14 @@ export default function HeaderStore() {
         <div
           className="header__store gradient-element grid__row"
         >
-          <div>
+          <div className="border-animation" 
+          // style={{ background: `url(${store[0][1]}) no-repeat center`, backgroundSize: 'cover', }}
+          >
             <img
               src={store[0][1]}
-              width="60"
-              height="60"
-              className="rounded-circle"
+              width="70"
+              height="70"
+              className="rounded-circle hi"
               alt="logo"
             />
           </div>
