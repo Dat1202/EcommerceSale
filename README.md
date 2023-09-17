@@ -20,9 +20,7 @@ phẩm hiển thị phải được phân trang tối đa 20 sản phẩm/trang.
 hoặc viết bình luận trực tiếp. Ngoài ra, người dùng cũng được đánh giá, bình luận, phản
 hồi bình luận cho các sản phẩm trên hệ thống.
 - Người dùng được phép thực hiện mua hàng online. Người dùng có thể chọn hình thức
-thanh toán tiến mặt khi nhận hàng hoặc thanh toán online thông qua papal hoặc stripe
-hoặc zalo pay hoặc momo, tất cả khoản tiền người dùng thanh toán đều phải được ghi
-nhận vào hệ thống.
+thanh toán tiến mặt khi nhận hàng hoặc thanh toán online thông qua paypal
 - Hệ thống có chức năng so sánh các sản phẩm cùng loại của các cửa hàng khác nhau,
 thông tin so sanh sao cho hiệu quả giúp được người dùng lựa chọn mua hợp lý.
 - Người bán được phép xem thống kê doanh thu các sản phẩm, danh mục sản phẩm theo
@@ -30,5 +28,4 @@ tháng, quý và năm.
 - Người quản trị sàn giao dịch có thể xem thống kê tần suất bán hàng, tổng sản phẩm
 kinh doanh của các cửa hàng theo tháng, quý, năm. Sinh viên có thể phát triển thống
 kê này linh hoạt hơn để các quản trị cúa thể quản lý tốt hơn thông tin sàn giao dịch.
-- Nghiên cứu thêm dùng firebase tích hợp chat thời gian thực.
 
