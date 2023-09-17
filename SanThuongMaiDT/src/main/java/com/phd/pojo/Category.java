@@ -46,9 +46,6 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Product> productSet;
-    @OneToMany(mappedBy = "cateId")
-    @JsonIgnore
-    private Set<StoreCategory> storeCategorySet;
 
     public Category() {
     }
@@ -80,15 +77,6 @@ public class Category implements Serializable {
 
     public void setProductSet(Set<Product> productSet) {
         this.productSet = productSet;
-    }
-
-    @XmlTransient
-    public Set<StoreCategory> getStoreCategorySet() {
-        return storeCategorySet;
-    }
-
-    public void setStoreCategorySet(Set<StoreCategory> storeCategorySet) {
-        this.storeCategorySet = storeCategorySet;
     }
 
     @Override

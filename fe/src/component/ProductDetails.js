@@ -159,7 +159,7 @@ const ProductDetails = () => {
                         </Col>
                         <Col className="mx-5" md={5} xs={6}>
                             <h2 className="fs-1">{product.name}</h2>
-                            <h4 className="text-danger">{product.price.toFixed(2)} VNĐ</h4>
+                            <h4 className="text-danger">{product.price} VNĐ</h4>
                             <div className="d-flex">
                                 <Button className="me-4" onClick={() => compareProduct(product)}>So sánh</Button>
                                 <Button variant="success" onClick={() => order(product)}>Thêm vào giỏ</Button>

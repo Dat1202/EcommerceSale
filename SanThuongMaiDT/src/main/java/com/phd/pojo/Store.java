@@ -28,10 +28,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author dat98
- */
 @Entity
 @Table(name = "store")
 @XmlRootElement
@@ -77,10 +73,7 @@ public class Store implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
-    @OneToMany(mappedBy = "storeId", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<StoreCategory> storeCategorySet;
-
+    
     public Store() {
     }
 
@@ -144,15 +137,6 @@ public class Store implements Serializable {
 
     public void setUserId(User userId) {
         this.userId = userId;
-    }
-
-    @XmlTransient
-    public Set<StoreCategory> getStoreCategorySet() {
-        return storeCategorySet;
-    }
-
-    public void setStoreCategorySet(Set<StoreCategory> storeCategorySet) {
-        this.storeCategorySet = storeCategorySet;
     }
 
     @Override

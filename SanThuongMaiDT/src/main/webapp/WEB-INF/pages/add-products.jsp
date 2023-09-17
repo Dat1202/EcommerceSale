@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-floating mb-3 mt-3">
-            <form:input type="text" class="form-control" path="description" id="description" 
+            <form:textarea style="height:100px" type="text" class="form-control" path="description" id="description" 
                         placeholder="Mô tả sản phẩm" name="description" />
             <label for="name">Mô tả sản phẩm</label>
             <form:errors path="description" element="div" class="text text-danger" />

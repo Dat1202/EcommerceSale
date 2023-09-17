@@ -32,7 +32,7 @@ Author     : dat98
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                                 <li><a class="dropdown-item text-white fs-3" href="<c:url value="/login" />">Đăng nhập</a></li>
-                                <li><a class="dropdown-item text-white fs-3" href="<c:url value="/register" />">Đăng ký</a></li>
+<!--                                <li><a class="dropdown-item text-white fs-3" href="<c:url value="/register" />">Đăng ký</a></li>-->
                             </ul>                        
                         </div>
                     </c:otherwise>
@@ -89,8 +89,6 @@ Author     : dat98
                                     <i class="fa-solid fa-database text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Sản phẩm</span> 
                                 </a>
                             </li>
-                            
-                         
                             
                             <li class="nav-item sidebar-items" >
                                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle admin-menu">

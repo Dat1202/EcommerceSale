@@ -82,7 +82,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                        label: 'Thống kê doanh thu theo thể loại',
+                        label: 'Thống kê doanh thu theo cửa hàng',
                         data: data,
                         backgroundColor: colors,
                         borderColor: borderColors,

@@ -61,7 +61,7 @@ export default function HeaderStore() {
               {avgStarReview}/5
             </div>
           </div>
-          <div class="header__search">
+          <div class="ms-4 header__search">
             <Form style={{ height: '100%' }} onSubmit={searchStore}>
               <input
                 value={kw}

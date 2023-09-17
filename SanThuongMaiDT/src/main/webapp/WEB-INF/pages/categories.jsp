@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1 class="text-center text">Quản lí thể loại</h1>
-<a class="btn btn-info mt-2 mb-2" href="<c:url value="/admin/add-categories"/>"/>Thêm thể loại </a>
+<a class="btn btn-info mt-2 mb-4" href="<c:url value="/admin/add-categories"/>"/>Thêm thể loại </a>
 
 <table class="table">
     <tr>

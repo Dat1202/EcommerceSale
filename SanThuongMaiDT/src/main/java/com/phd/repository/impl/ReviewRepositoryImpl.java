@@ -42,21 +42,22 @@ public class ReviewRepositoryImpl implements ReviewRepository {
         CriteriaQuery<Review> q = b.createQuery(Review.class);
         Root root = q.from(Review.class);
         q.select(root);
+        List<Predicate> predicates = new ArrayList<>();
+        predicates.add(b.equal(root.get("storeId"), storeId));
 
         if (params != null) {
-            List<Predicate> predicates = new ArrayList<>();
-
             String star = params.get("star");
             if (star != null && !star.isEmpty()) {
                 predicates.add(b.equal(root.get("star"), Integer.parseInt(star)));
             }
-            q.where(predicates.toArray(Predicate[]::new));
         }
+
+        q.where(predicates.toArray(Predicate[]::new));
+
         q.orderBy(b.desc(root.get("id")));
         Query query = session.createQuery(q);
-        
-        return query.getResultList();
 
+        return query.getResultList();
     }
 
     @Override

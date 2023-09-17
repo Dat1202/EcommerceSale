@@ -43,7 +43,7 @@ const ProductsOfShop = (props) => {
                         let url = `/products/${p[0]}`;
 
                         return <Col xs={12} md={3} className="mt-4 px-4" style={{width: "20%"}}>
-                            <Card className="">
+                            <Card className="h-100">
                                 <Link to={url} variant="primary" onClick={scrollToTop}>
                                     <Card.Img variant="top" className="link_hover w-100" src={p[1]} />
                                     <Card.Body>

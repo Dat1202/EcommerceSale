@@ -33,11 +33,11 @@
             <label for="name">Vị trí cửa hàng</label>
         </div>
 
-        <div class="form-floating mb-3 mt-3">
+<!--        <div class="form-floating mb-3 mt-3">
             <button value ="" class="btn btn-info mt-1" type="submit">
                 Cập nhật thông tin
             </button>
-        </div>
+        </div>-->
     </form:form>
 
 </section>

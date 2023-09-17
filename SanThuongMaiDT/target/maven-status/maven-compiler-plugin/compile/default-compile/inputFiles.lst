@@ -51,7 +51,6 @@ D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\StatsRepository
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\CategoryRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\repository\impl\ProductRepositoryImpl.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\CategoryService.java
-D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\pojo\StoreCategory.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\service\AdminService.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\controllers\ApiReceiptController.java
 D:\EcommerceSale\SanThuongMaiDT\src\main\java\com\phd\configs\SecurityWebApplicationInitializer.java

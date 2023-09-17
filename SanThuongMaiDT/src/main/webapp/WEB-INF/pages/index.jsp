@@ -15,7 +15,6 @@
                 <c:forEach items="${statsRevenueByStore}" var="c">
                     class="m-5 dashboard" style="border-left: 5px solid red;">Doanh thu của cửa hàng: ${c[0]}  
                 </c:forEach>
-
             </div>
             <h1>${c[0]}</h1>
 
@@ -139,7 +138,7 @@
         let ctx1 = document.getElementById('lineChart');
         let ctx2 = document.getElementById('lineChartStore');
         let ctx4 = document.getElementById('chartPie');
-
+        
         chartStatsProductByCate(ctx4, labels4, data4, 'pie', colors4);
         loadChart(ctx, labels, data, 'doughnut', colors, borderColors);
         loadChartStore(ctx1, labels1, data1, 'line', colors1, borderColors1);

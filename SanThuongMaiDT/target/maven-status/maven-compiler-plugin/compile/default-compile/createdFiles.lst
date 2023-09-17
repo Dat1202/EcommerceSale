@@ -58,7 +58,6 @@ com\phd\repository\ProductRepository.class
 com\phd\repository\impl\CategoryRepositoryImpl.class
 com\phd\controllers\ApiProductController.class
 com\phd\service\impl\StaffServiceImpl.class
-com\phd\pojo\StoreCategory.class
 com\phd\pojo\Cart.class
 com\phd\pojo\Store_.class
 com\phd\controllers\StaffController.class
@@ -67,7 +66,6 @@ com\phd\repository\impl\StoreRepositoryImpl.class
 com\phd\controllers\StoreController.class
 com\phd\pojo\OrderDetails.class
 com\phd\repository\impl\UserRepositoryImpl.class
-com\phd\pojo\StoreCategory_.class
 com\phd\service\ProductService.class
 com\phd\filters\CustomAccessDeniedHandler.class
 com\phd\filters\RestAuthenticationEntryPoint.class

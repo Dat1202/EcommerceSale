@@ -72,15 +72,15 @@ const Home = () => {
                                     let url = `/products/${p.id}`;
 
                                     return <Col xs={12} md={3} className="mt-1 p-4">
-                                        <Card style={{ width: '22rem' }} >
+                                        <Card style={{ width: '22rem', height: "100%",}} >
                                             <Link to={url} variant="primary">
                                                 <Card.Img variant="top" className="link_hover" src={p.image} />
                                                 <Card.Body>
                                                     <Card.Title>
-                                                        <div className="d-flex justify-content-center">{p.name}</div>
+                                                        <div className="fs-3 d-flex justify-content-center">{p.name}</div>
                                                     </Card.Title>
                                                     <Card.Text>
-                                                        <div className="d-flex justify-content-center text-danger">{p.price.toFixed(2)} VNĐ</div>
+                                                        <div className="fs-5 d-flex justify-content-center text-danger">{p.price} VNĐ</div>
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Link>

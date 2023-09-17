@@ -105,9 +105,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
                        value="/WEB-INF/pages/stats-categories.jsp" />
     </definition>
     
-    <definition name="stats-admin" extends="baseLayout">
+<!--    <definition name="stats-admin" extends="baseLayout">
         <put-attribute name="title" value="Thông kê theo thể loại" />
         <put-attribute name="content"
                        value="/WEB-INF/pages/stats-admin.jsp" />
-    </definition>
+    </definition>-->
 </tiles-definitions>

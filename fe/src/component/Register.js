@@ -101,16 +101,9 @@ const Register = () => {
       } else {
         setUsernameError("");
       }
-      let email, password;
       const process = async () => {
         let formData = new FormData();
         for (let field in user) {
-          if (field === "email") {
-            email = user[field];
-          }
-          if (field === "password") {
-            password = user[field];
-          }
           if (field !== "confirmPass")
             formData.append(field, user[field]);
         }
@@ -118,8 +111,8 @@ const Register = () => {
         if (avatar.current.files.length > 0)
           formData.append("avatar", avatar.current.files[0]);
 
-        console.info(email);
-        console.info(password);
+        // console.info(email);
+        // console.info(password);
 
         setLoading(true);
 
