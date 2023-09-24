@@ -3,10 +3,9 @@
 SpringMVC Framework và sử dụng Spring Security để chứng thực phân quyền.
 - Các chức năng phía client, các nhóm phát triển Restful API bằng SpringMVC và
 phát triển phía front end sử dụng ReactJS.
-
 ĐỀ TÀI: SÀN GIAO DỊCH THƯƠNG MẠI ĐIỆN TỬ
 - Đăng nhập (các vai trò quản trị, nhân viên sàn giao dịch, người bán hoặc người dùng
-thường.
+thường).
 - Đăng ký người dùng (phải có avatar) có thể đăng kỳ vai trò người dùng cá nhân trên
 hệ thống hoặc vai trò đại duyện tiểu thương hoặc doanh nghiệp (gọi chung là người
 bán) để giao dịch trên sàn. Khi đăng ký vai trò tiểu thương hoặc doanh nghiệp cần sự
