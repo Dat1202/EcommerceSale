@@ -25,11 +25,10 @@ export const endpoints = {
     "google-test": `${SERVER_CONTEXT}/api/login/google/`,
     "save-user-data": `${SERVER_CONTEXT}/api/save-user-data/`,
     "check-username-exists": `${SERVER_CONTEXT}/api/check-username-exists/`,
-
     "pay": `${SERVER_CONTEXT}/api/pay/`,
     "details": (productId) => `${SERVER_CONTEXT}/api/products/${productId}/`,
-    "comments-pro": (productId) => `${SERVER_CONTEXT}/api/products/${productId}/comments/`,
-    "add-comment-pro": `${SERVER_CONTEXT}/api/comments/`,
+    "comments-product": (productId) => `${SERVER_CONTEXT}/api/products/${productId}/comments/`,
+    "add-comment-product": `${SERVER_CONTEXT}/api/comments/`,
 }
 
 export const authApis = () => {

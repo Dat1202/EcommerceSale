@@ -5,23 +5,22 @@ import Footer from './layout/Footer';
 import './base.css';
 import './style.css';
 import Login from './component/Login';
-import Home from './component/Home';
+import Home from './component/Home/Home';
 import { createContext, useReducer } from 'react';
 import cookie from "react-cookies";
-import Register from './component/Register';
-import Store from './component/Store';
+import Register from './component/User/Register';
+import Store from './component/Store/Store';
 import { CreateStore } from './component/Store/CreateStore';
 import 'moment/locale/vi';
-import ProductDetails from './component/ProductDetails';
-import Cart from './component/Cart';
+import ProductDetails from './component/ProductDetail/ProductDetails';
+import Cart from './component/Home/Cart/Cart';
 import { Container } from 'react-bootstrap';
 import MyCartCounterReducer from './reducers/MyCartCounterReducer';
 import MyUserReducer from "./reducers/MyUserReducer";
-import { CompareProduct } from './component/CompareProduct';
+import { CompareProduct } from './component/ProductDetail/CompareProduct';
 
 export const MyUserContext = createContext();
 export const MyCartContext = createContext();
-
 
 function App() {
 

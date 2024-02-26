@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Alert, Button, Container, Form, Table } from "react-bootstrap";
 import cookie from "react-cookies";
-import { authApis, endpoints } from "../configs/Apis";
-import PayPalPayment from "../component/Paypal connect/PayPalPayment";
-import { MyCartContext } from "../App";
+import { authApis, endpoints } from "../../../configs/Apis";
+import PayPalPayment from "../../Paypal connect/PayPalPayment";
+import { MyCartContext } from "../../../App";
 
 const Cart = () => {
     const [, cartDispatch] = useContext(MyCartContext);

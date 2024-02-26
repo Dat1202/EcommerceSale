@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Apis, { authApis, endpoints } from "../configs/Apis";
-import MySpinner from "../layout/MySpinner";
-import { MyCartContext, MyUserContext } from "../App";
+import Apis, { authApis, endpoints } from "../../configs/Apis";
+import MySpinner from "../../layout/MySpinner";
+import { MyCartContext, MyUserContext } from "../../App";
 import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faMessage, faShop } from "@fortawesome/free-solid-svg-icons";
-import ProductsOfShop from "./ProductDetail/ProductsOfShop";
+import ProductsOfShop from "./ProductsOfShop";
 import cookie, { remove } from "react-cookies";
 
 const ProductDetails = () => {

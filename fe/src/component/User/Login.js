@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Link, Navigate, useSearchParams } from 'react-router-dom';
-import Apis, { authApis, endpoints } from '../configs/Apis';
+import Apis, { authApis, endpoints } from '../../configs/Apis';
 import { Form } from 'react-bootstrap';
 import cookie from "react-cookies";
-import { MyUserContext } from "../App";
+import { MyUserContext } from "../../App";
 
 const Login = () => {
 

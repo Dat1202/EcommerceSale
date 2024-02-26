@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { FloatingLabel, Form } from 'react-bootstrap';
-import Apis, { endpoints } from '../configs/Apis';
+import Apis, { endpoints } from '../../configs/Apis';
 import { useNavigate } from 'react-router-dom';
-import MySpinner from '../layout/MySpinner';
+import MySpinner from '../../layout/MySpinner';
 
 
 const Register = () => {

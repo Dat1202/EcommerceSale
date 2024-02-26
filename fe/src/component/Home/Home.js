@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Apis, { endpoints } from '../configs/Apis';
+import Apis, { endpoints } from '../../configs/Apis';
 import { Alert, Card, Col, Row } from "react-bootstrap";
-import MySpinner from "../layout/MySpinner";
+import MySpinner from "../../layout/MySpinner";
 import { Link, useSearchParams } from "react-router-dom";
-import { SearchRangePrice } from "../component/Home/SearchRangePrice";
-import { SlideShow } from "../component/Home/SlideShow";
-import Category from "../component/Home/Category";
+import { SearchRangePrice } from "./SearchRangePrice";
+import { SlideShow } from "./SlideShow";
+import Category from "./Category";
 
 const Home = () => {
     const [products, setProducts] = useState(null);

@@ -2,7 +2,6 @@ import React from 'react'
 
 const MySpinner = () => {
     return (
-        // <Spinner animation="border" variant="primary" />
         <div className="loading">
             <span>L</span>
             <span>O</span>
